@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm dlx:*)",
+      "Bash(npx shadcn@latest add @magicui/text-animate)",
+      "mcp__Sanity__list_projects",
+      "mcp__Sanity__list_datasets",
+      "mcp__Sanity__create_documents_from_json",
+      "mcp__Sanity__publish_documents"
+    ]
+  }
+}
