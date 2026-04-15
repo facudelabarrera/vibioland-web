@@ -1,0 +1,150 @@
+import type { ComponentType } from 'react'
+import Image from 'next/image'
+import { TextAnimate } from '@/components/ui/text-animate'
+
+type Bloque = {
+  number: string
+  title: string
+  titleLines: [string, string]
+  description: string
+  imageSrc: string
+  Icon: ComponentType<{ className?: string }>
+}
+
+function ArquitecturaIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden>
+      <path d="M18 82 60 38l42 44" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M28 73v28h64V73" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M47 101V79h26v22" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M87 31v18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M78 38h18" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="92" cy="28" r="12" stroke="currentColor" strokeWidth="2.2" />
+    </svg>
+  )
+}
+
+function ComunidadIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden>
+      <circle cx="37" cy="44" r="12" stroke="currentColor" strokeWidth="2.2" />
+      <circle cx="82" cy="44" r="12" stroke="currentColor" strokeWidth="2.2" />
+      <circle cx="60" cy="30" r="10" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M25 88c2-14 12-23 24-23s22 9 24 23" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M58 88c1-12 9-20 20-20 12 0 20 8 22 20" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M20 88c1-12 9-20 20-20 8 0 14 3 18 9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M52 56h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function RegeneracionIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" fill="none" className={className} aria-hidden>
+      <path d="M60 95V47" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M60 62c0-16 11-29 27-33-1 17-12 30-27 33Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M60 72c0-16-11-29-27-33 1 17 12 30 27 33Z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M30 97c8-8 18-12 30-12s22 4 30 12" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="91" cy="44" r="8" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M91 31v-8M91 65v-8M78 44h-8M112 44h-8M82 35l-6-6M100 35l6-6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+const bloques: Bloque[] = [
+  {
+    number: '001',
+    title: 'Arquitectura sostenible',
+    titleLines: ['Arquitectura', 'sostenible'],
+    description:
+      'Obra nueva y rehabilitación de viviendas con criterios de sostenibilidad, eficiencia y ahorro. Con materiales ecológicos, diseño pasivo y bioclimático, producción de energía solar, reciclaje de aguas y soluciones pensadas para durar.',
+    imageSrc: '/VIBIO 4.0 - GENERAL.jpg',
+    Icon: ArquitecturaIcon,
+  },
+  {
+    number: '002',
+    title: 'Vida comunitaria',
+    titleLines: ['Vida', 'comunitaria'],
+    description:
+      'Vida comunitaria y cultura colaborativa con espacios y servicios comunes que estrechen lazos entre los actuales y los nuevos vecinos y vecinas. Iniciativas de movilidad compartida, huertos comunitarios y espacios para actividades de cultura y ocio.',
+    imageSrc: '/VIBIO 4.0 - GENERAL (1).jpg',
+    Icon: ComunidadIcon,
+  },
+  {
+    number: '003',
+    title: 'Paisajismo regenerativo',
+    titleLines: ['Paisajismo', 'regenerativo'],
+    description:
+      'Restauración de flora y fauna local a través de un proyecto de paisajismo regenerativo basado en el estudio de cada ecosistema. Con plantación de árboles, instalación de cajas nido y hoteles para insectos o sistemas de recuperación e infiltración de agua, entre otros.',
+    imageSrc: '/Copia de H_Dueñas-8436.jpg',
+    Icon: RegeneracionIcon,
+  },
+]
+
+export function ModeloBloquesSection() {
+  return (
+    <div className="pt-10 lg:pt-14">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start lg:gap-x-16">
+        <div className="max-w-3xl">
+          <TextAnimate
+            as="h2"
+            animation="slideUp"
+            by="line"
+            once
+            className="max-w-none whitespace-pre-line font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
+          >
+            {'Tres bloques que\nhacen viable a vibio.'}
+          </TextAnimate>
+        </div>
+
+        <p className="max-w-md text-sm font-light leading-[1.8] text-vibio-text/68 lg:justify-self-end lg:pt-2 lg:text-[15px]">
+          No es solo vivienda. Es una forma de regenerar territorio, activar comunidad
+          y diseñar un ecosistema habitable con lógica económica, social y ecológica.
+        </p>
+      </div>
+
+      <div className="mt-14 grid gap-0 lg:grid-cols-3">
+        {bloques.map(({ number, title, titleLines, description, imageSrc, Icon }) => (
+          <article
+            key={number}
+            className="group relative flex min-h-[360px] flex-col justify-between overflow-hidden px-6 py-8 transition-colors duration-500 lg:min-h-[430px] lg:border-r lg:border-vibio-border/75 lg:px-8 lg:py-10 lg:last:border-r-0"
+          >
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">
+              <Image
+                src={imageSrc}
+                alt={title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 bg-vibio-casi-negro/55 transition-colors duration-500 ease-out group-hover:bg-vibio-casi-negro/58" />
+            </div>
+
+            <div className="relative z-10 flex h-full flex-col justify-between transition-all duration-500 ease-out">
+              <div className="relative h-[112px] w-full">
+                <div className="absolute inset-0 flex items-start">
+                <Icon className="h-20 w-20 text-vibio-cafe-medio transition-all duration-500 ease-out group-hover:scale-[1.03] group-hover:text-white" />
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <h3
+                  aria-label={title}
+                  className="max-w-none whitespace-pre-line font-heading text-[clamp(1.55rem,2.2vw,2.15rem)] font-normal leading-[1.04] text-vibio-text transition-colors duration-500 ease-out group-hover:text-white"
+                >
+                  {titleLines[0]}
+                  {'\n'}
+                  {titleLines[1]}
+                </h3>
+                <p className="mt-4 max-w-sm text-[15px] font-light leading-[1.75] text-vibio-text/68 transition-colors duration-500 ease-out group-hover:text-white/86">
+                  {description}
+                </p>
+              </div>
+            </div>
+
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}

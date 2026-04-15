@@ -199,8 +199,8 @@ export function HeroImageExpand() {
     <div
       ref={pinRef}
       data-nav-surface="dark"
-      className="relative w-full overflow-visible bg-vibio-white"
-      style={{ backgroundColor: '#ffffff' }}
+      className="relative w-full overflow-visible bg-vibio-marfil"
+      style={{ backgroundColor: 'var(--color-vibio-marfil)' }}
     >
       <div className="w-full">
         <div className="w-full" style={{ aspectRatio: '16 / 6' }} />
@@ -211,8 +211,8 @@ export function HeroImageExpand() {
         style={{ willChange: 'clip-path, transform' }}
       >
         <Image
-          src="/images/hero.jpg"
-          alt="Paisaje rural español con colinas y vegetación mediterránea"
+          src="/Copia de VIBIOLAND_20250216_011.JPG"
+          alt="Vista aérea de Vibioland entre entorno rural y urbanización"
           fill
           priority
           quality={100}

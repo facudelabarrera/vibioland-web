@@ -9,10 +9,10 @@ type VibioLogoProps = {
   priority?: boolean
 }
 
-const src = "/images/vibioland-logo.svg"
+const src = "/vibioland-logo.svg"
 
 /**
- * Wordmark vectorial (`public/images/vibioland-logo.svg`).
+ * Wordmark vectorial (`public/vibioland-logo.svg`).
  */
 export function VibioLogo({ className, priority }: VibioLogoProps) {
   return (

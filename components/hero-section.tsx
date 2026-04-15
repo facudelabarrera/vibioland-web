@@ -11,10 +11,7 @@ export function HeroSection() {
         data-nav-surface="light"
         className="pb-12 pt-24 lg:pb-16 lg:pt-28"
         style={{
-          backgroundColor: "#fafafa",
-          backgroundImage: 'url("/images/topography-hero.svg")',
-          backgroundRepeat: "repeat",
-          backgroundSize: "clamp(220px, 28vw, 480px)",
+          backgroundColor: 'var(--color-vibio-marfil)',
         }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

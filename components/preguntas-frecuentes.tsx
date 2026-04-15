@@ -33,7 +33,7 @@ const faqs = [
 
 export function PreguntasFrecuentes() {
   return (
-    <section id="faq" data-nav-surface="light" className="bg-[#fafafa] py-20 lg:py-28">
+    <section id="faq" data-nav-surface="light" className="bg-vibio-marfil py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-20 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:gap-48">
           <ScrollReveal>
