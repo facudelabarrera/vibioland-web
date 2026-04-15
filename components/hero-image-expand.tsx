@@ -3,54 +3,32 @@
 import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 
-import { HeroLogoMark, type HeroLogoMarkHandle } from '@/components/hero-logo-mark'
+/** Pin background — matches --color-vibio-marfil (#F1EFE4) so the spacer behind
+ *  the image never shows a white seam during or after the expand animation. */
+const HERO_RGB = [241, 239, 228] as const
+const PAGE_RGB = [241, 239, 228] as const
+
+const WORDS = ['Reencuentra.', 'Rediseña.', 'Regenera.'] as const
 
 /**
- * Stagger manuscrito. Windows irregulares (start, duration) por letra con solapamientos
- * para que el conjunto se sienta como escritura y no como wipe. Mapeados sobre un progreso
- * global normalizado 0..1 (el reveal de t).
+ * One-at-a-time reveal windows over the normalized `anim.logo` progress (0..1).
+ * Each word: [inStart, inEnd, outStart, outEnd]. Between inEnd and outStart the
+ * word is fully visible. Last word never fades out (keepVisible = true).
  */
-const SEG_WINDOWS: Array<[number, number]> = [
-  [0.00, 0.22],
-  [0.09, 0.18],
-  [0.19, 0.26],
-  [0.31, 0.15],
-  [0.38, 0.22],
-  [0.48, 0.13],
-  [0.56, 0.22],
-  [0.68, 0.19],
-  [0.80, 0.20],
+const WORD_PHASES: Array<{ inStart: number; inEnd: number; outStart: number; outEnd: number; keepVisible?: boolean }> = [
+  { inStart: 0.00, inEnd: 0.06, outStart: 0.22, outEnd: 0.28 },
+  { inStart: 0.36, inEnd: 0.42, outStart: 0.56, outEnd: 0.62 },
+  { inStart: 0.70, inEnd: 0.78, outStart: 1.00, outEnd: 1.00, keepVisible: true },
 ]
 
 const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3)
-const easeInOutCubic = (x: number) =>
-  x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2
-const easeOutQuart = (x: number) => 1 - Math.pow(1 - x, 4)
-const easeInOutSine = (x: number) => -(Math.cos(Math.PI * x) - 1) / 2
-
-const SEG_EASES = [
-  easeInOutCubic, // v
-  easeOutCubic,
-  easeInOutCubic,
-  easeOutQuart,
-  easeInOutCubic,
-  easeOutCubic,   // punto, rápido
-  easeInOutCubic,
-  easeInOutSine,
-  easeOutCubic,
-]
-
-/** Pin background at rest + start of expansion (hero editorial, light) */
-const HERO_RGB = [255, 255, 255] as const
-/** Page surface once expansion completes */
-const PAGE_RGB = [250, 250, 250] as const
+const easeInCubic = (x: number) => x * x * x
 
 export function HeroImageExpand() {
   const pinRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef<HTMLDivElement>(null)
-  const logoLayerRef = useRef<HTMLDivElement>(null)
-  const logoOutlineRef = useRef<HTMLDivElement>(null)
-  const logoFillRef = useRef<HeroLogoMarkHandle>(null)
+  const textLayerRef = useRef<HTMLDivElement>(null)
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([])
 
   useEffect(() => {
     const pinEl = pinRef.current
@@ -59,9 +37,7 @@ export function HeroImageExpand() {
 
     const pinRoot: HTMLDivElement = pinEl
     const frameRoot: HTMLDivElement = frameEl
-    const logoLayerRoot = logoLayerRef.current
-    const logoOutlineRoot = logoOutlineRef.current
-    const segProgress = new Array(SEG_WINDOWS.length).fill(0) as number[]
+    const textLayerRoot = textLayerRef.current
 
     let ctx: ReturnType<typeof import('gsap').gsap.context> | undefined
 
@@ -96,27 +72,62 @@ export function HeroImageExpand() {
           frameRoot.style.clipPath = `inset(0px ${r}px ${b}px ${l}px round ${rad}px)`
           frameRoot.style.transform = `translateY(${-100 * xp}%) scale(${1 - 0.04 * xp})`
 
-          // Subtle white → off-white during last part of expansion (matches body)
           const bgT = Math.min(1, Math.max(0, (ep - 0.7) / 0.3))
           const bgR = Math.round(HERO_RGB[0] + (PAGE_RGB[0] - HERO_RGB[0]) * bgT)
           const bgG = Math.round(HERO_RGB[1] + (PAGE_RGB[1] - HERO_RGB[1]) * bgT)
           const bgB = Math.round(HERO_RGB[2] + (PAGE_RGB[2] - HERO_RGB[2]) * bgT)
           pinRoot.style.backgroundColor = `rgb(${bgR},${bgG},${bgB})`
 
-          if (logoLayerRoot && logoOutlineRoot) {
-            logoLayerRoot.style.opacity = '1'
-
-            const outlineOp = Math.min(1, Math.max(0, (ep - 0.08) / 0.42))
-            const smooth = outlineOp * outlineOp * (3 - 2 * outlineOp)
-            logoOutlineRoot.style.opacity = String(smooth)
-
+          if (textLayerRoot) {
+            textLayerRoot.style.opacity = '1'
             const raw = Math.min(1, Math.max(0, anim.logo))
-            for (let i = 0; i < SEG_WINDOWS.length; i++) {
-              const [start, dur] = SEG_WINDOWS[i]
-              const local = Math.min(1, Math.max(0, (raw - start) / dur))
-              segProgress[i] = SEG_EASES[i](local)
+            for (let i = 0; i < WORDS.length; i++) {
+              const { inStart, inEnd, outStart, outEnd, keepVisible } = WORD_PHASES[i]
+              const el = wordRefs.current[i]
+              if (!el) continue
+
+              let opacity = 0
+              let phase: 'pre' | 'in' | 'hold' | 'out' | 'post' = 'pre'
+              let phaseProgress = 0
+
+              if (raw < inStart) {
+                phase = 'pre'
+              } else if (raw < inEnd) {
+                phase = 'in'
+                phaseProgress = (raw - inStart) / (inEnd - inStart)
+                opacity = easeOutCubic(phaseProgress)
+              } else if (keepVisible || raw < outStart) {
+                phase = 'hold'
+                opacity = 1
+              } else if (raw < outEnd) {
+                phase = 'out'
+                phaseProgress = (raw - outStart) / (outEnd - outStart)
+                opacity = 1 - easeInCubic(phaseProgress)
+              } else {
+                phase = 'post'
+                opacity = 0
+              }
+
+              let y = 0
+              let blur = 0
+              if (phase === 'pre') {
+                y = 28
+                blur = 12
+              } else if (phase === 'in') {
+                y = (1 - easeOutCubic(phaseProgress)) * 28
+                blur = (1 - easeOutCubic(phaseProgress)) * 12
+              } else if (phase === 'out') {
+                y = -easeInCubic(phaseProgress) * 28
+                blur = easeInCubic(phaseProgress) * 12
+              } else if (phase === 'post') {
+                y = -28
+                blur = 12
+              }
+
+              el.style.opacity = String(opacity)
+              el.style.transform = `translate3d(0, ${y}px, 0)`
+              el.style.filter = `blur(${blur}px)`
             }
-            logoFillRef.current?.setSegmentProgress(segProgress)
           }
         }
 
@@ -136,7 +147,6 @@ export function HeroImageExpand() {
           },
         })
 
-        /** Fracciones del pin (suman 1): expansión → hold fullscreen → reveal logo → hold logo → salida */
         const EXPAND_R = 0.26
         const HOLD_FULLSCREEN_R = 0.05
         const LOGO_REVEAL_R = 0.48
@@ -220,30 +230,30 @@ export function HeroImageExpand() {
           className="object-cover"
         />
         <div
-          ref={logoLayerRef}
-          className="pointer-events-none absolute inset-0 z-10 grid place-items-center"
-          style={{ opacity: 0, willChange: 'opacity' }}
+          ref={textLayerRef}
+          className="pointer-events-none absolute inset-0 z-10 grid place-items-center px-6"
+          style={{ opacity: 0 }}
         >
-          <div className="relative">
-            {/* Capa base: outline siempre presente como guía desde antes del fullscreen */}
-            <div
-              ref={logoOutlineRef}
-              style={{ opacity: 0, willChange: 'opacity' }}
-            >
-              <HeroLogoMark
-                variant="outline"
-                strokeWidth={0.55}
-                className="block h-auto w-[min(92vw,860px)]"
-              />
-            </div>
-            {/* Capa activa: cada path se revela individualmente vía <clipPath> SVG con stagger irregular */}
-            <div className="pointer-events-none absolute inset-0">
-              <HeroLogoMark
-                ref={logoFillRef}
-                segmented
-                className="block h-auto w-[min(92vw,860px)]"
-              />
-            </div>
+          <div className="relative flex items-center justify-center">
+            {WORDS.map((word, i) => (
+              <h2
+                key={word}
+                ref={(el) => {
+                  wordRefs.current[i] = el
+                }}
+                className="font-heading absolute whitespace-nowrap text-center font-bold leading-[1.05] tracking-tight text-white"
+                style={{
+                  fontSize: 'clamp(2.5rem, 7vw, 6.5rem)',
+                  textShadow: '0 2px 32px rgba(0,0,0,0.35)',
+                  opacity: 0,
+                  transform: 'translate3d(0, 28px, 0)',
+                  filter: 'blur(12px)',
+                  willChange: 'opacity, transform, filter',
+                }}
+              >
+                {word}
+              </h2>
+            ))}
           </div>
         </div>
       </div>
