@@ -196,25 +196,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    letter-spacing: -0.012em;
+    letter-spacing: -0.025em;
   }
-  p:not(.font-heading) {
-    letter-spacing: -0.01em;
+  h1, h2, h3, h4, h5, h6,
+  [class*="font-heading"] {
+    letter-spacing: -0.04em !important;
   }
-  h1:not(.font-heading) {
-    letter-spacing: -0.045em;
-  }
-  h2:not(.font-heading) {
-    letter-spacing: -0.034em;
-  }
-  h3:not(.font-heading) {
-    letter-spacing: -0.026em;
-  }
-  h4:not(.font-heading) {
-    letter-spacing: -0.02em;
-  }
-  h5:not(.font-heading),
-  h6:not(.font-heading) {
-    letter-spacing: -0.016em;
+  h1 { letter-spacing: -0.09em !important; }
+  h2 { letter-spacing: -0.075em !important; }
+  h3 { letter-spacing: -0.06em !important; }
+  p:not([class*="font-heading"]) {
+    letter-spacing: -0.015em;
   }
 }

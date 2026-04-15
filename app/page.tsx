@@ -7,6 +7,7 @@ import { Audiencia } from "@/components/audiencia"
 // import { FinalChapter } from "@/components/final-chapter"
 // import { Unete } from "@/components/unete"
 import { PreguntasFrecuentes } from "@/components/preguntas-frecuentes"
+import { FinalConversionSection } from "@/components/final-conversion-section"
 import { Footer } from "@/components/footer"
 
 export const revalidate = 60
@@ -24,6 +25,7 @@ export default function HomePage() {
         <Unete />
       </FinalChapter> */}
       <PreguntasFrecuentes />
+      <FinalConversionSection />
       <Footer />
     </main>
   )
