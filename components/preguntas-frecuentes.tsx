@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/animate-ui/components/radix/accordion'
-import { ScrollReveal, StaggerReveal } from '@/components/scroll-reveal'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 const faqs = [
   {
@@ -33,14 +33,14 @@ const faqs = [
 
 export function PreguntasFrecuentes() {
   return (
-    <section id="faq" className="bg-vibio-white py-20 lg:py-28">
+    <section id="faq" data-nav-surface="light" className="bg-[#fafafa] py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[minmax(280px,360px)_minmax(0,1fr)] lg:gap-20">
+        <div className="grid gap-20 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:gap-48">
           <ScrollReveal>
-            <h2 className="font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.15] text-vibio-text text-balance">
+            <h2 className="font-heading whitespace-nowrap text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.15] text-vibio-text">
               Preguntas frecuentes
             </h2>
-            <p className="mt-4 text-base font-light leading-[1.8] text-vibio-text/60 lg:text-lg">
+            <p className="mt-4 max-w-[380px] text-base font-light leading-[1.8] text-vibio-text/60 lg:text-lg">
               Lo que más nos preguntan sobre el modelo, la vida en comunidad y cómo dar el primer paso.
             </p>
           </ScrollReveal>

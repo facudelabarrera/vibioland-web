@@ -1,15 +1,23 @@
 import Link from "next/link"
 
+import { VibioLogoLink } from "@/components/vibio-logo"
+
 export function Footer() {
   return (
-    <footer id="contacto" className="py-16 lg:py-20" style={{ backgroundColor: '#1c2e24' }}>
+    <footer
+      id="contacto"
+      data-nav-surface="dark"
+      className="py-16 lg:py-20"
+      style={{ backgroundColor: 'var(--color-vibio-brand-green)' }}
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left column - tagline + social */}
           <div>
-            <Link href="/" className="font-heading text-lg text-white">
-              <span className="font-bold">vibio</span>.land
-            </Link>
+            <VibioLogoLink
+              className="h-8 w-auto max-w-[200px] brightness-0 invert lg:h-9 lg:max-w-[240px]"
+              linkClassName="inline-block leading-none"
+            />
             <p className="mt-6 max-w-sm text-base font-light leading-[1.7] text-white/60">
               Creamos comunidades en entornos rurales donde arraigarse tiene sentido.
             </p>

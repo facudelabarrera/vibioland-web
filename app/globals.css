@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* Amenité (archivo: Aminute) — tracking global vía --font-heading-tracking */
 @font-face {
   font-family: 'Aminute';
   src: url('/fonts/Aminute.woff2') format('woff2');
@@ -10,7 +11,7 @@
 }
 
 .font-heading {
-  letter-spacing: normal;
+  letter-spacing: var(--font-heading-tracking);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -89,24 +90,31 @@
 @theme inline {
   --font-sans: var(--font-sans), 'DM Sans', system-ui, sans-serif;
   --font-heading: 'Aminute', system-ui, sans-serif;
+  /* Interletrado positivo para Amenité (legible, no exagerado) */
+  --font-heading-tracking: 0.025em;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
 
   /* vibio brand colors */
+  --color-vibio-brand-yellow: #F0DF6D;
+  --color-vibio-brand-green: #072C0C;
+
   --color-vibio-cream: #f1f3f5;
   --color-vibio-white: #fafafa;
   --color-vibio-dark: #17181a;
   --color-vibio-text: #18191b;
-  --color-vibio-gold: #e8cd79;
   --color-vibio-terracotta: #8a8f99;
   --color-vibio-sand: #c9ced7;
   --color-vibio-muted: #eceff3;
   --color-vibio-surface: #f1f3f5;
   --color-vibio-surface-2: #e8ecf1;
   --color-vibio-border: #d7dce3;
-  --color-vibio-accent-green: #78cba7;
   --color-vibio-accent-sky: #8dcbed;
-  --color-vibio-accent-yellow: #e8cd79;
-  --color-vibio-hero: #1c2e24;
+
+  /* Legacy aliases — consolidated onto brand tokens */
+  --color-vibio-gold: var(--color-vibio-brand-yellow);
+  --color-vibio-accent-yellow: var(--color-vibio-brand-yellow);
+  --color-vibio-accent-green: var(--color-vibio-brand-green);
+  --color-vibio-hero: var(--color-vibio-brand-green);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -175,22 +183,23 @@
     @apply bg-background text-foreground;
     letter-spacing: -0.012em;
   }
-  p {
+  p:not(.font-heading) {
     letter-spacing: -0.01em;
   }
-  h1 {
+  h1:not(.font-heading) {
     letter-spacing: -0.045em;
   }
-  h2 {
+  h2:not(.font-heading) {
     letter-spacing: -0.034em;
   }
-  h3 {
+  h3:not(.font-heading) {
     letter-spacing: -0.026em;
   }
-  h4 {
+  h4:not(.font-heading) {
     letter-spacing: -0.02em;
   }
-  h5, h6 {
+  h5:not(.font-heading),
+  h6:not(.font-heading) {
     letter-spacing: -0.016em;
   }
 }

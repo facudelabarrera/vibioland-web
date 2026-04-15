@@ -12,19 +12,17 @@ export interface ShimmerButtonProps extends ComponentPropsWithoutRef<"button"> {
   children?: React.ReactNode
 }
 
-export const ShimmerButton = React.forwardRef<
-  HTMLButtonElement,
-  ShimmerButtonProps
->(
+/** Solid CTA: same API as before, sin brillo ni sombras. */
+export const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   (
     {
-      shimmerColor = "#8dcbed",
-      shimmerSize = "0.05em",
-      shimmerDuration = "3s",
       borderRadius = "0",
       background = "#f1f3f5",
       className,
       children,
+      shimmerColor: _shimmerColor,
+      shimmerSize: _shimmerSize,
+      shimmerDuration: _shimmerDuration,
       ...props
     },
     ref
@@ -33,61 +31,19 @@ export const ShimmerButton = React.forwardRef<
       <button
         style={
           {
-            "--spread": "90deg",
-            "--shimmer-color": shimmerColor,
             "--radius": borderRadius,
-            "--speed": shimmerDuration,
-            "--cut": shimmerSize,
             "--bg": background,
           } as CSSProperties
         }
         className={cn(
-          "group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden [border-radius:var(--radius)] border border-vibio-text/15 px-6 py-3 whitespace-nowrap text-vibio-text [background:var(--bg)]",
-          "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px",
+          "relative flex cursor-pointer items-center justify-center overflow-hidden border border-vibio-text/15 px-6 py-3 whitespace-nowrap [border-radius:var(--radius)] [background:var(--bg)]",
+          "text-inherit transition-colors duration-200 ease-out",
           className
         )}
         ref={ref}
         {...props}
       >
-        {/* spark container */}
-        <div
-          className={cn(
-            "-z-30 blur-[2px]",
-            "@container-[size] absolute inset-0 overflow-visible"
-          )}
-        >
-          {/* spark */}
-          <div className="animate-shimmer-slide absolute inset-0 aspect-[1] h-[100cqh] rounded-none [mask:none]">
-            {/* spark before */}
-            <div className="animate-spin-around absolute -inset-full w-auto [translate:0_0] rotate-0 [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))]" />
-          </div>
-        </div>
         {children}
-
-        {/* Highlight */}
-        <div
-          className={cn(
-            "absolute inset-0 size-full",
-
-            "px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#11111112]",
-
-            // transition
-            "transform-gpu transition-all duration-300 ease-in-out",
-
-            // on hover
-            "group-hover:shadow-[inset_0_-6px_10px_#1111111f]",
-
-            // on click
-            "group-active:shadow-[inset_0_-10px_10px_#11111126]"
-          )}
-        />
-
-        {/* backdrop */}
-        <div
-          className={cn(
-            "absolute inset-(--cut) -z-20 [border-radius:var(--radius)] [background:var(--bg)]"
-          )}
-        />
       </button>
     )
   }

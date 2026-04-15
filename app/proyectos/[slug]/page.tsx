@@ -50,7 +50,10 @@ export default async function ProyectoPage({
       <Navigation />
 
       <article className="pb-24">
-        <header className="relative h-[60vh] min-h-[420px] overflow-hidden">
+        <header
+          data-nav-surface="dark"
+          className="relative h-[60vh] min-h-[420px] overflow-hidden"
+        >
           {project.coverImage?.asset ? (
             <Image
               src={urlFor(project.coverImage).width(2400).height(1400).url()}
@@ -63,7 +66,7 @@ export default async function ProyectoPage({
           ) : (
             <div className="absolute inset-0 bg-vibio-surface-2" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-vibio-surface-2/90 via-vibio-surface/35 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-[50%] bg-vibio-surface-2/92" />
 
           <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 lg:px-8 lg:pb-16">
             {project.status && (
@@ -84,7 +87,10 @@ export default async function ProyectoPage({
           </div>
         </header>
 
-        <div className="mx-auto mt-16 grid max-w-7xl gap-16 px-6 lg:mt-24 lg:grid-cols-3 lg:px-8">
+        <div
+          data-nav-surface="light"
+          className="mx-auto mt-16 grid max-w-7xl gap-16 px-6 lg:mt-24 lg:grid-cols-3 lg:px-8"
+        >
           <div className="lg:col-span-2">
             {project.tagline && (
               <p className="text-[clamp(1.25rem,2vw,1.75rem)] font-light leading-[1.4] text-vibio-text text-balance">

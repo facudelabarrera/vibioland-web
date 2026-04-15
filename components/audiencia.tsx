@@ -3,44 +3,55 @@
 import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 
-const cards = [
+import {
+  audienciaIconBySlug,
+  type AudienciaIconSlug,
+} from '@/components/audiencia-icons'
+
+const cards: {
+  title: string
+  description: string
+  image: string
+  imagePos: string
+  icon: AudienciaIconSlug
+}[] = [
   {
-    number: '01',
     title: 'Urbanos 35–55',
     description:
       'Llevan años pensando en el cambio. Lo que les frena no es el deseo — es no encontrar algo bien pensado donde aterrizar.',
     image: '/images/urbanist.jpg',
     imagePos: 'center center',
+    icon: 'urbanos',
   },
   {
-    number: '02',
     title: 'Familias con hijos',
     description:
       'Quieren espacio, comunidad y un futuro con más sentido. Necesitan saber que la logística está resuelta: escuela, trabajo, vecinos reales.',
     image: '/images/familias.jpg',
     imagePos: 'center center',
+    icon: 'familias',
   },
   {
-    number: '03',
     title: 'Knowledge workers',
     description:
       'Trabajan desde cualquier lugar. Solo necesitan conexión, naturaleza y personas con quienes compartir algo más que una pantalla.',
     image: '/images/knowledge-workers.jpg',
     imagePos: 'center center',
+    icon: 'knowledge',
   },
   {
-    number: '04',
     title: 'Seniors activos',
     description:
       'No buscan retirarse — buscan seguir activos en un entorno que lo permita. La comunidad es su red, no su carga.',
     image: '/images/seniors.jpg',
     imagePos: 'center center',
+    icon: 'seniors',
   },
 ]
 
 export function Audiencia() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+  const cardsRef = useRef<(HTMLElement | null)[]>([])
   const indicatorsRef = useRef<(HTMLButtonElement | null)[]>([])
 
   useEffect(() => {
@@ -55,7 +66,7 @@ export function Audiencia() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
 
-      const els = cardsRef.current.filter(Boolean) as HTMLDivElement[]
+      const els = cardsRef.current.filter(Boolean) as HTMLElement[]
       const dots = indicatorsRef.current.filter(Boolean) as HTMLButtonElement[]
       const n = els.length
 
@@ -129,7 +140,7 @@ export function Audiencia() {
             i,
           )
         }
-      }, section)
+      }, section as Element)
     }
 
     init()
@@ -137,7 +148,7 @@ export function Audiencia() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="audiencia" className="bg-vibio-white">
+    <section ref={sectionRef} id="audiencia" data-nav-surface="light" className="bg-vibio-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 lg:py-0">
         <div className="grid gap-10 lg:min-h-screen lg:grid-cols-[340px_1fr] lg:items-start lg:gap-16 lg:py-20">
           {/* ── Left column ── */}
@@ -154,7 +165,7 @@ export function Audiencia() {
             <nav className="mt-12 hidden space-y-4 lg:block" aria-label="Audiencia cards">
               {cards.map((c, i) => (
                 <button
-                  key={c.number}
+                  key={c.title}
                   ref={(el) => {
                     indicatorsRef.current[i] = el
                   }}
@@ -189,18 +200,18 @@ export function Audiencia() {
 
           {/* ── Right column — card stack ── */}
           <div className="relative overflow-hidden lg:h-[calc(100vh-240px)]">
-            {cards.map((card, i) => (
+            {cards.map((card, i) => {
+              const CardIcon = audienciaIconBySlug[card.icon]
+              return (
               <article
-                key={card.number}
+                key={card.title}
                 ref={(el) => {
                   cardsRef.current[i] = el
                 }}
-                className="mb-8 grid grid-cols-1 overflow-hidden bg-vibio-surface lg:absolute lg:inset-0 lg:mb-0 lg:grid-cols-2"
+                className="mb-8 grid grid-cols-1 overflow-hidden bg-vibio-brand-yellow lg:absolute lg:inset-0 lg:mb-0 lg:grid-cols-2"
                 style={{
                   zIndex: i + 1,
                   willChange: 'transform, opacity',
-                  boxShadow:
-                    '0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)',
                 }}
               >
                 {/* Image — left half */}
@@ -216,21 +227,21 @@ export function Audiencia() {
                 </div>
 
                 {/* Content — right half */}
-                <div className="flex flex-col justify-between p-7 lg:p-10">
-                  <span className="text-[11px] font-medium tabular-nums uppercase tracking-[0.08em] text-vibio-text/30">
-                    {card.number} / {String(cards.length).padStart(2, '0')}
-                  </span>
+                <div className="flex flex-col items-start justify-start gap-5 p-7 text-vibio-brand-green lg:gap-7 lg:p-12">
+                  <div className="text-vibio-brand-green" aria-hidden>
+                    <CardIcon className="h-[56px] w-[56px] lg:h-[64px] lg:w-[64px]" />
+                  </div>
                   <div>
-                    <h3 className="font-heading text-xl font-semibold leading-[1.15] text-vibio-text lg:text-[1.65rem]">
+                    <h3 className="font-heading text-2xl font-semibold leading-[1.08] text-vibio-brand-green lg:text-[2.25rem]">
                       {card.title}
                     </h3>
-                    <p className="mt-3 text-[15px] font-light leading-[1.7] text-vibio-text/60 lg:text-base">
+                    <p className="mt-4 text-[15px] font-light leading-[1.65] text-vibio-brand-green/80 lg:text-base">
                       {card.description}
                     </p>
                   </div>
                 </div>
               </article>
-            ))}
+            )})}
           </div>
         </div>
       </div>

@@ -4,7 +4,8 @@ import { QueEsVibio } from "@/components/que-es-vibio"
 import { ElModelo } from "@/components/el-modelo"
 import { Proyectos } from "@/components/proyectos"
 import { Audiencia } from "@/components/audiencia"
-import { Unete } from "@/components/unete"
+// import { FinalChapter } from "@/components/final-chapter"
+// import { Unete } from "@/components/unete"
 import { PreguntasFrecuentes } from "@/components/preguntas-frecuentes"
 import { Footer } from "@/components/footer"
 
@@ -19,7 +20,9 @@ export default function HomePage() {
       <ElModelo />
       <Proyectos />
       <Audiencia />
-      <Unete />
+      {/* <FinalChapter>
+        <Unete />
+      </FinalChapter> */}
       <PreguntasFrecuentes />
       <Footer />
     </main>

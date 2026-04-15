@@ -94,6 +94,7 @@ export function QueEsVibio() {
     <section
       ref={sectionRef}
       id="comunidad"
+      data-nav-surface="light"
       className="flex min-h-[80vh] items-center bg-vibio-white py-16"
     >
       <div className="mx-auto w-full max-w-[1060px] px-6 lg:px-8">

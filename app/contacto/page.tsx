@@ -11,7 +11,7 @@ export default function ContactoPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <section className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <section data-nav-surface="light" className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="flex flex-col justify-center">

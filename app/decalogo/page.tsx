@@ -20,7 +20,7 @@ export default async function DecalogoPage() {
     <main className="min-h-screen bg-vibio-white">
       <Navigation />
 
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <section data-nav-surface="light" className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.15] text-vibio-text text-balance">
