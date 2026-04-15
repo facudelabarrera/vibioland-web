@@ -16,25 +16,29 @@ export async function Proyectos() {
     <section id="proyectos" data-nav-surface="light" className="bg-vibio-white py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
-          <div className="flex flex-wrap items-end justify-between gap-8">
-            <TextAnimate
-              as="h2"
-              animation="slideUp"
-              by="word"
-              once
-              className="font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
-            >
-              Nuestros proyectos
-            </TextAnimate>
+<div className="flex flex-wrap items-end justify-between gap-8">
+              <TextAnimate
+                as="h2"
+                animation="slideUp"
+                by="word"
+                once
+                className="font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
+              >
+                Lugares
+              </TextAnimate>
 
-            <Link
-              href="/proyectos"
-              className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium text-vibio-text/80 transition-colors duration-200 ease-out hover:text-vibio-text"
-            >
-              Ver todos los proyectos
-              <ArrowRightShort className="h-2.5 w-3 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0" />
-            </Link>
-          </div>
+              <Link
+                href="/proyectos"
+                className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium text-vibio-text/80 transition-colors duration-200 ease-out hover:text-vibio-text"
+              >
+                Ver todos los lugares
+                <ArrowRightShort className="h-2.5 w-3 transition-transform duration-200 ease-out motion-reduce:transition-none group-hover:translate-x-0.5 motion-reduce:group-hover:translate-x-0" />
+              </Link>
+            </div>
+
+            <p className="mt-4 max-w-2xl font-light leading-[1.7] text-vibio-text/70 lg:mt-6 lg:text-lg">
+              Esto ya está pasando. Vibio no es una idea. Es un modelo sólido que ya está en marcha, con comunidades reales y proyectos en desarrollo.
+            </p>
         </ScrollReveal>
 
         <ProyectosPremiumList projects={projects} className="mt-14 lg:mt-20" />

@@ -107,10 +107,10 @@ export function ContactForm() {
 
       <ShimmerButton
         type="submit"
-        background="#18191b"
-        shimmerColor="#ffffff"
+        background="var(--color-vibio-cafe-oscuro)"
+        shimmerColor="var(--color-vibio-marfil)"
         borderRadius="0"
-        className="mt-8 w-full px-6 py-3.5 text-sm font-medium !text-vibio-white"
+        className="mt-8 w-full px-6 py-3.5 text-sm font-medium !text-vibio-marfil"
       >
         Empezar la conversación
       </ShimmerButton>

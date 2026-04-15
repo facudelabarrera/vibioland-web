@@ -54,28 +54,28 @@ function RegeneracionIcon({ className }: { className?: string }) {
 const bloques: Bloque[] = [
   {
     number: '001',
-    title: 'Arquitectura sostenible',
-    titleLines: ['Arquitectura', 'sostenible'],
+    title: 'Vivienda privada real',
+    titleLines: ['Vivienda', 'privada real'],
     description:
-      'Obra nueva y rehabilitación de viviendas con criterios de sostenibilidad, eficiencia y ahorro. Con materiales ecológicos, diseño pasivo y bioclimático, producción de energía solar, reciclaje de aguas y soluciones pensadas para durar.',
+      'Más tiempo, más espacio y menos ruido. Arquitectura bioclimática que respeta el entorno. Una forma de vida que prioriza lo importante.',
     imageSrc: '/VIBIO 4.0 - GENERAL.jpg',
     Icon: ArquitecturaIcon,
   },
   {
     number: '002',
-    title: 'Vida comunitaria',
-    titleLines: ['Vida', 'comunitaria'],
+    title: 'Comunidad intencional',
+    titleLines: ['Comunidad', 'intencional'],
     description:
-      'Vida comunitaria y cultura colaborativa con espacios y servicios comunes que estrechen lazos entre los actuales y los nuevos vecinos y vecinas. Iniciativas de movilidad compartida, huertos comunitarios y espacios para actividades de cultura y ocio.',
+      'Relación con otras personas, sin renunciar a tu espacio o privacidad. Ni aislamiento ni convivencia forzada: una comunidad diseñada.',
     imageSrc: '/VIBIO 4.0 - GENERAL (1).jpg',
     Icon: ComunidadIcon,
   },
   {
     number: '003',
-    title: 'Paisajismo regenerativo',
-    titleLines: ['Paisajismo', 'regenerativo'],
+    title: 'Arraigo territorial',
+    titleLines: ['Arraigo', 'territorial'],
     description:
-      'Restauración de flora y fauna local a través de un proyecto de paisajismo regenerativo basado en el estudio de cada ecosistema. Con plantación de árboles, instalación de cajas nido y hoteles para insectos o sistemas de recuperación e infiltración de agua, entre otros.',
+      'Formar parte de un lugar real que se transforma contigo. Con economía local, entorno natural y vínculos que van más allá de tu vivienda.',
     imageSrc: '/Copia de H_Dueñas-8436.jpg',
     Icon: RegeneracionIcon,
   },
@@ -93,13 +93,12 @@ export function ModeloBloquesSection() {
             once
             className="max-w-none whitespace-pre-line font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
           >
-            {'Tres bloques que\nhacen viable a vibio.'}
+            {'Una forma de vivir en un\nentorno rural que sí funciona.'}
           </TextAnimate>
         </div>
 
         <p className="max-w-md text-sm font-light leading-[1.8] text-vibio-text/68 lg:justify-self-end lg:pt-2 lg:text-[15px]">
-          No es solo vivienda. Es una forma de regenerar territorio, activar comunidad
-          y diseñar un ecosistema habitable con lógica económica, social y ecológica.
+          Vibio diseña una alternativa real a la vida en la ciudad: sin renunciar a la privacidad, con una comunidad conectada con el territorio.
         </p>
       </div>
 

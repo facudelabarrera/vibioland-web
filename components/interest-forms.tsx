@@ -98,7 +98,7 @@ export function JoinInterestForm() {
 
       <TextAreaField id="join-message" label="¿Qué te gustaría encontrar en vibio?" value={form.message} onChange={(value) => setForm({ ...form, message: value })} placeholder="Contanos qué buscás, qué dudas tenés y cómo imaginás tu vida en comunidad." className="mt-5" />
 
-      <ShimmerButton type="submit" background="var(--color-vibio-brand-green)" shimmerColor="#ffffff" borderRadius="0" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-white">
+      <ShimmerButton type="submit" background="var(--color-vibio-brand-green)" shimmerColor="var(--color-vibio-marfil)" borderRadius="0" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-marfil">
         Enviar interés para vivir en vibio
       </ShimmerButton>
 

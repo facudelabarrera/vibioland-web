@@ -9,38 +9,38 @@
 
 :root {
   --background: #F1EFE4;
-  --foreground: #241818;
+  --foreground: #3F3926;
   --card: #F1EDCF;
-  --card-foreground: #241818;
+  --card-foreground: #3F3926;
   --popover: #F1EFE4;
-  --popover-foreground: #241818;
-  --primary: #283217;
+  --popover-foreground: #3F3926;
+  --primary: #3F3926;
   --primary-foreground: #F1EFE4;
   --secondary: #DEDAA9;
   --secondary-foreground: #3F3926;
   --muted: #F1EDCF;
   --muted-foreground: #5F5134;
   --accent: #DBC56C;
-  --accent-foreground: #241818;
+  --accent-foreground: #3F3926;
   --destructive: #EB593B;
   --destructive-foreground: #F1EFE4;
   --border: #DEDAA9;
   --input: #DEDAA9;
-  --ring: #96B2CF;
+  --ring: #847132;
   --chart-1: #A36A3A;
   --chart-2: #52A05A;
-  --chart-3: #96B2CF;
+  --chart-3: #847132;
   --chart-4: #DBC56C;
   --chart-5: #EB593B;
   --radius: 0.5rem;
   --sidebar: #F1EDCF;
-  --sidebar-foreground: #241818;
-  --sidebar-primary: #283217;
+  --sidebar-foreground: #3F3926;
+  --sidebar-primary: #3F3926;
   --sidebar-primary-foreground: #F1EFE4;
   --sidebar-accent: #DBC56C;
-  --sidebar-accent-foreground: #241818;
+  --sidebar-accent-foreground: #3F3926;
   --sidebar-border: #DEDAA9;
-  --sidebar-ring: #96B2CF;
+  --sidebar-ring: #847132;
 }
 
 .dark {
@@ -107,20 +107,20 @@
   --color-vibio-vainilla-claro: #F1EDCF;
   --color-vibio-azul-cielo-claro: #C7D8E6;
 
-  /* Semantic aliases used across the app */
-  --color-vibio-brand-yellow: var(--color-vibio-amarillo);
-  --color-vibio-brand-green: var(--color-vibio-bosque-oscuro);
-  --color-vibio-cream: var(--color-vibio-marfil);
-  --color-vibio-white: var(--color-vibio-marfil);
-  --color-vibio-dark: var(--color-vibio-casi-negro);
-  --color-vibio-text: var(--color-vibio-casi-negro);
-  --color-vibio-terracotta: var(--color-vibio-terracota-oscuro);
-  --color-vibio-sand: var(--color-vibio-durazno-claro);
-  --color-vibio-muted: var(--color-vibio-vainilla-claro);
-  --color-vibio-surface: var(--color-vibio-marfil);
-  --color-vibio-surface-2: var(--color-vibio-vainilla-claro);
-  --color-vibio-border: var(--color-vibio-vainilla-intenso);
-  --color-vibio-accent-sky: var(--color-vibio-azul-cielo-intenso);
+/* Semantic aliases used across the app */
+  --color-vibio-brand-yellow: #DBC56C;
+  --color-vibio-brand-green: #3F3926;
+  --color-vibio-cream: #F1EFE4;
+  --color-vibio-white: #F1EFE4;
+  --color-vibio-dark: #3F3926;
+  --color-vibio-text: #3F3926;
+  --color-vibio-terracotta: #847132;
+  --color-vibio-sand: #DEDAA9;
+  --color-vibio-muted: #F1EDCF;
+  --color-vibio-surface: #F1EFE4;
+  --color-vibio-surface-2: #F1EDCF;
+  --color-vibio-border: #847132;
+  --color-vibio-accent-sky: #847132;
 
   /* Legacy aliases — preserved for compatibility */
   --color-vibio-gold: var(--color-vibio-brand-yellow);

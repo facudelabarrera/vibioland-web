@@ -30,7 +30,7 @@ interface HighlighterProps {
 export function Highlighter({
   children,
   action = "highlight",
-  color = "#ffd1dc",
+  color = "var(--color-vibio-brand-yellow)",
   strokeWidth = 1.5,
   animationDuration = 600,
   iterations = 2,

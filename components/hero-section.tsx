@@ -15,45 +15,38 @@ export function HeroSection() {
         }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-0">
-            <TextAnimate
-              as="h1"
-              animation="slideUp"
-              by="word"
-              once
-              className="font-heading text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.08] text-vibio-text text-balance"
-            >
-              Vivir mejor no es una utopía. Es un diseño.
-            </TextAnimate>
+          <h1 className="font-heading text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-[1.04] text-vibio-text">
+            Vivir mejor en comunidad
+            <br />
+            también se diseña.
+          </h1>
 
-            <div className="flex flex-col gap-8 lg:pt-1">
-              <p className="max-w-xl text-lg font-light leading-[1.7] text-vibio-text/70 lg:max-w-none lg:text-xl">
-                <span className="font-semibold text-vibio-text">vibio</span> crea
-                comunidades en entornos rurales donde arraigarse tiene sentido:
-                viviendas ecológicas, economía real y vecinos con quienes{" "}
-                <Highlighter action="underline" color="var(--color-vibio-brand-yellow)" strokeWidth={2} isView>
-                  construir algo duradero
-                </Highlighter>
-                .
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Link href="#modelo" className="inline-block">
-                  <ShimmerButton
-                    background="var(--color-vibio-brand-green)"
-                    shimmerColor="#ffffff"
-                    borderRadius="0"
-                    className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-white"
-                  >
-                    Descubrir el modelo
-                  </ShimmerButton>
-                </Link>
-                <Link
-                  href="#proyectos"
-                  className="inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
+          <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-end lg:mt-8">
+            <p className="max-w-xl text-lg font-light leading-[1.7] text-vibio-text/70 lg:max-w-lg lg:text-base">
+              <span className="font-semibold text-vibio-text">Vibio</span> no es una utopía. Es arquitectura, gobernanza y proceso. Una forma de vivir fuera de la ciudad, con privacidad, en comunidad y en{" "}
+              <Highlighter action="underline" color="var(--color-vibio-brand-yellow)" strokeWidth={2} isView>
+                conexión real con el territorio
+              </Highlighter>
+              .
+            </p>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end">
+              <Link href="#modelo" className="inline-block">
+                <ShimmerButton
+                  background="var(--color-vibio-brand-green)"
+                  shimmerColor="var(--color-vibio-marfil)"
+                  borderRadius="0"
+                  className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-marfil"
                 >
-                  Ver proyectos
-                </Link>
-              </div>
+                  Descubrir el modelo
+                </ShimmerButton>
+              </Link>
+              <Link
+                href="#proyectos"
+                className="inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
+              >
+                Ver proyectos
+              </Link>
             </div>
           </div>
         </div>

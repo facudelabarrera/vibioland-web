@@ -83,13 +83,13 @@ export function Audiencia() {
 
             if (i === activeIdx) {
               line.style.width = '24px'
-              line.style.backgroundColor = '#18191b'
-              label.style.color = '#18191b'
+              line.style.backgroundColor = 'var(--color-vibio-cafe-oscuro)'
+              label.style.color = 'var(--color-vibio-cafe-oscuro)'
               label.style.opacity = '1'
             } else {
               line.style.width = '12px'
-              line.style.backgroundColor = '#18191b33'
-              label.style.color = '#18191b'
+              line.style.backgroundColor = 'var(--color-foreground)'
+              label.style.color = 'var(--color-vibio-cafe-oscuro)'
               label.style.opacity = '0.35'
             }
           })
@@ -180,14 +180,14 @@ export function Audiencia() {
                     style={{
                       width: i === 0 ? '24px' : '12px',
                       backgroundColor:
-                        i === 0 ? '#18191b' : '#18191b33',
+                        i === 0 ? 'var(--color-vibio-cafe-oscuro)' : 'var(--color-foreground)',
                     }}
                   />
                   <span
                     data-label
                     className="text-sm transition-all duration-300"
                     style={{
-                      color: '#18191b',
+                      color: 'var(--color-vibio-cafe-oscuro)',
                       opacity: i === 0 ? 1 : 0.35,
                     }}
                   >

@@ -17,7 +17,7 @@ export const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonPr
   (
     {
       borderRadius = "0",
-      background = "#f1f3f5",
+      background = "var(--color-vibio-marfil)",
       className,
       children,
       shimmerColor: _shimmerColor,

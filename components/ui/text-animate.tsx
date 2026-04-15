@@ -415,7 +415,14 @@ const TextAnimateBase = ({
         whileInView={startOnView ? "show" : undefined}
         animate={startOnView ? undefined : "show"}
         exit="exit"
-        className={cn(by === "word" ? "whitespace-normal" : "whitespace-pre-wrap", className)}
+        className={cn(
+          by === "word"
+            ? "whitespace-normal"
+            : by === "line"
+              ? "whitespace-pre-line"
+              : "whitespace-pre-wrap",
+          className
+        )}
         viewport={{ once }}
         aria-label={accessible ? children : undefined}
         {...props}
