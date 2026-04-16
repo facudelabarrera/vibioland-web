@@ -173,6 +173,9 @@ importers:
       sonner:
         specifier: ^1.7.1
         version: 1.7.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      styled-components:
+        specifier: ^6.4.0
+        version: 6.4.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.4.0
