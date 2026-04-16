@@ -1,4 +1,6 @@
-import type { ComponentType } from 'react'
+'use client'
+
+import { useEffect, useRef, type ComponentType } from 'react'
 import Image from 'next/image'
 import { TextAnimate } from '@/components/ui/text-animate'
 
@@ -82,6 +84,44 @@ const bloques: Bloque[] = [
 ]
 
 export function ModeloBloquesSection() {
+  const gridRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-bloque-card]'))
+    if (!cards.length) return
+
+    let ctx: ReturnType<typeof import('gsap').gsap.context> | undefined
+
+    async function init() {
+      const { default: gsap } = await import('gsap')
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      gsap.registerPlugin(ScrollTrigger)
+
+      ctx = gsap.context(() => {
+        gsap.set(cards, { y: 48, opacity: 0 })
+        ScrollTrigger.create({
+          trigger: grid,
+          start: 'top 78%',
+          once: true,
+          onEnter: () => {
+            gsap.to(cards, {
+              y: 0,
+              opacity: 1,
+              duration: 0.95,
+              ease: 'power3.out',
+              stagger: 0.12,
+            })
+          },
+        })
+      }, grid)
+    }
+
+    init()
+    return () => ctx?.revert()
+  }, [])
+
   return (
     <div className="pt-10 lg:pt-14">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start lg:gap-x-16">
@@ -102,10 +142,11 @@ export function ModeloBloquesSection() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-0 lg:grid-cols-3">
+      <div ref={gridRef} className="mt-14 grid gap-0 lg:grid-cols-3">
         {bloques.map(({ number, title, titleLines, description, imageSrc, Icon }) => (
           <article
             key={number}
+            data-bloque-card
             className="group relative flex min-h-[360px] flex-col justify-between overflow-hidden px-6 py-8 transition-colors duration-500 lg:min-h-[430px] lg:border-r lg:border-vibio-border/75 lg:px-8 lg:py-10 lg:last:border-r-0"
           >
             <div className="absolute inset-0 opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100">

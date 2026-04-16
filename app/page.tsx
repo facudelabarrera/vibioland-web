@@ -3,7 +3,9 @@ import { HeroSection } from "@/components/hero-section"
 // import { QueEsVibio } from "@/components/que-es-vibio"
 import { ElModelo } from "@/components/el-modelo"
 import { Proyectos } from "@/components/proyectos"
-import { Audiencia } from "@/components/audiencia"
+import { Datos } from "@/components/datos"
+import { Testimonios } from "@/components/testimonios"
+import { Inversores } from "@/components/inversores"
 // import { FinalChapter } from "@/components/final-chapter"
 // import { Unete } from "@/components/unete"
 import { PreguntasFrecuentes } from "@/components/preguntas-frecuentes"
@@ -20,7 +22,9 @@ export default function HomePage() {
       {/* <QueEsVibio /> */}
       <ElModelo />
       <Proyectos />
-      <Audiencia />
+      <Datos />
+      <Testimonios />
+      <Inversores />
       {/* <FinalChapter>
         <Unete />
       </FinalChapter> */}
