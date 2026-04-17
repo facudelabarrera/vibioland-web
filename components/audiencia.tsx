@@ -220,7 +220,7 @@ export function Audiencia() {
                     src={card.image}
                     alt={card.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 30vw"
+                    sizes="(max-width: 1023px) 100vw, 30vw"
                     className="object-cover"
                     style={{ objectPosition: card.imagePos }}
                   />

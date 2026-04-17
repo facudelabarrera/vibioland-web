@@ -6,8 +6,10 @@ export const projectsListQuery = groq`
     name,
     "slug": slug.current,
     tagline,
+    description,
     status,
     location,
+    stats,
     featured,
     coverImage {
       ...,
@@ -107,15 +109,15 @@ export type ProjectListItem = {
   name: string
   slug: string
   tagline?: string
+  description?: string
   status?: 'en-marcha' | 'proximamente' | 'completado'
   location?: { town?: string; province?: string; region?: string }
+  stats?: { viviendas?: number; hectareas?: number; familias?: number }
   featured?: boolean
   coverImage?: { alt?: string; asset?: { url?: string } }
 }
 
 export type ProjectDetail = ProjectListItem & {
-  description?: string
-  stats?: { viviendas?: number; hectareas?: number; familias?: number }
   gallery?: Array<{ alt?: string; asset?: { url?: string } }>
   pillars?: Array<{
     _id: string

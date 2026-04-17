@@ -9,7 +9,6 @@ import { Inversores } from "@/components/inversores"
 // import { FinalChapter } from "@/components/final-chapter"
 // import { Unete } from "@/components/unete"
 import { PreguntasFrecuentes } from "@/components/preguntas-frecuentes"
-import { FinalConversionSection } from "@/components/final-conversion-section"
 import { Footer } from "@/components/footer"
 
 export const revalidate = 60
@@ -21,15 +20,14 @@ export default function HomePage() {
       <HeroSection />
       {/* <QueEsVibio /> */}
       <ElModelo />
-      <Proyectos />
       <Datos />
+      <Proyectos />
       <Testimonios />
       <Inversores />
       {/* <FinalChapter>
         <Unete />
       </FinalChapter> */}
       <PreguntasFrecuentes />
-      <FinalConversionSection />
       <Footer />
     </main>
   )

@@ -80,12 +80,12 @@ export function Inversores() {
           </div>
 
           <div className="mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
-            <Link data-inv-cta href="/dossier-inversor" className="inline-block">
+            <Link data-inv-cta href="/contacto" className="inline-block">
               <ShimmerButton
-                background="var(--color-vibio-brand-green)"
-                shimmerColor="var(--color-vibio-marfil)"
+                background="var(--color-vibio-brand-yellow)"
+                shimmerColor="var(--color-vibio-brand-green)"
                 borderRadius="0"
-                className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-marfil"
+                className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
               >
                 Descarga dossier inversor
               </ShimmerButton>

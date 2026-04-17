@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { ShimmerButton } from '@/components/ui/shimmer-button'
+import { DEFAULT_IMAGE_BLUR_DATA_URL } from '@/lib/image-placeholder'
 
 export function FinalConversionSection() {
   return (
@@ -15,8 +16,9 @@ export function FinalConversionSection() {
         src="/Copia de VIBIOLAND_20250216_017.JPG"
         alt="Vista aérea de Vibioland para cierre de conversión"
         fill
-        quality={100}
         sizes="100vw"
+        placeholder="blur"
+        blurDataURL={DEFAULT_IMAGE_BLUR_DATA_URL}
         className="object-cover"
       />
       <div className="absolute inset-0 bg-vibio-casi-negro/48" aria-hidden />
@@ -34,7 +36,7 @@ export function FinalConversionSection() {
             <div className="mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               <Link href="/vivir-en-vibio" className="inline-block">
                 <ShimmerButton
-                  background="rgba(255,255,255,0.96)"
+                  background="var(--color-vibio-brand-yellow)"
                   shimmerColor="var(--color-vibio-brand-green)"
                   borderRadius="0"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
@@ -44,7 +46,7 @@ export function FinalConversionSection() {
               </Link>
 
               <Link
-                href="/invertir-en-vibio"
+                href="/contacto"
                 className="inline-flex items-center justify-center border border-white/28 bg-white/8 px-6 py-3 text-sm font-medium text-white backdrop-blur-[2px] transition-all hover:border-white/45 hover:bg-white/12"
               >
                 Quiero invertir

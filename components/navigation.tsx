@@ -15,11 +15,9 @@ const NAV_BAND = 56
 type NavSurface = "light" | "dark"
 
 const navItems = [
-  { href: "/#modelo", label: "El modelo" },
-  { href: "/proyectos", label: "Proyectos" },
-  { href: "/decalogo", label: "Decálogo" },
-  { href: "/#comunidad", label: "Comunidad" },
-  { href: "/#contacto", label: "Contacto" },
+  { href: "/modelo", label: "Cómo funciona" },
+  { href: "/proyectos", label: "Territorios" },
+  { href: "/vivir-en-vibio", label: "Vivir en vibio" },
 ]
 
 function readNavSurface(): NavSurface {
@@ -87,12 +85,16 @@ export function Navigation() {
   const hoverText = isDark ? "hover:text-white" : "hover:text-vibio-text"
 
   const mobilePanelClass = isDark
-    ? "border-white/20 bg-transparent text-white/90"
-    : "border-vibio-border bg-transparent text-vibio-text/90"
+    ? "border-white/20 bg-vibio-brand-green/92 text-white/90"
+    : "border-vibio-border bg-vibio-white/92 text-vibio-text/90"
 
   const mobileLinkClass = isDark
     ? "px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
     : "px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
+
+  const ctaClass = isDark
+    ? "border border-transparent bg-vibio-brand-yellow text-vibio-dark hover:bg-[#d7c56f]"
+    : "border border-transparent bg-vibio-brand-yellow text-vibio-dark hover:bg-[#d7c56f]"
 
   return (
     <header
@@ -103,11 +105,11 @@ export function Navigation() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <VibioLogoLink
           priority
-          className={isDark ? "brightness-0 invert" : undefined}
+          className={`h-[30px] max-w-[190px] lg:h-10 lg:max-w-[250px]${isDark ? " brightness-0 invert" : ""}`}
           linkClassName="inline-block shrink-0 leading-none transition-[filter] duration-200"
         />
 
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -117,6 +119,13 @@ export function Navigation() {
               {item.label}
             </Link>
           ))}
+
+          <Link
+            href="/contacto"
+            className={`ml-2 inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${ctaClass}`}
+          >
+            Habla con el equipo
+          </Link>
         </div>
 
         <button
@@ -142,7 +151,7 @@ export function Navigation() {
       </nav>
 
       {mobileMenuOpen && (
-        <div className={`mx-4 border px-4 py-4 lg:hidden ${mobilePanelClass}`}>
+        <div className={`mx-4 border px-4 py-4 backdrop-blur-sm lg:hidden ${mobilePanelClass}`}>
           <div className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link
@@ -154,6 +163,14 @@ export function Navigation() {
                 {item.label}
               </Link>
             ))}
+
+            <Link
+              href="/contacto"
+              className={`mt-3 inline-flex items-center justify-center px-4 py-3 text-sm font-medium transition-colors duration-200 ${ctaClass}`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Habla con el equipo
+            </Link>
           </div>
         </div>
       )}

@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 
 import { Footer } from '@/components/footer'
 import { Navigation } from '@/components/navigation'
+import { DEFAULT_IMAGE_BLUR_DATA_URL } from '@/lib/image-placeholder'
 import { client } from '@/sanity/lib/client'
 import { urlFor } from '@/sanity/lib/image'
 import {
@@ -56,12 +57,14 @@ export default async function ProyectoPage({
         >
           {project.coverImage?.asset ? (
             <Image
-              src={urlFor(project.coverImage).width(2400).height(1400).url()}
+              src={urlFor(project.coverImage).width(2200).height(1320).fit('crop').auto('format').quality(78).url()}
               alt={project.coverImage.alt ?? project.name}
               fill
               priority
               className="object-cover"
               sizes="100vw"
+              placeholder="blur"
+              blurDataURL={DEFAULT_IMAGE_BLUR_DATA_URL}
             />
           ) : (
             <div className="absolute inset-0 bg-vibio-surface-2" />
@@ -160,7 +163,7 @@ export default async function ProyectoPage({
                     className="relative aspect-[4/5] overflow-hidden"
                   >
                     <Image
-                      src={urlFor(image).width(900).height(1100).url()}
+                      src={urlFor(image).width(800).height(1000).fit('crop').auto('format').quality(76).url()}
                       alt={image.alt ?? `${project.name} — imagen ${idx + 1}`}
                       fill
                       className="object-cover"

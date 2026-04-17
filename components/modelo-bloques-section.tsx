@@ -56,21 +56,21 @@ function RegeneracionIcon({ className }: { className?: string }) {
 const bloques: Bloque[] = [
   {
     number: '001',
-    title: 'Vivienda privada real',
-    titleLines: ['Vivienda', 'privada real'],
-    description:
-      'Más tiempo, más espacio y menos ruido. Arquitectura bioclimática que respeta el entorno. Una forma de vida que prioriza lo importante.',
-    imageSrc: '/VIBIO 4.0 - GENERAL.jpg',
-    Icon: ArquitecturaIcon,
-  },
-  {
-    number: '002',
     title: 'Comunidad intencional',
     titleLines: ['Comunidad', 'intencional'],
     description:
       'Relación con otras personas, sin renunciar a tu espacio o privacidad. Ni aislamiento ni convivencia forzada: una comunidad diseñada.',
     imageSrc: '/VIBIO 4.0 - GENERAL (1).jpg',
     Icon: ComunidadIcon,
+  },
+  {
+    number: '002',
+    title: 'Vivienda privada real',
+    titleLines: ['Vivienda', 'privada real'],
+    description:
+      'Más tiempo, más espacio y menos ruido. Arquitectura bioclimática que respeta el entorno. Una forma de vida que prioriza lo importante.',
+    imageSrc: '/VIBIO 4.0 - GENERAL.jpg',
+    Icon: ArquitecturaIcon,
   },
   {
     number: '003',
@@ -154,7 +154,7 @@ export function ModeloBloquesSection() {
                 src={imageSrc}
                 alt={title}
                 fill
-                sizes="(max-width: 1024px) 100vw, 33vw"
+                sizes="(max-width: 1023px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-vibio-casi-negro/55 transition-colors duration-500 ease-out group-hover:bg-vibio-casi-negro/58" />

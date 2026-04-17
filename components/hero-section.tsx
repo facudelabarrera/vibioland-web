@@ -15,6 +15,9 @@ export function HeroSection() {
         }}
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="mb-4 text-[12px] font-medium text-vibio-text/45 lg:mb-5">
+            Sistema de vida en común diseñado.
+          </p>
           <h1 className="font-heading text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-[1.04] text-vibio-text">
             Vivir mejor en comunidad
             <br />
@@ -31,21 +34,21 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end">
-              <Link href="#modelo" className="inline-block">
+              <Link href="/modelo" className="inline-block">
                 <ShimmerButton
-                  background="var(--color-vibio-brand-green)"
-                  shimmerColor="var(--color-vibio-marfil)"
+                  background="var(--color-vibio-brand-yellow)"
+                  shimmerColor="var(--color-vibio-brand-green)"
                   borderRadius="0"
-                  className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-marfil"
+                  className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
-                  Descubrir el modelo
+                  Cómo funciona
                 </ShimmerButton>
               </Link>
               <Link
-                href="#proyectos"
+                href="/proyectos"
                 className="inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
               >
-                Ver proyectos
+                Ver territorios
               </Link>
             </div>
           </div>

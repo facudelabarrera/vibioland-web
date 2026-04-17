@@ -3,6 +3,8 @@
 import { useRef, useEffect } from 'react'
 import Image from 'next/image'
 
+import { DEFAULT_IMAGE_BLUR_DATA_URL } from '@/lib/image-placeholder'
+
 /** Pin background — matches --color-vibio-marfil (#F1EFE4) so the spacer behind
  *  the image never shows a white seam during or after the expand animation. */
 const HERO_RGB = [241, 239, 228] as const
@@ -10,19 +12,13 @@ const PAGE_RGB = [241, 239, 228] as const
 
 const WORDS = ['Reencuentra.', 'Rediseña.', 'Regenera.'] as const
 
-/**
- * One-at-a-time reveal windows over the normalized `anim.logo` progress (0..1).
- * Each word: [inStart, inEnd, outStart, outEnd]. Between inEnd and outStart the
- * word is fully visible. Last word never fades out (keepVisible = true).
- */
-const WORD_PHASES: Array<{ inStart: number; inEnd: number; outStart: number; outEnd: number; keepVisible?: boolean }> = [
-  { inStart: 0.00, inEnd: 0.06, outStart: 0.22, outEnd: 0.28 },
-  { inStart: 0.36, inEnd: 0.42, outStart: 0.56, outEnd: 0.62 },
-  { inStart: 0.70, inEnd: 0.78, outStart: 1.00, outEnd: 1.00, keepVisible: true },
-]
+const WORD_REVEAL_WINDOWS = [
+  { start: 0.0, end: 0.18 },
+  { start: 0.24, end: 0.44 },
+  { start: 0.5, end: 0.72 },
+] as const
 
 const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3)
-const easeInCubic = (x: number) => x * x * x
 
 export function HeroImageExpand() {
   const pinRef = useRef<HTMLDivElement>(null)
@@ -79,53 +75,37 @@ export function HeroImageExpand() {
           pinRoot.style.backgroundColor = `rgb(${bgR},${bgG},${bgB})`
 
           if (textLayerRoot) {
-            textLayerRoot.style.opacity = '1'
             const raw = Math.min(1, Math.max(0, anim.logo))
+            const layerOpacity = raw <= 0 ? 0 : raw < 0.06 ? easeOutCubic(raw / 0.06) : 1
+            textLayerRoot.style.opacity = String(layerOpacity)
+
             for (let i = 0; i < WORDS.length; i++) {
-              const { inStart, inEnd, outStart, outEnd, keepVisible } = WORD_PHASES[i]
+              const { start, end } = WORD_REVEAL_WINDOWS[i]
               const el = wordRefs.current[i]
               if (!el) continue
 
               let opacity = 0
-              let phase: 'pre' | 'in' | 'hold' | 'out' | 'post' = 'pre'
-              let phaseProgress = 0
+              let y = 26
+              let blur = 14
+              let scale = 0.985
 
-              if (raw < inStart) {
-                phase = 'pre'
-              } else if (raw < inEnd) {
-                phase = 'in'
-                phaseProgress = (raw - inStart) / (inEnd - inStart)
-                opacity = easeOutCubic(phaseProgress)
-              } else if (keepVisible || raw < outStart) {
-                phase = 'hold'
-                opacity = 1
-              } else if (raw < outEnd) {
-                phase = 'out'
-                phaseProgress = (raw - outStart) / (outEnd - outStart)
-                opacity = 1 - easeInCubic(phaseProgress)
-              } else {
-                phase = 'post'
+              if (raw <= start) {
                 opacity = 0
-              }
-
-              let y = 0
-              let blur = 0
-              if (phase === 'pre') {
-                y = 28
-                blur = 12
-              } else if (phase === 'in') {
-                y = (1 - easeOutCubic(phaseProgress)) * 28
-                blur = (1 - easeOutCubic(phaseProgress)) * 12
-              } else if (phase === 'out') {
-                y = -easeInCubic(phaseProgress) * 28
-                blur = easeInCubic(phaseProgress) * 12
-              } else if (phase === 'post') {
-                y = -28
-                blur = 12
+              } else if (raw < end) {
+                const progress = easeOutCubic((raw - start) / (end - start))
+                opacity = progress
+                y = (1 - progress) * 26
+                blur = (1 - progress) * 14
+                scale = 0.985 + progress * 0.015
+              } else {
+                opacity = 1
+                y = 0
+                blur = 0
+                scale = 1
               }
 
               el.style.opacity = String(opacity)
-              el.style.transform = `translate3d(0, ${y}px, 0)`
+              el.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`
               el.style.filter = `blur(${blur}px)`
             }
           }
@@ -225,8 +205,9 @@ export function HeroImageExpand() {
           alt="Vista aérea de Vibioland entre entorno rural y urbanización"
           fill
           priority
-          quality={100}
           sizes="100vw"
+          placeholder="blur"
+          blurDataURL={DEFAULT_IMAGE_BLUR_DATA_URL}
           className="object-cover"
         />
         <div
@@ -234,25 +215,25 @@ export function HeroImageExpand() {
           className="pointer-events-none absolute inset-0 z-10 grid place-items-center px-6"
           style={{ opacity: 0 }}
         >
-          <div className="relative flex items-center justify-center">
+          <div className="flex max-w-[min(92vw,1200px)] flex-wrap items-center justify-center gap-x-[0.32em] gap-y-[0.12em] text-center sm:flex-nowrap">
             {WORDS.map((word, i) => (
-              <h2
+              <span
                 key={word}
                 ref={(el) => {
                   wordRefs.current[i] = el
                 }}
-                className="font-heading absolute whitespace-nowrap text-center font-bold leading-[1.05] tracking-tight text-white"
+                className="font-heading whitespace-nowrap text-center font-bold leading-[1.02] tracking-[-0.035em] text-white"
                 style={{
-                  fontSize: 'clamp(2.5rem, 7vw, 6.5rem)',
+                  fontSize: 'clamp(1.85rem, 5.2vw, 4.7rem)',
                   textShadow: '0 2px 32px rgba(0,0,0,0.35)',
                   opacity: 0,
-                  transform: 'translate3d(0, 28px, 0)',
-                  filter: 'blur(12px)',
+                  transform: 'translate3d(0, 26px, 0) scale(0.985)',
+                  filter: 'blur(14px)',
                   willChange: 'opacity, transform, filter',
                 }}
               >
                 {word}
-              </h2>
+              </span>
             ))}
           </div>
         </div>

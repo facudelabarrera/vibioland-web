@@ -22,6 +22,7 @@ export function VibioLogo({ className, priority }: VibioLogoProps) {
       width={879}
       height={158}
       priority={priority}
+      unoptimized
       sizes="(max-width: 1024px) 200px, 240px"
       className={cn(
         "h-[26px] w-auto max-w-[160px] object-contain object-left lg:h-8 lg:max-w-[200px]",
