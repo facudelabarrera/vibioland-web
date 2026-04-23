@@ -99,7 +99,7 @@ export function JoinInterestForm() {
       <TextAreaField id="join-message" label="¿Qué te gustaría encontrar en vibio?" value={form.message} onChange={(value) => setForm({ ...form, message: value })} placeholder="Contanos qué buscás, qué dudas tenés y cómo imaginás tu vida en comunidad." className="mt-5" />
 
       <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
-        Enviar interés para vivir en vibio
+        ENVIAR INTERÉS PARA VIVIR EN VIBIO
       </ShimmerButton>
 
       <p className="mt-4 text-center text-[11px] text-vibio-text/52">
@@ -144,7 +144,7 @@ export function InvestorInterestForm() {
       <TextAreaField id="investor-message" label="¿Qué te gustaría evaluar?" value={form.message} onChange={(value) => setForm({ ...form, message: value })} placeholder="Contanos ticket, expectativas de retorno, hipótesis de impacto o qué información te haría falta para avanzar." className="mt-5" />
 
       <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
-        Enviar interés inversor
+        ENVIAR INTERÉS INVERSOR
       </ShimmerButton>
 
       <p className="mt-4 text-center text-[11px] text-vibio-text/52">

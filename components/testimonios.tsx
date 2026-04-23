@@ -118,47 +118,45 @@ export function Testimonios() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
-          <p className="mb-4 text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+          <p className="mb-4 inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             La opinión de la comunidad
           </p>
-          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
+          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-vibio-text">
             Lo que dicen quienes ya forman parte de Vibio
           </h2>
         </ScrollReveal>
 
         <div ref={carouselWrapRef} className="mt-14 lg:mt-20">
           <Carousel opts={{ align: 'start', loop: true }}>
-            <CarouselContent className="-ml-6">
+            <CarouselContent className="-ml-3">
               {testimonios.map((t) => (
                 <CarouselItem
                   key={t.author}
-                  className="pl-6 md:basis-1/2 lg:basis-1/3"
+                  className="pl-3 md:basis-1/2 lg:basis-1/3"
                 >
                   <figure
                     data-testimonio-card
-                    className="vibio-surface-radius-lg relative mx-auto flex h-full min-h-[31rem] w-full max-w-[22rem] flex-col overflow-hidden border border-vibio-text/10 bg-white/40 px-8 py-9 lg:min-h-[35rem] lg:max-w-[22.75rem] lg:px-9 lg:py-10"
+                    className="vibio-surface-radius-lg relative flex h-full min-h-[31rem] w-full flex-col overflow-hidden bg-[#C7D8E6] px-7 py-8 lg:min-h-[35rem] lg:px-8 lg:py-9"
                   >
-                    <span
-                      aria-hidden
-                      className="font-heading pointer-events-none absolute left-7 top-5 text-[5.25rem] leading-none text-vibio-brand-yellow/42"
-                    >
-                      “
-                    </span>
-                    <blockquote className="relative z-10 flex-1 pt-8">
+                    <figcaption className="relative z-10 min-h-[5.5rem] text-sm font-light text-vibio-text/70 lg:min-h-[6rem]">
+                      <span className="block font-semibold text-vibio-text">
+                        {t.author}
+                      </span>
+                      <span className="mt-2.5 block min-h-[3rem] max-w-[26ch] leading-[1.6] lg:min-h-[3.2rem]">
+                        {t.context}
+                      </span>
+                    </figcaption>
+                    <blockquote className="relative z-10 mt-8 flex-1 lg:mt-10">
                       <p
                         data-testimonio-quote
-                        className="font-serif text-[1.14rem] leading-[1.62] text-vibio-text italic lg:text-[1.32rem] lg:leading-[1.58]"
+                        className="font-serif relative z-10 text-[1.4rem] leading-[1.58] text-vibio-text italic lg:text-[1.6rem] lg:leading-[1.54]"
                       >
                         {t.quote}
                       </p>
                     </blockquote>
-                    <figcaption className="mt-10 border-t border-vibio-text/10 pt-6 text-sm font-light text-vibio-text/70">
-                      <span className="block font-medium text-vibio-text">
-                        {t.author}
-                      </span>
-                      <span className="mt-2.5 block max-w-[26ch] leading-[1.6]">{t.context}</span>
-                      <span className="mt-6 block leading-[1.6]">{t.role}</span>
-                    </figcaption>
+                    <div className="mt-10 border-t border-vibio-text/18 pt-6 text-sm font-light leading-[1.6] text-vibio-text/70">
+                      {t.role}
+                    </div>
                   </figure>
                 </CarouselItem>
               ))}

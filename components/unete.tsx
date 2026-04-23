@@ -59,7 +59,7 @@ export function Unete() {
           ref={textRef}
           className="flex flex-col justify-center px-6 py-16 lg:px-16 lg:py-24"
         >
-          <h2 className="font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-white text-balance">
+          <h2 className="font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-white text-balance">
             El primer paso es una conversación.
           </h2>
           <p className="mt-6 max-w-md text-lg font-light leading-[1.7] text-white/60">
@@ -75,7 +75,7 @@ export function Unete() {
                 borderRadius="var(--vibio-radius-action)"
                 className="border-transparent px-8 py-3.5 text-sm font-medium !text-vibio-dark"
               >
-                Empezar la conversación
+                EMPEZAR LA CONVERSACIÓN
               </ShimmerButton>
             </Link>
           </div>

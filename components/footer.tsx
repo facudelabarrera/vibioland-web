@@ -4,27 +4,26 @@ import Image from "next/image"
 
 const footerColumns = [
   {
-    title: "COMO FUNCIONA",
-    links: [
-      { href: "/modelo", label: "Qué es vibio" },
-      { href: "/modelo", label: "Cómo funciona" },
-      { href: "/proyectos", label: "Dónde está" },
-      { href: "/modelo", label: "Impacto" },
-    ],
-  },
-  {
     title: "LAS COMUNIDADES",
     links: [
-      { href: "/proyectos#vibio-higuera", label: "vibio.higuera" },
-      { href: "/proyectos#vibio-berlanga", label: "vibio.berlanga" },
-      { href: "/proyectos#proximos-territorios", label: "Próximas comunidades" },
+      {
+        href: "/proyectos#vibio-higuera",
+        label: "vibio.higuera",
+        imageSrc: "/vibio.higuera_logo.svg",
+        imageAlt: "Logo de vibio.higuera",
+      },
+      {
+        href: "/proyectos#vibio-berlanga",
+        label: "vibio.berlanga",
+        imageSrc: "/vibio.berlanga_logo.svg",
+        imageAlt: "Logo de vibio.berlanga",
+      },
     ],
   },
   {
     title: "CONÓCENOS",
     links: [
       { href: "/modelo", label: "Equipo & Red" },
-      { href: "mailto:hola@vibio.land?subject=Prensa%20Vibio", label: "Prensa" },
       { href: "/contacto", label: "FAQs" },
     ],
   },
@@ -43,7 +42,7 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
       id="contacto"
       data-nav-surface="dark"
       className="overflow-hidden"
-      style={{ backgroundColor: 'var(--color-vibio-brand-green)' }}
+      style={{ backgroundColor: '#DBC56C', color: '#242018' }}
     >
       <div className="mx-auto max-w-7xl px-6 pb-12 pt-16 lg:px-8 lg:pb-16 lg:pt-20">
         {/* Main layout: left column (logo+tagline) | right column (nav + newsletter) */}
@@ -53,60 +52,59 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
           <div>
             <Link href="/" className="inline-block">
               <Image
-                src="/vibioland-logo.svg"
-                alt="Vibio"
-                width={130}
-                height={43}
-                className="h-10 w-auto"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                src="/claim.svg"
+                alt="Reencuentra · Rediseña · Regenera"
+                width={220}
+                height={67}
+                className="h-12 w-auto lg:h-14"
               />
             </Link>
-            <p className="mt-6 text-sm font-light tracking-[0em] text-white/48 uppercase">
-              Reencuentra · Rediseña · Regenera
-            </p>
           </div>
 
           {/* ── RIGHT: nav columns (top) + newsletter (bottom) ── */}
           <div className="flex flex-col gap-12">
 
             {/* Nav columns */}
-            <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 sm:gap-8">
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
               {footerColumns.map((column) => (
                 <FooterColumn key={column.title} title={column.title} links={column.links} />
               ))}
             </div>
 
             {/* Newsletter — inside the right column, below nav */}
-            <div className="border-t border-white/10 pt-10">
-              <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:gap-12 lg:items-start">
+            <div className="border-t border-[#242018]/12 pt-10">
+              <div className="flex flex-col gap-8">
 
                 {/* Description */}
                 <div>
-                  <p className="text-[11px] font-medium tracking-[0em] text-white/40 uppercase">
+                  <p className="text-[11px] font-medium tracking-[0em] text-[#242018]/62 uppercase">
                     Newsletter
                   </p>
-                  <p className="mt-4 text-[14px] font-light leading-[1.7] text-white/68">
+                  <p className="mt-4 text-[14px] font-light leading-[1.7] text-[#242018]/78">
                     Actualizaciones de los proyectos, una vez al mes, escritas por el equipo.
                   </p>
                 </div>
 
                 {/* Form */}
-                <form className="flex flex-col gap-3">
+                <form className="flex max-w-[34rem] flex-col gap-3">
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <input
                       type="email"
                       placeholder="tunombre@tucorreo.com"
-                      className="vibio-input-radius min-w-0 flex-1 border border-white/15 bg-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-white/38 focus:border-white/35 focus:outline-none"
+                      className="vibio-input-radius min-w-0 flex-1 border border-[#242018]/18 bg-[#0000000D] px-4 py-3 text-sm text-[#242018] caret-[#242018] placeholder:text-[#242018]/38 focus:border-[#242018]/35 focus:outline-none"
                     />
                     <button
                       type="button"
-                      className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d7c56f]"
+                      className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-[#0000002B] px-5 py-3 text-sm font-medium text-[#242018] transition-colors hover:bg-[#00000033]"
                     >
-                      Suscribirme
+                      SUSCRIBIRME
                     </button>
                   </div>
-                  <label className="flex cursor-pointer items-start gap-3 text-[10px] font-light tracking-[0.08em] text-white/42">
-                    <input type="checkbox" className="mt-0.5 accent-vibio-brand-yellow" />
+                  <label className="flex cursor-pointer items-start gap-3 text-[10px] font-light tracking-[0.08em] text-[#242018]/58">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-full border border-[#242018]/18 bg-[#0000000D] checked:border-[#242018] checked:bg-[#242018] focus:outline-none focus:ring-2 focus:ring-[#242018]/20"
+                    />
                     <span>Acepto las condiciones de la política de privacidad</span>
                   </label>
                 </form>
@@ -126,19 +124,38 @@ function FooterColumn({
   links,
 }: {
   title: string
-  links: Array<{ href: string; label: string }>
+  links: Array<{ href: string; label: string; imageSrc?: string; imageAlt?: string }>
 }) {
   return (
     <div>
-      <p className="text-[11px] font-medium tracking-[0em] text-white/40 uppercase">{title}</p>
+      <p className="text-[11px] font-medium tracking-[0em] text-[#242018]/62 uppercase">{title}</p>
       <nav className="mt-5 flex flex-col gap-3.5">
         {links.map((link) => (
           <LinkOrAnchor
             key={`${title}-${link.label}`}
             href={link.href}
-            className="w-fit text-[15px] font-light leading-[1.5] text-white/68 transition-colors duration-200 hover:text-white"
+            className="w-fit text-[15px] font-light leading-[1.5] text-[#242018]/78 transition-opacity duration-200 hover:opacity-75"
           >
-            {link.label}
+            {link.imageSrc ? (
+              <div
+                role="img"
+                aria-label={link.imageAlt ?? link.label}
+                className="h-8 w-[9.75rem]"
+                style={{
+                  backgroundColor: '#242018',
+                  WebkitMaskImage: `url(${link.imageSrc})`,
+                  maskImage: `url(${link.imageSrc})`,
+                  WebkitMaskRepeat: 'no-repeat',
+                  maskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'left center',
+                  maskPosition: 'left center',
+                  WebkitMaskSize: 'contain',
+                  maskSize: 'contain',
+                }}
+              />
+            ) : (
+              link.label
+            )}
           </LinkOrAnchor>
         ))}
       </nav>

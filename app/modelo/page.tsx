@@ -97,7 +97,7 @@ export default function ModeloPage() {
 
       <section data-nav-surface="dark" className="bg-vibio-brand-green pt-32 pb-20 lg:pt-40 lg:pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium tracking-[0em] text-vibio-brand-yellow/70 uppercase">
+          <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             El modelo vibio
           </span>
           <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
@@ -114,7 +114,7 @@ export default function ModeloPage() {
       <section data-nav-surface="light" className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+            <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               El sistema — cómo funciona
             </span>
           </div>
@@ -141,7 +141,7 @@ export default function ModeloPage() {
 
       <section className="bg-vibio-surface-2 py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+          <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             Qué incluye cada vibio
           </span>
 
@@ -175,7 +175,7 @@ export default function ModeloPage() {
       <section className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+            <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               A quién está dirigido
             </span>
           </div>
@@ -204,7 +204,7 @@ export default function ModeloPage() {
       <section className="bg-vibio-brand-green py-20 lg:py-20">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div className="max-w-3xl">
-            <h2 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-[1.06] text-vibio-marfil text-balance">
+            <h2 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-normal leading-[1.06] text-vibio-marfil text-balance">
               Si esto te resuena, el siguiente paso es conversar.
             </h2>
             <p className="mt-4 max-w-2xl text-base font-light leading-[1.8] text-white/70">
@@ -216,7 +216,7 @@ export default function ModeloPage() {
             href="/contacto"
             className="vibio-action-radius inline-flex w-full items-center justify-center border border-transparent bg-vibio-brand-yellow px-6 py-3.5 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f] lg:w-auto"
           >
-            Habla con el equipo
+            HABLA CON EL EQUIPO
           </Link>
         </div>
       </section>

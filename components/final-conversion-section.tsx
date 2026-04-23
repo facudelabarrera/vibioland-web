@@ -26,7 +26,7 @@ export function FinalConversionSection() {
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center justify-center px-6 py-20 text-center lg:px-8 lg:py-28">
         <ScrollReveal delay={0.1}>
           <div className="mx-auto flex max-w-3xl flex-col items-center">
-            <h2 className="font-heading text-[clamp(2.1rem,5vw,4.4rem)] font-semibold leading-[1.05] text-white text-balance">
+            <h2 className="font-heading text-[clamp(2.1rem,5vw,4.4rem)] font-normal leading-[1.05] text-white text-balance">
               ¿Estás pensando en cambiar de vida?
             </h2>
 
@@ -37,7 +37,7 @@ export function FinalConversionSection() {
                   shimmerColor="var(--color-vibio-brand-green)"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
-                  Hablemos
+                  HABLEMOS
                 </ShimmerButton>
               </Link>
             </div>

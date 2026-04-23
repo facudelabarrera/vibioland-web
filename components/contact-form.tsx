@@ -98,7 +98,7 @@ export function ContactForm() {
         shimmerColor="var(--color-vibio-brand-green)"
         className="mt-8 w-full px-6 py-3.5 text-sm font-medium !text-vibio-dark"
       >
-        Empezar la conversación
+        EMPEZAR LA CONVERSACIÓN
       </ShimmerButton>
 
       <p className="mt-4 text-center text-[11px] text-vibio-text/52">

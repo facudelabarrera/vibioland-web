@@ -8,7 +8,6 @@ import {
 } from '@/sanity/queries'
 import { TextAnimate } from '@/components/ui/text-animate'
 import { ScrollReveal } from '@/components/scroll-reveal'
-import { cn } from '@/lib/utils'
 
 export async function Proyectos() {
   const projects = await client.fetch<ProjectListItem[]>(projectsListQuery)
@@ -20,7 +19,7 @@ export async function Proyectos() {
         <ScrollReveal>
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div>
-              <p className="mb-4 text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+              <p className="mb-4 inline-flex w-fit rounded-full bg-[#3F3926] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-white uppercase">
                 Comunidades
               </p>
               <TextAnimate
@@ -28,7 +27,7 @@ export async function Proyectos() {
                 animation="slideUp"
                 by="word"
                 once
-                className="font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
+                className="font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[1.05] text-vibio-text"
               >
                 Dos proyectos en ejecución y cuatro en evaluación.
               </TextAnimate>
@@ -42,13 +41,13 @@ export async function Proyectos() {
           <ScrollReveal>
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-3">
-                <h3 className="font-heading text-[clamp(1.8rem,3.4vw,2.65rem)] font-semibold leading-[1.06] text-vibio-text text-balance">
+                <h3 className="font-heading text-[clamp(1.8rem,3.4vw,2.65rem)] font-normal leading-[1.06] text-vibio-text text-balance">
                   Próximos Vibio
                 </h3>
-                <ProjectStatusBadge status="En estudio" tone="amber" />
               </div>
-              <p className="mt-5 text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
-                En estudio · Próximos territorios
+              <p className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium tracking-[0em] text-vibio-text/62 uppercase">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#F38163]" aria-hidden />
+                <span>En estudio · Próximos territorios</span>
               </p>
               <p className="mt-4 text-[15px] font-light leading-[1.8] text-vibio-text/68 lg:text-base">
                 Actualmente estamos evaluando cuatro nuevos territorios. Si estás interesado en formar parte del proceso de diseño o conoces un territorio que encaja con el modelo Vibio, podemos hablar.
@@ -56,7 +55,7 @@ export async function Proyectos() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/proyectos"
-                  className="vibio-action-radius inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
+                  className="vibio-action-radius inline-flex items-center justify-center border border-[#D9D9D9] bg-[#D9D9D9] px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:bg-[#cfcfcf]"
                 >
                   Conocer todas las comunidades
                 </Link>
@@ -72,29 +71,6 @@ export async function Proyectos() {
         </div>
       </div>
     </section>
-  )
-}
-
-function ProjectStatusBadge({
-  status,
-  tone,
-}: {
-  status: string
-  tone: 'green' | 'blue' | 'amber'
-}) {
-  return (
-    <span className="vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border border-vibio-text/50 bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] text-vibio-text">
-      <span
-        className={cn(
-          'h-2.5 w-2.5',
-          tone === 'green' && 'bg-[#7eb37d]',
-          tone === 'blue' && 'bg-[#9bbbd4]',
-          tone === 'amber' && 'bg-vibio-brand-yellow',
-        )}
-        aria-hidden
-      />
-      {status}
-    </span>
   )
 }
 

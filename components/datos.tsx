@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 
 type Dato = {
@@ -45,6 +46,10 @@ const datos: Dato[] = [
 export function Datos() {
   const sectionRef = useRef<HTMLElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const [hasOverflow, setHasOverflow] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+  const [hasScrolledHorizontally, setHasScrolledHorizontally] = useState(false)
 
   // Scroll-enter animation
   useEffect(() => {
@@ -169,33 +174,92 @@ export function Datos() {
     }
   }, [])
 
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const updateScrollState = () => {
+      const maxScroll = Math.max(track.scrollWidth - track.clientWidth, 0)
+      const nextHasOverflow = maxScroll > 8
+      const nextProgress = nextHasOverflow ? track.scrollLeft / maxScroll : 0
+
+      setHasOverflow(nextHasOverflow)
+      setScrollProgress(nextProgress)
+      setCanScrollRight(nextHasOverflow && track.scrollLeft < maxScroll - 8)
+      if (!hasScrolledHorizontally && track.scrollLeft > 12) {
+        setHasScrolledHorizontally(true)
+      }
+    }
+
+    updateScrollState()
+
+    track.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
+
+    return () => {
+      track.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
+    }
+  }, [])
+
   return (
     <section
       ref={sectionRef}
       id="datos"
       data-nav-surface="light"
-      className="overflow-hidden bg-vibio-white py-24 lg:py-32"
+      className="overflow-hidden bg-[#DBC56C] py-24 lg:py-32"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <ScrollReveal>
           <div className="mb-6">
-            <span className="inline-block rounded-full border border-vibio-text/25 px-4 py-1.5 text-[11px] font-medium tracking-[0.06em] text-vibio-text/50 uppercase">
+            <span className="inline-flex w-fit rounded-full bg-[#5F5134] px-4 py-1.5 text-[11px] font-medium tracking-[0.06em] text-white uppercase">
               Vibio en cifras
             </span>
           </div>
-          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
+          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-[#5F5134]">
             Datos que diferencian una promesa de un compromiso.
           </h2>
         </ScrollReveal>
 
         {/* Scroll wrapper — relative so the fade overlay is scoped to the container */}
         <div className="relative mt-14 lg:mt-20">
+          {hasOverflow && (
+            <div className="mb-5 flex items-center justify-between gap-4 text-[#5F5134]/72">
+              <div className="min-h-[14px]">
+                {!hasScrolledHorizontally && (
+                  <div className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.08em] uppercase">
+                    <ChevronLeft className="h-3.5 w-3.5 opacity-45" />
+                    <span>Deslizá para ver más</span>
+                    <ChevronRight
+                      className={`h-3.5 w-3.5 transition-opacity duration-300 ${
+                        canScrollRight ? 'opacity-100' : 'opacity-35'
+                      }`}
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div
+                aria-hidden
+                className="hidden h-0.5 w-28 overflow-hidden rounded-full bg-[#5F5134]/18 sm:block"
+              >
+                <div
+                  className="h-full rounded-full bg-[#5F5134]/55 transition-transform duration-200 ease-out"
+                  style={{
+                    width: '40%',
+                    transform: `translateX(${scrollProgress * 150}%)`,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           {/* Right-edge fade — signals horizontal continuity without blocking scroll */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 lg:w-28"
-            style={{ background: 'linear-gradient(to left, var(--color-vibio-white) 35%, transparent 100%)' }}
+            style={{ background: 'linear-gradient(to left, #DBC56C 35%, transparent 100%)' }}
           />
 
           {/* Horizontal scroll track */}
@@ -213,21 +277,21 @@ export function Datos() {
                   <span
                     data-dato-divider
                     aria-hidden
-                    className="absolute inset-y-0 left-0 w-px bg-vibio-text/22"
+                    className="absolute inset-y-0 left-0 w-px bg-[#5F5134]/22"
                   />
 
                   {/* Fixed-height top block — pins all descriptions to the same Y */}
-                  <div className="h-[120px]">
-                    <span className="font-serif block whitespace-nowrap text-[clamp(2rem,2.8vw,2.8rem)] font-semibold leading-none text-vibio-text">
+                  <div className="h-[128px]">
+                    <span className="font-serif block whitespace-nowrap text-[clamp(2.2rem,3vw,3rem)] font-semibold leading-none text-[#5F5134]">
                       {dato.metric}
                     </span>
 
-                    <span className="mt-2 block font-serif italic font-normal text-sm leading-[1.45] text-vibio-text/65">
+                    <span className="mt-2.5 block font-serif italic font-normal text-[15px] leading-[1.5] text-[#5F5134]/72">
                       {dato.description}
                     </span>
                   </div>
 
-                  <p className="mt-20 text-[13px] font-light leading-[1.65] text-vibio-text/52">
+                  <p className="mt-20 text-[14px] font-light leading-[1.7] text-[#5F5134]/82">
                     {dato.text}
                   </p>
                 </div>
@@ -237,6 +301,21 @@ export function Datos() {
               <div className="min-w-[80px] flex-shrink-0 lg:min-w-[112px]" aria-hidden />
             </div>
           </div>
+
+          {hasOverflow && (
+            <div
+              aria-hidden
+              className="mt-5 h-0.5 overflow-hidden rounded-full bg-[#5F5134]/18 sm:hidden"
+            >
+              <div
+                className="h-full rounded-full bg-[#5F5134]/55 transition-transform duration-200 ease-out"
+                style={{
+                  width: '32%',
+                  transform: `translateX(${scrollProgress * 212.5}%)`,
+                }}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

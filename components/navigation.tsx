@@ -8,16 +8,34 @@ import { useState, useEffect, useRef, useCallback } from "react"
 const TOP_EPS = 8
 /** Delta mínimo de scroll para reaccionar (px) */
 const DELTA = 6
-/** Altura de la franja bajo el borde superior donde medimos qué sección “gana” el tema */
+/** Altura de la franja bajo el borde superior donde medimos qué sección "gana" el tema */
 const NAV_BAND = 56
 
 type NavSurface = "light" | "dark"
 
-const navItems = [
+const regularNavItems = [
   { href: "/modelo", label: "COMO FUNCIONA" },
-  { href: "/proyectos", label: "COMUNIDADES" },
   { href: "/vivir-en-vibio", label: "VIVIR EN VIBIO" },
   { href: "/contacto", label: "CONTACTA" },
+]
+
+const comunidadesItems = [
+  {
+    href: "/proyectos#vibio-higuera",
+    label: "vibio.higuera",
+    logoSrc: "/vibio.higuera_logo.svg",
+    logoAlt: "Logo de vibio.higuera",
+    /** viewBox 460x97 → at 18px height: ≈85px wide */
+    logoWidth: 85,
+  },
+  {
+    href: "/proyectos#vibio-berlanga",
+    label: "vibio.berlanga",
+    logoSrc: "/vibio.berlanga_logo.svg",
+    logoAlt: "Logo de vibio.berlanga",
+    /** viewBox 498x97 → at 18px height: ≈92px wide */
+    logoWidth: 92,
+  },
 ]
 
 function readNavSurface(): NavSurface {
@@ -39,9 +57,12 @@ function readNavSurface(): NavSurface {
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [comunidadesOpen, setComunidadesOpen] = useState(false)
+  const [mobileComunidadesOpen, setMobileComunidadesOpen] = useState(false)
   const [headerVisible, setHeaderVisible] = useState(true)
   const [surface, setSurface] = useState<NavSurface>("light")
   const lastScrollY = useRef(0)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const syncSurface = useCallback(() => {
     setSurface(readNavSurface())
@@ -57,6 +78,7 @@ export function Navigation() {
       } else if (delta > DELTA) {
         setHeaderVisible(false)
         setMobileMenuOpen(false)
+        setComunidadesOpen(false)
       } else if (delta < -DELTA) {
         setHeaderVisible(true)
       }
@@ -69,12 +91,20 @@ export function Navigation() {
       requestAnimationFrame(tick)
     }
 
+    const onClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setComunidadesOpen(false)
+      }
+    }
+
     tick()
     window.addEventListener("scroll", onScroll, { passive: true })
     window.addEventListener("resize", syncSurface, { passive: true })
+    document.addEventListener("mousedown", onClickOutside)
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", syncSurface)
+      document.removeEventListener("mousedown", onClickOutside)
     }
   }, [syncSurface])
 
@@ -92,6 +122,8 @@ export function Navigation() {
     ? "vibio-action-radius px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
     : "vibio-action-radius px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
 
+  const logoColor = isDark ? "rgba(255,255,255,0.85)" : "#3F3926"
+
   return (
     <header
       className="fixed top-0 right-0 left-0 z-50 bg-transparent transition-[transform,color] duration-200 ease-out motion-reduce:transition-none"
@@ -107,14 +139,14 @@ export function Navigation() {
             height={32}
             className="h-8 w-auto"
             style={{
-              filter: isDark ? 'brightness(0) invert(1)' : 'none',
-              transition: 'filter 200ms ease',
+              filter: isDark ? "brightness(0) invert(1)" : "none",
+              transition: "filter 200ms ease",
             }}
           />
         </Link>
 
         <div className="hidden items-center gap-2 lg:flex">
-          {navItems.map((item) => (
+          {regularNavItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -124,6 +156,69 @@ export function Navigation() {
             </Link>
           ))}
 
+          {/* Dropdown COMUNIDADES */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setComunidadesOpen((v) => !v)}
+              className={`vibio-action-radius inline-flex items-center gap-1.5 px-4 py-2 text-sm transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`}
+            >
+              COMUNIDADES
+              <svg
+                className={`h-3 w-3 transition-transform duration-200 ${comunidadesOpen ? "rotate-180" : ""}`}
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 4l4 4 4-4" />
+              </svg>
+            </button>
+
+            {comunidadesOpen && (
+              <div
+                className={`vibio-surface-radius-lg absolute top-full left-0 z-50 mt-1.5 min-w-[136px] border py-2 backdrop-blur-sm ${
+                  isDark
+                    ? "border-white/20 bg-vibio-brand-green/95"
+                    : "border-vibio-border bg-vibio-white/96"
+                }`}
+              >
+                {comunidadesItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setComunidadesOpen(false)}
+                    className={`flex items-center px-4 py-2.5 transition-colors duration-150 ${
+                      isDark
+                        ? "hover:bg-white/10"
+                        : "hover:bg-vibio-text/[0.05]"
+                    }`}
+                  >
+                    <div
+                      role="img"
+                      aria-label={item.logoAlt}
+                      style={{
+                        height: "18px",
+                        width: `${item.logoWidth}px`,
+                        backgroundColor: logoColor,
+                        WebkitMaskImage: `url(${item.logoSrc})`,
+                        maskImage: `url(${item.logoSrc})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskPosition: "left center",
+                        maskPosition: "left center",
+                        WebkitMaskSize: "contain",
+                        maskSize: "contain",
+                        transition: "background-color 200ms ease",
+                      }}
+                    />
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         <button
@@ -151,7 +246,7 @@ export function Navigation() {
       {mobileMenuOpen && (
         <div className={`mx-4 border px-4 py-4 backdrop-blur-sm lg:hidden ${mobilePanelClass}`}>
           <div className="flex flex-col gap-1">
-            {navItems.map((item) => (
+            {regularNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -162,6 +257,59 @@ export function Navigation() {
               </Link>
             ))}
 
+            {/* COMUNIDADES expandible en mobile */}
+            <button
+              type="button"
+              onClick={() => setMobileComunidadesOpen((v) => !v)}
+              className={`${mobileLinkClass} flex w-full items-center justify-between`}
+            >
+              COMUNIDADES
+              <svg
+                className={`h-3 w-3 transition-transform duration-200 ${mobileComunidadesOpen ? "rotate-180" : ""}`}
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M2 4l4 4 4-4" />
+              </svg>
+            </button>
+
+            {mobileComunidadesOpen && (
+              <div className="ml-4 flex flex-col gap-1 border-l border-current/20 pl-3 pt-1">
+                {comunidadesItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`${mobileLinkClass} flex items-center`}
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      setMobileComunidadesOpen(false)
+                    }}
+                  >
+                    <div
+                      role="img"
+                      aria-label={item.logoAlt}
+                      style={{
+                        height: "16px",
+                        width: `${item.logoWidth}px`,
+                        backgroundColor: logoColor,
+                        WebkitMaskImage: `url(${item.logoSrc})`,
+                        maskImage: `url(${item.logoSrc})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        maskRepeat: "no-repeat",
+                        WebkitMaskPosition: "left center",
+                        maskPosition: "left center",
+                        WebkitMaskSize: "contain",
+                        maskSize: "contain",
+                      }}
+                    />
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

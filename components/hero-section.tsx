@@ -48,7 +48,7 @@ export function HeroSection() {
                   shimmerColor="var(--color-vibio-brand-green)"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
-                  Así funciona Vibio
+                  ASÍ FUNCIONA VIBIO
                 </ShimmerButton>
               </Link>
             </div>

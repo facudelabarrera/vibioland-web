@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 import type { ReactNode } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
@@ -11,8 +10,11 @@ import { type ProjectListItem } from '@/sanity/queries'
 type HomeProjectEditorialMeta = {
   key: 'higuera' | 'berlanga'
   name: string
+  logoSrc: string
+  logoAlt: string
   status: string
-  statusTone: 'green' | 'blue'
+  statusDotColor: string
+  themeColor: string
   location: string
   distance: string
   dossierCta: string
@@ -30,11 +32,14 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
   higuera: {
     key: 'higuera',
     name: 'vibio.higuera',
+    logoSrc: '/vibio.higuera_logo.svg',
+    logoAlt: 'Logo de vibio.higuera',
     status: 'En construcción',
-    statusTone: 'green',
+    statusDotColor: '#7AB782',
+    themeColor: '#A36A3A',
     location: 'Higuera de las Dueñas · Ávila',
     distance: '1h de Madrid',
-    dossierCta: 'Descargar dossier',
+    dossierCta: 'DESCARGAR DOSSIER',
     description:
       'Cinco hectáreas junto al casco urbano del pueblo, con la Sierra de Gredos al norte, la de San Vicente al sur y 400 hectáreas de dehesa pública delante.',
     facts: [
@@ -42,8 +47,8 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
       { label: 'Superficie', value: '60-115 m²' },
       { label: 'Hectáreas', value: '5' },
     ],
-    primaryCta: 'Conocer vibio.higuera',
-    secondaryCta: 'Viviendas disponibles',
+    primaryCta: 'CONOCER VIBIO.HIGUERA',
+    secondaryCta: 'VIVIENDAS DISPONIBLES',
     iconSrc: '/vibio.higuera_Simbolo_OcreOscuro.svg',
     iconAlt: 'Símbolo de flor de vibio.higuera',
     // TODO: reemplazar por la URL final del dossier cuando exista el archivo público.
@@ -54,11 +59,14 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
   berlanga: {
     key: 'berlanga',
     name: 'vibio.berlanga',
+    logoSrc: '/vibio.berlanga_logo.svg',
+    logoAlt: 'Logo de vibio.berlanga',
     status: 'En diseño',
-    statusTone: 'blue',
+    statusDotColor: '#9BBBD4',
+    themeColor: '#424B2D',
     location: 'Berlanga de Duero, Soria',
     distance: 'A 2h de Madrid / 45 min de Soria capital',
-    dossierCta: 'Descargar dossier',
+    dossierCta: 'DESCARGAR DOSSIER',
     description:
       'Entre encinas y viñedos, a los pies del Castillo de Berlanga, en uno de los conjuntos medievales mejor conservados de España. Un pueblo pequeño con identidad fuerte y tejido social activo.',
     facts: [
@@ -66,8 +74,8 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
       { label: 'Información', value: 'Sept 2026' },
       { label: 'Pre-registro', value: 'Abierto' },
     ],
-    primaryCta: 'Conocer vibio.berlanga',
-    secondaryCta: 'Pre-registrarme',
+    primaryCta: 'CONOCER VIBIO.BERLANGA',
+    secondaryCta: 'PRE-REGISTRARME',
     iconSrc: '/vibio.berlanga_Simbolo_OcreOscuro.svg',
     iconAlt: 'Símbolo de árbol de vibio.berlanga',
     // TODO: reemplazar por la URL final del dossier cuando exista el archivo público.
@@ -191,49 +199,73 @@ function ProjectCard({
   return (
     <article
       id={`vibio-${meta.key}`}
-      className="flex h-full w-full min-w-0 flex-col text-vibio-text"
+      className="flex h-full w-full min-w-0 flex-col"
+      style={{ color: meta.themeColor }}
     >
       <div className="flex justify-center lg:justify-start">
-        <Image
-          src={meta.iconSrc}
-          alt={meta.iconAlt}
-          width={112}
-          height={112}
-          className="h-20 w-20 object-contain sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+        <div
+          role="img"
+          aria-label={meta.iconAlt}
+          className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+          style={{
+            backgroundColor: meta.themeColor,
+            WebkitMaskImage: `url(${meta.iconSrc})`,
+            maskImage: `url(${meta.iconSrc})`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+          }}
         />
       </div>
 
       <div className="mt-9 grid min-h-[5.75rem] gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
-        <h3 className="font-heading text-[clamp(2.05rem,4vw,3.35rem)] font-medium leading-none tracking-[-0.035em] text-vibio-text">
-          {renderProjectName(meta.name)}
-        </h3>
-        <StatusBadge status={meta.status} tone={meta.statusTone} />
+        <div
+          role="img"
+          aria-label={meta.logoAlt}
+          className="h-11 w-[16.25rem] sm:h-12 sm:w-[17.5rem] lg:h-[3.4rem] lg:w-[19.5rem]"
+          style={{
+            backgroundColor: meta.themeColor,
+            WebkitMaskImage: `url(${meta.logoSrc})`,
+            maskImage: `url(${meta.logoSrc})`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'left center',
+            maskPosition: 'left center',
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+          }}
+        />
+        <StatusBadge status={meta.status} dotColor={meta.statusDotColor} textColor={meta.themeColor} />
       </div>
 
-      <div className="mt-4 min-h-[3.35rem] space-y-1 text-[15px] font-light leading-[1.45] tracking-[0.01em] text-vibio-text/72 sm:text-base">
+      <div className="mt-4 min-h-[3.35rem] space-y-1 text-[15px] font-light leading-[1.45] tracking-[0.01em] sm:text-base">
         <p>{meta.location}</p>
         <p>{meta.distance}</p>
       </div>
 
       <Link
         href={meta.dossierHref}
-        className="mt-6 inline-flex w-fit border-b border-current pb-0.5 text-[13px] font-medium tracking-[0.035em] text-vibio-text transition-colors hover:text-vibio-text/62 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text/35 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white"
+        className="mt-6 inline-flex w-fit border-b border-current pb-0.5 text-[13px] font-medium tracking-[0.035em] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white"
+        style={{ borderColor: `${meta.themeColor}80`, color: meta.themeColor, outlineColor: meta.themeColor }}
       >
         {meta.dossierCta}
       </Link>
 
-      <p className="mt-9 max-w-[38rem] text-[15px] font-light leading-[1.78] tracking-[0.025em] text-vibio-text/76 lg:min-h-[8rem]">
+      <p className="mt-9 max-w-[38rem] text-[15px] font-light leading-[1.78] tracking-[0.025em] lg:min-h-[8rem]">
         {meta.description}
       </p>
 
-      <ProjectFacts items={meta.facts} />
+      <ProjectFacts items={meta.facts} color={meta.themeColor} />
 
       <div className="mt-9 grid gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(12rem,0.95fr)]">
-        <ProjectButton href={`/proyectos/${project.slug}`} variant="primary">
+        <ProjectButton href={`/proyectos/${project.slug}`} variant="primary" color={meta.themeColor}>
           <span>{meta.primaryCta}</span>
           <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
         </ProjectButton>
-        <ProjectButton href={meta.secondaryHref} variant="secondary">
+        <ProjectButton href={meta.secondaryHref} variant="secondary" color={meta.themeColor}>
           {meta.secondaryCta}
         </ProjectButton>
       </div>
@@ -243,18 +275,21 @@ function ProjectCard({
 
 function StatusBadge({
   status,
-  tone,
+  dotColor,
+  textColor,
 }: {
   status: string
-  tone: HomeProjectEditorialMeta['statusTone']
+  dotColor: string
+  textColor: string
 }) {
   return (
-    <span className="vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border border-vibio-text/50 bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] text-vibio-text sm:justify-self-end">
+    <span
+      className="vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] sm:justify-self-end"
+      style={{ borderColor: `${textColor}66`, color: textColor }}
+    >
       <span
-        className={cn(
-          'h-2.5 w-2.5',
-          tone === 'green' ? 'bg-[#7eb37d]' : 'bg-[#9bbbd4]',
-        )}
+        className="h-2.5 w-2.5 rounded-full"
+        style={{ backgroundColor: dotColor }}
         aria-hidden
       />
       {status}
@@ -266,10 +301,12 @@ function ProjectButton({
   href,
   children,
   variant,
+  color,
 }: {
   href: string
   children: ReactNode
   variant: 'primary' | 'secondary'
+  color: string
 }) {
   return (
     <Link
@@ -277,11 +314,21 @@ function ProjectButton({
       className={cn(
         'group vibio-action-radius inline-flex min-h-14 items-center justify-center gap-4 border px-4 py-3 text-center text-[11px] font-medium tracking-[0.025em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 xl:text-[12px]',
         'whitespace-nowrap',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text/35 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white',
-        variant === 'primary'
-          ? 'bg-vibio-cafe-oscuro border-vibio-cafe-oscuro text-white hover:bg-vibio-cafe-oscuro/85'
-          : 'border-vibio-text/70 text-vibio-text hover:bg-vibio-surface',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white',
+        variant === 'primary' ? 'text-white' : 'bg-transparent',
       )}
+      style={
+        variant === 'primary'
+          ? {
+              backgroundColor: color,
+              borderColor: color,
+              color: '#ffffff',
+            }
+          : {
+              borderColor: `${color}B3`,
+              color,
+            }
+      }
     >
       {children}
     </Link>
@@ -295,32 +342,26 @@ function getProjectMeta(project: ProjectListItem): HomeProjectEditorialMeta {
   return HOME_PROJECT_EDITORIAL.higuera
 }
 
-function renderProjectName(name: string) {
-  const [root, accent] = name.split('.')
-
-  return (
-    <>
-      {root}.<span className="italic">{accent}</span>
-    </>
-  )
-}
-
-function ProjectFacts({ items }: { items: Array<{ label: string; value: string }> }) {
+function ProjectFacts({
+  items,
+  color,
+}: {
+  items: Array<{ label: string; value: string }>
+  color: string
+}) {
   return (
     <div className="mt-auto pt-10">
-      <div className="grid grid-cols-3 border-y border-vibio-text/15 text-vibio-text">
+      <div className="grid grid-cols-3 border-y" style={{ borderColor: `${color}26`, color }}>
         {items.map((item, i) => (
           <div
             key={item.label}
-            className={cn(
-              'min-w-0 px-4 py-3.5',
-              i > 0 && 'border-l border-vibio-text/15',
-            )}
+            className="min-w-0 px-4 py-3.5"
+            style={i > 0 ? { borderLeft: `1px solid ${color}26` } : undefined}
           >
-            <p className="text-[9px] font-medium uppercase tracking-[0.14em] text-vibio-text/42">
+            <p className="text-[9px] font-medium uppercase tracking-[0.14em]" style={{ color: `${color}B3` }}>
               {item.label}
             </p>
-            <p className="mt-1.5 font-serif text-[clamp(1.1rem,1.7vw,1.6rem)] font-normal leading-tight text-vibio-text">
+            <p className="mt-1.5 font-serif text-[clamp(1.1rem,1.7vw,1.6rem)] font-normal leading-tight">
               {item.value}
             </p>
           </div>

@@ -63,7 +63,7 @@ export default function ProyectosPage() {
 
       <section data-nav-surface="light" className="pt-32 pb-16 lg:pt-40 lg:pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+          <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             Proyectos
           </span>
           <h1 className="mt-4 font-heading max-w-4xl text-[clamp(2.4rem,5vw,4.3rem)] font-semibold leading-[1.03] text-vibio-text text-balance">
@@ -137,13 +137,13 @@ export default function ProyectosPage() {
                     href="/contacto"
                     className="vibio-action-radius inline-flex items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
                   >
-                    {project.name === 'vibio.berlanga' ? 'Ver viviendas disponibles' : 'Apuntarme'}
+                    {project.name === 'vibio.berlanga' ? 'VER VIVIENDAS DISPONIBLES' : 'APUNTARME'}
                   </Link>
                   <Link
                     href="/vivir-en-vibio"
                     className="vibio-action-radius inline-flex items-center justify-center border border-vibio-border/35 px-5 py-3 text-sm font-medium text-vibio-text transition-colors hover:border-vibio-text/55 hover:bg-vibio-text/[0.04]"
                   >
-                    {project.name === 'vibio.berlanga' ? 'Descargar dossier' : 'Saber más'}
+                    {project.name === 'vibio.berlanga' ? 'DESCARGAR DOSSIER' : 'SABER MÁS'}
                   </Link>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export default function ProyectosPage() {
 
       <section id="proximos-territorios" className="bg-vibio-surface-2 py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+          <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             En estudio — próximos territorios
           </span>
 
@@ -190,7 +190,7 @@ export default function ProyectosPage() {
                 Si tenés tierra, conocés un lugar o querés proponer un territorio, hablemos.
               </p>
               <span className="mt-6 text-sm font-medium text-vibio-text">
-                Proponer territorio
+                PROPONER TERRITORIO
               </span>
             </Link>
           </div>

@@ -59,7 +59,7 @@ export function Inversores() {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2
             data-inv-heading
-            className="font-heading text-balance text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[1.08] text-vibio-text"
+            className="font-heading text-balance text-[clamp(1.9rem,4.2vw,3.1rem)] font-normal leading-[1.08] text-vibio-text"
           >
             Una oportunidad para invertir en cómo queremos vivir
           </h2>
@@ -87,7 +87,7 @@ export function Inversores() {
                 borderRadius="var(--vibio-radius-action)"
                 className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
               >
-                Descarga dossier inversor
+                DESCARGA DOSSIER INVERSOR
               </ShimmerButton>
             </Link>
 
@@ -96,7 +96,7 @@ export function Inversores() {
               href="/contacto"
               className="inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
             >
-              Habla con el equipo
+              HABLA CON EL EQUIPO
             </Link>
           </div>
         </div>

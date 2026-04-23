@@ -153,7 +153,7 @@ export function Audiencia() {
         <div className="grid gap-10 lg:min-h-screen lg:grid-cols-[340px_1fr] lg:items-start lg:gap-16 lg:py-20">
           {/* ── Left column ── */}
           <div className="lg:pt-12">
-            <h2 className="font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text text-balance">
+            <h2 className="font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-vibio-text text-balance">
               ¿Para quién es vibio?
             </h2>
             <p className="mt-5 max-w-xs text-base font-light leading-[1.7] text-vibio-text/55">

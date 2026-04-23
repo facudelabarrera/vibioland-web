@@ -49,7 +49,7 @@ export default function VivirEnVibioPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.8fr)] lg:items-end lg:gap-16">
             <div>
-              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+              <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
                 Vivir en vibio
               </span>
               <h1 className="mt-4 font-heading max-w-4xl text-[clamp(2.35rem,5vw,4.2rem)] font-semibold leading-[1.03] text-vibio-text text-balance">
@@ -61,7 +61,7 @@ export default function VivirEnVibioPage() {
             </div>
 
             <div className="vibio-surface-radius border border-vibio-border/20 bg-vibio-surface p-6 lg:p-8">
-              <p className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+              <p className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
                 Lo primero que miramos
               </p>
               <ul className="mt-5 space-y-4 border-t border-vibio-text/10 pt-5">
@@ -106,10 +106,10 @@ export default function VivirEnVibioPage() {
       <section className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
           <div>
-            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+            <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               Cómo avanzamos
             </span>
-            <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] text-vibio-text text-balance">
+            <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.05] text-vibio-text text-balance">
               Primero entendemos tu encaje. Después hablamos de proyecto.
             </h2>
             <div className="mt-8 divide-y divide-vibio-text/10 border-y border-vibio-text/10">
@@ -136,7 +136,7 @@ export default function VivirEnVibioPage() {
             />
             <div className="absolute inset-0 bg-vibio-casi-negro/45" />
             <div className="relative z-10 flex h-full flex-col justify-end p-6 lg:p-8">
-              <p className="text-[12px] font-medium tracking-[0em] text-vibio-brand-yellow/78 uppercase">
+              <p className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
                 Para quién suele encajar
               </p>
               <ul className="mt-5 space-y-4">
@@ -155,10 +155,10 @@ export default function VivirEnVibioPage() {
       <section className="bg-vibio-white pb-20 lg:pb-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:px-8">
           <div className="flex flex-col justify-center">
-            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+            <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               Contanos tu caso
             </span>
-            <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] text-vibio-text text-balance">
+            <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.05] text-vibio-text text-balance">
               Si esto podría ser para vos, el siguiente paso es simple.
             </h2>
             <p className="mt-6 max-w-xl text-base font-light leading-[1.8] text-vibio-text/68">

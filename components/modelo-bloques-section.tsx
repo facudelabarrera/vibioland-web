@@ -95,10 +95,10 @@ export function ModeloBloquesSection() {
           <article
             key={number}
             data-bloque-card
-            className="relative flex min-h-[360px] flex-col lg:min-h-[430px]"
+            className="relative flex h-full flex-col"
           >
-            <div className="relative z-10 flex h-full flex-col">
-              <div className="flex flex-1 flex-col">
+            <div className="relative z-10 flex h-full flex-col justify-between">
+              <div className="flex flex-col">
                 <p className="text-[11px] font-medium tracking-[0em] text-vibio-text/48 uppercase">
                   {eyebrow}
                 </p>
@@ -125,19 +125,19 @@ export function ModeloBloquesSection() {
                     </p>
                   </div>
                 </div>
+              </div>
 
-                <div className="mt-auto pt-10">
-                  <button
-                    type="button"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    aria-label={`${isOpen ? 'Colapsar' : 'Expandir'} ${title}`}
-                    onClick={() => setActiveCard(isOpen ? null : number)}
-                    className="inline-flex items-center text-[2rem] leading-none text-vibio-text transition-opacity duration-300 ease-in-out hover:opacity-60"
-                  >
-                    {isOpen ? '−' : '+'}
-                  </button>
-                </div>
+              <div className="pt-4">
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  aria-label={`${isOpen ? 'Colapsar' : 'Expandir'} ${title}`}
+                  onClick={() => setActiveCard(isOpen ? null : number)}
+                  className="inline-flex items-center text-[2rem] leading-none text-[#EB593B] transition-opacity duration-300 ease-in-out hover:opacity-60"
+                >
+                  {isOpen ? '−' : '+'}
+                </button>
               </div>
             </div>
 

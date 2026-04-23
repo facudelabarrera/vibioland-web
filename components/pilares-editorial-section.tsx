@@ -26,7 +26,7 @@ export function PilaresEditorialSection({ pilares }: PilaresEditorialSectionProp
           animation="slideUp"
           by="word"
           once
-          className="font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.06] text-vibio-text"
+          className="font-heading text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.06] text-vibio-text"
         >
           10 pilares
         </TextAnimate>
@@ -48,7 +48,7 @@ export function PilaresEditorialSection({ pilares }: PilaresEditorialSectionProp
               )}
             >
               <article className="border-t border-vibio-text/[0.12] py-10 lg:py-14">
-                <div className="flex items-start gap-5 sm:gap-6 lg:gap-8">
+                <div className="flex items-start gap-4 sm:gap-5 lg:gap-6">
                   <Icon
                     className="h-12 w-12 shrink-0 text-vibio-accent-green sm:h-14 sm:w-14 lg:h-16 lg:w-16"
                   />

@@ -17,7 +17,7 @@ export default function ContactoPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="vibio-surface-radius-lg overflow-hidden border border-vibio-border/18 lg:grid lg:grid-cols-2">
             <div className="bg-vibio-white px-6 py-10 lg:px-10 lg:py-12">
-              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+              <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
                 Contacto
               </span>
               <h1 className="mt-4 font-heading text-[clamp(2.2rem,4.5vw,3.4rem)] font-semibold leading-[1.04] text-vibio-text text-balance">
@@ -33,7 +33,7 @@ export default function ContactoPage() {
             </div>
 
             <aside className="bg-vibio-surface-2 px-6 py-10 lg:px-10 lg:py-12">
-              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
+              <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
                 O encontranos aquí
               </span>
 
@@ -67,7 +67,7 @@ export default function ContactoPage() {
                       type="button"
                       className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
                     >
-                      Suscribir
+                      SUSCRIBIR
                     </button>
                   </div>
                 </div>

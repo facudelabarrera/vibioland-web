@@ -35,7 +35,7 @@ export function ObraReconocida() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] text-vibio-text text-balance">
+          <h2 className="font-heading text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.08] text-vibio-text text-balance">
             25 años de obra reconocida antes del primer Vibio
           </h2>
         </div>

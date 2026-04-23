@@ -37,7 +37,7 @@ export function PreguntasFrecuentes() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-20 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)] lg:gap-48">
           <ScrollReveal>
-            <h2 className="font-heading whitespace-nowrap text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.15] text-vibio-text">
+            <h2 className="font-heading whitespace-nowrap text-[clamp(2rem,4vw,3rem)] font-normal leading-[1.15] text-vibio-text">
               Preguntas frecuentes
             </h2>
             <p className="mt-4 max-w-[380px] text-base font-light leading-[1.8] text-vibio-text/60 lg:text-lg">
