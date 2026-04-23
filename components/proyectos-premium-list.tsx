@@ -174,7 +174,11 @@ export function ProyectosPremiumList({
     <ul
       ref={listRef}
       role="list"
-      className={cn('grid items-stretch gap-14 lg:grid-cols-2 lg:gap-16 xl:gap-20', className)}
+      className={cn(
+        'grid items-stretch gap-20 lg:justify-between lg:gap-28 xl:gap-32',
+        'lg:grid-cols-[minmax(0,30rem)_minmax(0,30rem)] xl:grid-cols-[minmax(0,33rem)_minmax(0,33rem)]',
+        className,
+      )}
     >
       {projects.map((project) => {
         const meta = getProjectMeta(project)

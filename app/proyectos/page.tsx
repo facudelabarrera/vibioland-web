@@ -75,7 +75,7 @@ export default function ProyectosPage() {
         </div>
       </section>
 
-      <section className="space-y-4 pb-20 lg:space-y-5 lg:pb-24">
+       <section className="space-y-6 pb-20 lg:space-y-8 lg:pb-24">
         {projects.map((project) => (
           <article
             key={project.name}

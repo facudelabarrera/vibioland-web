@@ -140,7 +140,7 @@ function FooterColumn({
               <div
                 role="img"
                 aria-label={link.imageAlt ?? link.label}
-                className="h-8 w-[9.75rem]"
+                className="h-[1.9rem] w-[9.1rem]"
                 style={{
                   backgroundColor: '#242018',
                   WebkitMaskImage: `url(${link.imageSrc})`,
