@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, type ComponentType } from 'react'
 import Image from 'next/image'
-import { TextAnimate } from '@/components/ui/text-animate'
 
 type Bloque = {
   number: string
+  eyebrow: string
   title: string
   titleLines: [string, string]
   description: string
@@ -56,28 +56,31 @@ function RegeneracionIcon({ className }: { className?: string }) {
 const bloques: Bloque[] = [
   {
     number: '001',
-    title: 'Comunidad intencional',
-    titleLines: ['Comunidad', 'intencional'],
+    eyebrow: 'Las viviendas',
+    title: 'Arquitectura bioclimática',
+    titleLines: ['Arquitectura', 'bioclimática'],
     description:
-      'Relación con otras personas, sin renunciar a tu espacio o privacidad. Ni aislamiento ni convivencia forzada: una comunidad diseñada.',
-    imageSrc: '/VIBIO 4.0 - GENERAL (1).jpg',
-    Icon: ComunidadIcon,
-  },
-  {
-    number: '002',
-    title: 'Vivienda privada real',
-    titleLines: ['Vivienda', 'privada real'],
-    description:
-      'Más tiempo, más espacio y menos ruido. Arquitectura bioclimática que respeta el entorno. Una forma de vida que prioriza lo importante.',
+      'Casas eficientes, pensadas para perdurar en un entorno que se regenera.',
     imageSrc: '/VIBIO 4.0 - GENERAL.jpg',
     Icon: ArquitecturaIcon,
   },
   {
+    number: '002',
+    eyebrow: 'La comunidad',
+    title: 'Comunidad con intención',
+    titleLines: ['Comunidad', 'con intención'],
+    description:
+      'Espacios compartidos, reglas claras y respeto a la intimidad. Vivir en comunidad, con tu privacidad intacta.',
+    imageSrc: '/VIBIO 4.0 - GENERAL (1).jpg',
+    Icon: ComunidadIcon,
+  },
+  {
     number: '003',
+    eyebrow: 'El territorio',
     title: 'Arraigo territorial',
     titleLines: ['Arraigo', 'territorial'],
     description:
-      'Formar parte de un lugar real que se transforma contigo. Con economía local, entorno natural y vínculos que van más allá de tu vivienda.',
+      'Vínculos que van más allá de tu vivienda: formar parte de un lugar que se transforma contigo.',
     imageSrc: '/Copia de H_Dueñas-8436.jpg',
     Icon: RegeneracionIcon,
   },
@@ -124,26 +127,8 @@ export function ModeloBloquesSection() {
 
   return (
     <div className="pt-10 lg:pt-14">
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start lg:gap-x-16">
-        <div className="max-w-3xl">
-          <TextAnimate
-            as="h2"
-            animation="slideUp"
-            by="line"
-            once
-            className="max-w-none whitespace-pre-line font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] text-vibio-text"
-          >
-            {'Una forma de vivir en un\nentorno rural que sí funciona.'}
-          </TextAnimate>
-        </div>
-
-        <p className="max-w-md text-sm font-light leading-[1.8] text-vibio-text/68 lg:justify-self-end lg:pt-2 lg:text-[15px]">
-          Vibio diseña una alternativa real a la vida en la ciudad: sin renunciar a la privacidad, con una comunidad conectada con el territorio.
-        </p>
-      </div>
-
-      <div ref={gridRef} className="mt-14 grid gap-0 lg:grid-cols-3">
-        {bloques.map(({ number, title, titleLines, description, imageSrc, Icon }) => (
+      <div ref={gridRef} className="grid gap-0 lg:grid-cols-3">
+        {bloques.map(({ number, eyebrow, title, titleLines, description, imageSrc, Icon }) => (
           <article
             key={number}
             data-bloque-card
@@ -168,6 +153,9 @@ export function ModeloBloquesSection() {
               </div>
 
               <div className="mt-10">
+                <p className="mb-3 text-[11px] font-medium tracking-[0.18em] text-vibio-text/48 transition-colors duration-500 ease-out group-hover:text-white/58">
+                  {eyebrow}
+                </p>
                 <h3
                   aria-label={title}
                   className="max-w-none whitespace-pre-line font-heading text-[clamp(1.55rem,2.2vw,2.15rem)] font-normal leading-[1.04] text-vibio-text transition-colors duration-500 ease-out group-hover:text-white"

@@ -1,23 +1,40 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
-import { VibioLogoLink } from "@/components/vibio-logo"
-
-const projectLinks = [
-  { href: "/proyectos#vibio-berlanga", label: "vibio.berlanga" },
-  { href: "/proyectos#vibio-higuera", label: "vibio.higuera" },
-  { href: "/proyectos#proximos-territorios", label: "Próximos territorios" },
-]
-
-const companyLinks = [
-  { href: "/modelo", label: "El modelo" },
-  { href: "/invertir-en-vibio", label: "Inversores" },
-  { href: "mailto:hola@vibio.land?subject=Prensa%20Vibio", label: "Prensa" },
-]
-
-const contactLinks = [
-  { href: "mailto:hola@vibio.land", label: "hola@vibio.land" },
-  { href: "/contacto", label: "Hablar con el equipo" },
+const footerColumns = [
+  {
+    title: "El proyecto",
+    links: [
+      { href: "/modelo", label: "Qué es vibio" },
+      { href: "/modelo", label: "Cómo funciona" },
+      { href: "/proyectos", label: "Dónde está" },
+      { href: "/modelo", label: "Impacto" },
+    ],
+  },
+  {
+    title: "Las comunidades",
+    links: [
+      { href: "/proyectos#vibio-higuera", label: "vibio.higuera" },
+      { href: "/proyectos#vibio-berlanga", label: "vibio.berlanga" },
+      { href: "/proyectos#proximos-territorios", label: "Próximas comunidades" },
+    ],
+  },
+  {
+    title: "Conócenos",
+    links: [
+      { href: "/modelo", label: "Equipo & Red" },
+      { href: "mailto:hola@vibio.land?subject=Prensa%20Vibio", label: "Prensa" },
+      { href: "/contacto", label: "FAQs" },
+    ],
+  },
+  {
+    title: "Contacto",
+    links: [
+      { href: "mailto:hola@vibio.land", label: "hola@vibio.land" },
+      { href: "tel:+34655920839", label: "+34 655 920 839" },
+    ],
+  },
 ]
 
 export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }) {
@@ -28,57 +45,75 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
       className="overflow-hidden"
       style={{ backgroundColor: 'var(--color-vibio-brand-green)' }}
     >
-      {showInvestorCta ? (
-        <section className="border-b border-white/10">
-          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-14 lg:grid-cols-[minmax(0,1.2fr)_auto] lg:items-center lg:gap-16 lg:px-8 lg:py-20">
-            <div className="max-w-3xl">
-              <h2 className="font-heading text-[clamp(2rem,4.2vw,3.4rem)] font-semibold leading-[1.06] text-vibio-marfil text-balance">
-                Vibio es también una oportunidad de inversión.
-              </h2>
-              <p className="mt-5 max-w-2xl text-base font-light leading-[1.8] text-white/70 lg:text-lg">
-                Modelo probado, demanda real, rentabilidad clara. Sin greenwashing ni promesas vacías. Un proyecto sólido con impacto territorial medible.
-              </p>
-            </div>
+      <div className="mx-auto max-w-7xl px-6 pb-12 pt-16 lg:px-8 lg:pb-16 lg:pt-20">
+        {/* Main layout: left column (logo+tagline) | right column (nav + newsletter) */}
+        <div className="grid gap-14 lg:grid-cols-[200px_1fr] lg:gap-20 xl:gap-28">
 
-            <Link
-              href="/invertir-en-vibio"
-              className="group inline-flex w-full items-center justify-center gap-3 border border-transparent bg-vibio-brand-yellow px-6 py-3.5 text-sm font-medium text-vibio-dark transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-[#d7c56f] lg:w-auto"
-            >
-              <span>Área de inversores</span>
-              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" />
+          {/* ── LEFT: logo + tagline ── */}
+          <div>
+            <Link href="/" className="inline-block">
+              <Image
+                src="/vibioland-logo.svg"
+                alt="Vibio"
+                width={130}
+                height={43}
+                className="h-10 w-auto"
+                style={{ filter: 'brightness(0) invert(1)' }}
+              />
             </Link>
-          </div>
-        </section>
-      ) : null}
-
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-14 lg:px-8 lg:pb-10 lg:pt-16">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
-          <div className="max-w-md">
-            <VibioLogoLink
-              className="h-8 w-auto max-w-[220px] brightness-0 invert lg:h-9 lg:max-w-[250px]"
-              linkClassName="inline-block leading-none"
-            />
-
-            <p className="mt-7 text-sm font-light tracking-[0.18em] text-white/48">
+            <p className="mt-6 text-sm font-light tracking-[0.18em] text-white/48">
               Reencuentra · Rediseña · Regenera
             </p>
-
-            <p className="mt-8 max-w-sm text-[15px] font-light leading-[1.82] text-white/68 lg:text-base">
-              Sistema de vida en común diseñada para personas que quieren vivir mejor juntas en entornos rurales.
-            </p>
           </div>
 
-          <div className="grid gap-10 sm:grid-cols-3 sm:gap-8 lg:pt-2">
-            <FooterColumn title="Proyectos" links={projectLinks} />
-            <FooterColumn title="Empresa" links={companyLinks} />
-            <FooterColumn title="Contacto" links={contactLinks} />
-          </div>
-        </div>
+          {/* ── RIGHT: nav columns (top) + newsletter (bottom) ── */}
+          <div className="flex flex-col gap-12">
 
-        <div className="mt-16 border-t border-white/10 pt-5 lg:mt-20 lg:pt-6">
-          <div className="flex flex-col gap-3 text-[11px] font-light leading-[1.7] text-white/42 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-            <p>© 2026 Vibio. Todos los derechos reservados.</p>
-            <p>Desarrollado por Felicidad Collective · Madrid / Lisboa / Mendoza / São Paulo</p>
+            {/* Nav columns */}
+            <div className="grid grid-cols-2 gap-10 sm:grid-cols-4 sm:gap-8">
+              {footerColumns.map((column) => (
+                <FooterColumn key={column.title} title={column.title} links={column.links} />
+              ))}
+            </div>
+
+            {/* Newsletter — inside the right column, below nav */}
+            <div className="border-t border-white/10 pt-10">
+              <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:gap-12 lg:items-start">
+
+                {/* Description */}
+                <div>
+                  <p className="text-[11px] font-medium tracking-[0.18em] text-white/40">
+                    Newsletter
+                  </p>
+                  <p className="mt-4 text-[14px] font-light leading-[1.7] text-white/68">
+                    Actualizaciones de los proyectos, una vez al mes, escritas por el equipo.
+                  </p>
+                </div>
+
+                {/* Form */}
+                <form className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <input
+                      type="email"
+                      placeholder="tunombre@tucorreo.com"
+                      className="min-w-0 flex-1 border border-white/15 bg-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-white/38 focus:border-white/35 focus:outline-none"
+                    />
+                    <button
+                      type="button"
+                      className="inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d7c56f]"
+                    >
+                      Suscribirme
+                    </button>
+                  </div>
+                  <label className="flex cursor-pointer items-start gap-3 text-[10px] font-light tracking-[0.08em] text-white/42">
+                    <input type="checkbox" className="mt-0.5 accent-vibio-brand-yellow" />
+                    <span>Acepto las condiciones de la política de privacidad</span>
+                  </label>
+                </form>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -120,7 +155,7 @@ function LinkOrAnchor({
   className?: string
   children: ReactNode
 }) {
-  if (href.startsWith('mailto:')) {
+  if (href.startsWith('mailto:') || href.startsWith('tel:')) {
     return (
       <a href={href} className={className}>
         {children}
@@ -132,13 +167,5 @@ function LinkOrAnchor({
     <Link href={href} className={className}>
       {children}
     </Link>
-  )
-}
-
-function ArrowRight({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 14 14" fill="none" className={className} aria-hidden>
-      <path d="M2 7h9M7.5 2.5 12 7l-4.5 4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   )
 }

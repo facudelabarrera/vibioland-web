@@ -1,38 +1,79 @@
 'use client'
 
-import { useRef, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
+import type { ReactNode } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import { STATUS_LABELS, type ProjectListItem } from '@/sanity/queries'
+import { type ProjectListItem } from '@/sanity/queries'
 
 type HomeProjectEditorialMeta = {
-  summary?: string
-  homes?: string
-  size?: string
-  extra?: string
-  availability?: string
-  cta?: string
+  key: 'higuera' | 'berlanga'
+  name: string
+  status: string
+  statusTone: 'green' | 'blue'
+  location: string
+  distance: string
+  dossierCta: string
+  description: string
+  facts: Array<{ label: string; value: string }>
+  primaryCta: string
+  secondaryCta: string
+  iconSrc: string
+  iconAlt: string
+  dossierHref: string
+  secondaryHref: string
 }
 
-const HOME_PROJECT_EDITORIAL: Record<string, HomeProjectEditorialMeta> = {
-  berlanga: {
-    summary:
-      'Arquitectura de autor, gobernanza diseñada y una comunidad transgeneracional ya en marcha.',
-    homes: '28 viviendas',
-    size: '70–120 m²',
-    extra: '2h de Madrid · 30 min de Soria',
-    availability: '65% reservadas · 10 unidades disponibles',
-    cta: 'Ver proyecto',
-  },
+const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjectEditorialMeta> = {
   higuera: {
-    summary:
-      'Un nuevo territorio pensado para vivir fuera de la ciudad sin resignar estructura, privacidad ni comunidad.',
-    homes: '32 viviendas',
-    size: '70–120 m²',
-    extra: '1h de Madrid',
-    availability: 'Pre-registro abierto para primera ronda',
-    cta: 'Conocer territorio',
+    key: 'higuera',
+    name: 'vibio.higuera',
+    status: 'En construcción',
+    statusTone: 'green',
+    location: 'Higuera de las Dueñas · Ávila',
+    distance: '1h de Madrid',
+    dossierCta: 'Descargar dossier',
+    description:
+      'Cinco hectáreas junto al casco urbano del pueblo, con la Sierra de Gredos al norte, la de San Vicente al sur y 400 hectáreas de dehesa pública delante.',
+    facts: [
+      { label: 'Viviendas', value: '80' },
+      { label: 'Superficie', value: '60-115 m²' },
+      { label: 'Hectáreas', value: '5' },
+    ],
+    primaryCta: 'Conocer vibio.higuera',
+    secondaryCta: 'Viviendas disponibles',
+    iconSrc: '/vibio.higuera_Simbolo_OcreOscuro.svg',
+    iconAlt: 'Símbolo de flor de vibio.higuera',
+    // TODO: reemplazar por la URL final del dossier cuando exista el archivo público.
+    dossierHref: '/contacto?interes=dossier-higuera',
+    // TODO: conectar a inventario real cuando exista una ruta específica de viviendas.
+    secondaryHref: '/contacto?interes=viviendas-higuera',
+  },
+  berlanga: {
+    key: 'berlanga',
+    name: 'vibio.berlanga',
+    status: 'En diseño',
+    statusTone: 'blue',
+    location: 'Berlanga de Duero, Soria',
+    distance: 'A 2h de Madrid / 45 min de Soria capital',
+    dossierCta: 'Descargar dossier',
+    description:
+      'Entre encinas y viñedos, a los pies del Castillo de Berlanga, en uno de los conjuntos medievales mejor conservados de España. Un pueblo pequeño con identidad fuerte y tejido social activo.',
+    facts: [
+      { label: 'Fase', value: 'En diseño' },
+      { label: 'Información', value: 'Sept 2026' },
+      { label: 'Pre-registro', value: 'Abierto' },
+    ],
+    primaryCta: 'Conocer vibio.berlanga',
+    secondaryCta: 'Pre-registrarme',
+    iconSrc: '/vibio.berlanga_Simbolo_OcreOscuro.svg',
+    iconAlt: 'Símbolo de árbol de vibio.berlanga',
+    // TODO: reemplazar por la URL final del dossier cuando exista el archivo público.
+    dossierHref: '/contacto?interes=dossier-berlanga',
+    // TODO: conectar al pre-registro real cuando exista una ruta/formulario específico.
+    secondaryHref: '/contacto?interes=pre-registro-berlanga',
   },
 }
 
@@ -70,6 +111,7 @@ export function ProyectosPremiumList({
     if (projects.length === 0) return
     const root = listRef.current
     if (!root) return
+    const animationRoot = root
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return
@@ -82,7 +124,7 @@ export function ProyectosPremiumList({
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
 
-      const items = root.querySelectorAll<HTMLElement>(':scope > li')
+      const items = animationRoot.querySelectorAll<HTMLElement>(':scope > li')
 
       ctx = gsap.context(() => {
         gsap.from(items, {
@@ -90,7 +132,7 @@ export function ProyectosPremiumList({
           opacity: 0,
           duration: 0.8,
           stagger: {
-            each: 0.095,
+            each: 0.12,
             from: 'start',
             ease: 'power1.out',
           },
@@ -102,7 +144,7 @@ export function ProyectosPremiumList({
             invalidateOnRefresh: true,
           },
         })
-      }, root)
+      }, animationRoot)
     }
 
     init()
@@ -124,151 +166,163 @@ export function ProyectosPremiumList({
     <ul
       ref={listRef}
       role="list"
-      className={cn('border-t border-vibio-text/[0.12]', className)}
+      className={cn('grid items-stretch gap-14 lg:grid-cols-2 lg:gap-16 xl:gap-20', className)}
     >
-      {projects.map((project, i) => {
+      {projects.map((project) => {
         const meta = getProjectMeta(project)
-        const location = formatLocation(project.location)
-        const statusLabel = project.status ? STATUS_LABELS[project.status] : undefined
-        const tagline = shouldRenderTagline(project) ? project.tagline : undefined
 
         return (
-        <li key={project._id} className="border-b border-vibio-text/[0.12]">
-          <Link
-            href={`/proyectos/${project.slug}`}
-            className={cn(
-              'group block w-full text-vibio-text',
-              'transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
-              'hover:bg-vibio-surface/55',
-              'focus-visible:bg-vibio-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text focus-visible:ring-inset',
-            )}
-          >
-            <div
-              className={cn(
-                'grid w-full gap-y-8 px-0 py-8 transition-[padding,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
-                'sm:py-10 lg:grid-cols-[minmax(5rem,6rem)_minmax(0,1.6fr)_minmax(13rem,0.75fr)] lg:gap-x-10 lg:gap-y-0 lg:py-11 xl:grid-cols-[minmax(5.5rem,6.75rem)_minmax(0,1.8fr)_minmax(14rem,0.78fr)] xl:gap-x-12',
-                'group-hover:px-3 group-focus-visible:px-3',
-              )}
-            >
-              <div className="flex items-start gap-4 lg:block lg:pr-2">
-                <span className="select-none font-heading text-[clamp(1.85rem,4.5vw,3.75rem)] font-semibold tabular-nums leading-none text-vibio-text">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                {statusLabel ? (
-                  <span className="inline-flex w-fit rounded-full border border-vibio-border/24 bg-vibio-surface/65 px-3 py-1 text-[11px] font-medium text-vibio-text/58 lg:mt-4">
-                    {statusLabel}
-                  </span>
-                ) : null}
-              </div>
-
-              <div className="min-w-0">
-                <div className="flex flex-col gap-2">
-                  <h3 className="font-heading text-[clamp(1.3rem,2.6vw,2.5rem)] font-medium leading-[1.04] text-vibio-text">
-                    {project.name}
-                  </h3>
-                  {location ? (
-                    <p className="text-[13px] font-light tracking-[0.02em] text-vibio-text/55">
-                      {location}
-                    </p>
-                  ) : null}
-                </div>
-
-                {tagline && (
-                  <p className="mt-4 max-w-xl text-[15px] font-light leading-[1.78] text-vibio-text/72 lg:pr-8">
-                    {tagline}
-                  </p>
-                )}
-
-                {meta.summary && meta.summary !== tagline && (
-                  <p className="mt-3 max-w-xl text-[14px] font-light leading-[1.72] text-vibio-text/56 lg:pr-10">
-                    {meta.summary}
-                  </p>
-                )}
-
-                <ProjectFacts
-                  items={[
-                    meta.extra,
-                    meta.homes ?? formatHomes(project.stats?.viviendas),
-                    meta.size,
-                  ]}
-                />
-              </div>
-
-              <div className="flex min-h-full flex-col justify-between gap-5 border-t border-vibio-text/10 pt-5 lg:border-t-0 lg:pt-0 lg:pl-6 xl:pl-8">
-                <div>
-                  <p className="text-[12px] font-medium text-vibio-text/48">
-                    Disponibilidad
-                  </p>
-                  <p className="mt-3 text-[15px] font-light leading-[1.72] text-vibio-text/72">
-                    {meta.availability}
-                  </p>
-                </div>
-
-                <span className="relative inline-flex w-fit items-center gap-3 pb-1 text-sm font-medium text-vibio-text transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:after:scale-x-100 group-focus-visible:after:scale-x-100">
-                  <span>
-                    {meta.cta}
-                  </span>
-                  <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
-                </span>
-              </div>
-            </div>
-          </Link>
-        </li>
+          <li key={project._id} className="flex min-w-0">
+            <ProjectCard project={project} meta={meta} />
+          </li>
         )
       })}
     </ul>
   )
 }
 
+function ProjectCard({
+  project,
+  meta,
+}: {
+  project: ProjectListItem
+  meta: HomeProjectEditorialMeta
+}) {
+  return (
+    <article
+      id={`vibio-${meta.key}`}
+      className="flex h-full w-full min-w-0 flex-col text-vibio-text"
+    >
+      <div className="flex justify-center lg:justify-start">
+        <Image
+          src={meta.iconSrc}
+          alt={meta.iconAlt}
+          width={112}
+          height={112}
+          className="h-20 w-20 object-contain sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+        />
+      </div>
+
+      <div className="mt-9 grid min-h-[5.75rem] gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+        <h3 className="font-heading text-[clamp(2.05rem,4vw,3.35rem)] font-medium leading-none tracking-[-0.035em] text-vibio-text">
+          {renderProjectName(meta.name)}
+        </h3>
+        <StatusBadge status={meta.status} tone={meta.statusTone} />
+      </div>
+
+      <div className="mt-4 min-h-[3.35rem] space-y-1 text-[15px] font-light leading-[1.45] tracking-[0.01em] text-vibio-text/72 sm:text-base">
+        <p>{meta.location}</p>
+        <p>{meta.distance}</p>
+      </div>
+
+      <Link
+        href={meta.dossierHref}
+        className="mt-6 inline-flex w-fit border-b border-current pb-0.5 text-[13px] font-medium tracking-[0.035em] text-vibio-text transition-colors hover:text-vibio-text/62 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text/35 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white"
+      >
+        {meta.dossierCta}
+      </Link>
+
+      <p className="mt-9 max-w-[38rem] text-[15px] font-light leading-[1.78] tracking-[0.025em] text-vibio-text/76 lg:min-h-[8rem]">
+        {meta.description}
+      </p>
+
+      <ProjectFacts items={meta.facts} />
+
+      <div className="mt-9 grid gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(12rem,0.95fr)]">
+        <ProjectButton href={`/proyectos/${project.slug}`} variant="primary">
+          <span>{meta.primaryCta}</span>
+          <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
+        </ProjectButton>
+        <ProjectButton href={meta.secondaryHref} variant="secondary">
+          {meta.secondaryCta}
+        </ProjectButton>
+      </div>
+    </article>
+  )
+}
+
+function StatusBadge({
+  status,
+  tone,
+}: {
+  status: string
+  tone: HomeProjectEditorialMeta['statusTone']
+}) {
+  return (
+    <span className="inline-flex w-fit items-center justify-center gap-2 border border-vibio-text/50 bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] text-vibio-text sm:justify-self-end">
+      <span
+        className={cn(
+          'h-2.5 w-2.5',
+          tone === 'green' ? 'bg-[#7eb37d]' : 'bg-[#9bbbd4]',
+        )}
+        aria-hidden
+      />
+      {status}
+    </span>
+  )
+}
+
+function ProjectButton({
+  href,
+  children,
+  variant,
+}: {
+  href: string
+  children: ReactNode
+  variant: 'primary' | 'secondary'
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        'group inline-flex min-h-14 items-center justify-center gap-4 border px-4 py-3 text-center text-[11px] font-medium tracking-[0.025em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 xl:text-[12px]',
+        'whitespace-nowrap',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text/35 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white',
+        variant === 'primary'
+          ? 'border-vibio-text/70 text-vibio-text hover:bg-vibio-text hover:text-vibio-white'
+          : 'border-vibio-text/70 text-vibio-text hover:bg-vibio-surface',
+      )}
+    >
+      {children}
+    </Link>
+  )
+}
+
 function getProjectMeta(project: ProjectListItem): HomeProjectEditorialMeta {
-  const key = [project.slug, project.name]
-    .filter(Boolean)
-    .join(' ')
-    .toLowerCase()
-  const editorial = HOME_PROJECT_EDITORIAL[key] ?? {}
+  const haystack = [project.slug, project.name].filter(Boolean).join(' ').toLowerCase()
 
-  const resolvedEditorial =
-    editorial.summary != null
-      ? editorial
-      : Object.entries(HOME_PROJECT_EDITORIAL).find(([slugLike]) => key.includes(slugLike))?.[1] ?? {}
-
-  return {
-    summary: project.description ?? resolvedEditorial.summary,
-    homes: resolvedEditorial.homes,
-    size: resolvedEditorial.size,
-    extra: resolvedEditorial.extra,
-    availability: resolvedEditorial.availability ?? 'Consultá disponibilidad actual',
-    cta: resolvedEditorial.cta ?? 'Ver proyecto',
-  }
+  if (haystack.includes('berlanga')) return HOME_PROJECT_EDITORIAL.berlanga
+  return HOME_PROJECT_EDITORIAL.higuera
 }
 
-function formatLocation(location?: ProjectListItem['location']) {
-  if (!location) return ''
-  return [location.town, location.province, location.region].filter(Boolean).join(', ')
-}
-
-function formatHomes(value?: number) {
-  return value != null ? `${value.toLocaleString('es-ES')} viviendas` : undefined
-}
-
-function shouldRenderTagline(project: ProjectListItem) {
-  const key = [project.slug, project.name].filter(Boolean).join(' ').toLowerCase()
-  return !key.includes('higuera')
-}
-
-function ProjectFacts({ items }: { items: Array<string | undefined> }) {
-  const validItems = items.filter(Boolean) as string[]
-
-  if (validItems.length === 0) return null
+function renderProjectName(name: string) {
+  const [root, accent] = name.split('.')
 
   return (
-    <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] font-light text-vibio-text/54 lg:mt-6">
-      {validItems.map((item, index) => (
-        <span key={`${item}-${index}`} className="inline-flex items-center gap-3">
-          {index > 0 ? <span className="h-1 w-1 rounded-full bg-vibio-text/24" aria-hidden /> : null}
-          <span>{item}</span>
-        </span>
-      ))}
+    <>
+      {root}.<span className="italic">{accent}</span>
+    </>
+  )
+}
+
+function ProjectFacts({ items }: { items: Array<{ label: string; value: string }> }) {
+  return (
+    <div className="mt-auto pt-10">
+      <div className="grid grid-cols-3 overflow-hidden border border-vibio-text/18 bg-vibio-surface/35 text-vibio-text">
+        {items.map((item) => (
+          <div
+            key={item.label}
+            className="min-w-0 border-r border-vibio-text/14 px-3 py-4 last:border-r-0 sm:px-4"
+          >
+            <p className="truncate text-[10px] font-medium tracking-[0.13em] text-vibio-text/48">
+              {item.label}
+            </p>
+            <p className="mt-2 font-heading text-[clamp(1.05rem,1.55vw,1.45rem)] font-light leading-tight tracking-[-0.015em] text-vibio-text">
+              {item.value}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

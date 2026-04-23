@@ -1,14 +1,12 @@
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
-// import { QueEsVibio } from "@/components/que-es-vibio"
+import { VibioIntroSection } from "@/components/vibio-intro-section"
 import { ElModelo } from "@/components/el-modelo"
 import { Proyectos } from "@/components/proyectos"
 import { Datos } from "@/components/datos"
 import { Testimonios } from "@/components/testimonios"
-import { Inversores } from "@/components/inversores"
-// import { FinalChapter } from "@/components/final-chapter"
-// import { Unete } from "@/components/unete"
-import { PreguntasFrecuentes } from "@/components/preguntas-frecuentes"
+import { FinalConversionSection } from "@/components/final-conversion-section"
+import { ObraReconocida } from "@/components/obra-reconocida"
 import { Footer } from "@/components/footer"
 
 export const revalidate = 60
@@ -18,16 +16,13 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Navigation />
       <HeroSection />
-      {/* <QueEsVibio /> */}
+      <VibioIntroSection />
       <ElModelo />
       <Datos />
       <Proyectos />
       <Testimonios />
-      <Inversores />
-      {/* <FinalChapter>
-        <Unete />
-      </FinalChapter> */}
-      <PreguntasFrecuentes />
+      <FinalConversionSection />
+      <ObraReconocida />
       <Footer />
     </main>
   )

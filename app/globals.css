@@ -1,6 +1,22 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+@font-face {
+  font-family: 'STIX Two Text';
+  src: url('/fonts/STIXTwoText-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'STIX Two Text';
+  src: url('/fonts/STIXTwoText-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 .font-heading {
   letter-spacing: var(--font-heading-tracking);
 }
@@ -82,6 +98,7 @@
   --font-sans: 'new-hero', system-ui, sans-serif;
   --font-heading: 'new-hero', system-ui, sans-serif;
   --font-heading-tracking: 0;
+  --font-serif: 'STIX Two Text', serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
 
   /* Vibioland palette mapped from provided brand board */

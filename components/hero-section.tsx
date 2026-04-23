@@ -1,39 +1,47 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ShimmerButton } from "@/components/ui/shimmer-button"
-import { TextAnimate } from "@/components/ui/text-animate"
-import { Highlighter } from "@/components/ui/highlighter"
-import { HeroImageExpand } from "@/components/hero-image-expand"
+import { DEFAULT_IMAGE_BLUR_DATA_URL } from "@/lib/image-placeholder"
 
 export function HeroSection() {
   return (
-    <>
-      <section
-        data-nav-surface="light"
-        className="pb-12 pt-24 lg:pb-16 lg:pt-28"
-        style={{
-          backgroundColor: 'var(--color-vibio-marfil)',
-        }}
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <p className="mb-4 text-[12px] font-medium text-vibio-text/45 lg:mb-5">
-            Sistema de vida en común diseñado.
-          </p>
-          <h1 className="font-heading text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-[1.04] text-vibio-text">
-            Vivir mejor en comunidad
-            <br />
-            también se diseña.
-          </h1>
+    <section
+      data-nav-surface="dark"
+      className="bg-vibio-white"
+    >
+      <div className="relative isolate h-[82svh] min-h-[560px] overflow-hidden sm:min-h-[620px]">
+        <Image
+          src="/Copia de VIBIOLAND_20250216_011.JPG"
+          alt="Vista aérea de Vibioland entre entorno rural y urbanización"
+          fill
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={DEFAULT_IMAGE_BLUR_DATA_URL}
+          className="object-cover object-center"
+        />
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-end lg:mt-8">
-            <p className="max-w-xl text-lg font-light leading-[1.7] text-vibio-text/70 lg:max-w-lg lg:text-base">
-              <span className="font-semibold text-vibio-text">Vibio</span> no es una utopía. Es arquitectura, gobernanza y proceso. Una forma de vivir fuera de la ciudad, con privacidad, en comunidad y en{" "}
-              <Highlighter action="underline" color="var(--color-vibio-brand-yellow)" strokeWidth={2} isView>
-                conexión real con el territorio
-              </Highlighter>
-              .
+        {/* Gradient overlay — improves text legibility without obscuring the photo */}
+        <div
+          aria-hidden
+          className="absolute inset-0 z-[1]"
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.22) 55%, transparent 100%)' }}
+        />
+
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col px-6 pt-28 pb-14 lg:px-8 lg:pt-36 lg:pb-16">
+          <div className="mt-[12svh] max-w-5xl lg:mt-[8svh]">
+            <p className="mb-4 text-[14px] font-medium text-white lg:mb-5">
+              Diseñamos comunidades y viviendas para la biodiversidad
             </p>
+            <h1 className="font-heading text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-[1.04] text-white text-balance">
+              Una alternativa real
+              <br />
+              a la vida en la ciudad
+            </h1>
+          </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end">
+          <div className="mt-10 grid gap-6 lg:mt-12 lg:grid-cols-2 lg:items-end">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link href="/modelo" className="inline-block">
                 <ShimmerButton
                   background="var(--color-vibio-brand-yellow)"
@@ -41,20 +49,13 @@ export function HeroSection() {
                   borderRadius="0"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
-                  Cómo funciona
+                  Así funciona Vibio
                 </ShimmerButton>
-              </Link>
-              <Link
-                href="/proyectos"
-                className="inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
-              >
-                Ver territorios
               </Link>
             </div>
           </div>
         </div>
-      </section>
-      <HeroImageExpand />
-    </>
+      </div>
+    </section>
   )
 }

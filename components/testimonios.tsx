@@ -14,33 +14,40 @@ import {
 type Testimonio = {
   quote: string
   author: string
+  context: string
   role: string
 }
 
 const testimonios: Testimonio[] = [
   {
-    quote:
-      'El año 1 es el más difícil. Después se asienta. Ahora no me imagino vivir de otra forma.',
-    author: 'Julia M.',
-    role: '3 años en vibio.higuera',
+    quote: '«Pensé que tendría que elegir entre mi espacio y socializar o pertenecer a la comunidad. Resulta que no.»',
+    author: 'Sandra, 42.',
+    context: 'Tenía un estudio de arquitectura compartido en Madrid',
+    role: 'Lleva 2 años en vibio.higuera',
   },
   {
-    quote:
-      'Todavía no nos hemos mudado, pero ya formamos parte. Ya sabemos quién busca cole, o quién trabaja el huerto',
-    author: 'Sara P. y Miguel M.',
-    role: '4 meses en el grupo semilla',
+    quote: '«Al principio mi familia pensó que me iba a una comuna. Ahora vienen cada mes.»',
+    author: 'Pablo, 33.',
+    context: 'Trabaja como desarrollador en remoto',
+    role: 'Lleva 1 año en vibio.higuera',
   },
   {
-    quote:
-      'Al principio desconfiábamos. Hoy compartimos fiestas, mercado y cuidados. Son parte del pueblo.',
-    author: 'Candela G.',
-    role: 'vecina de Berlanga de Duero',
+    quote: '«Todavía no hemos llegado, pero ya formamos parte. Ya sabemos quién busca cole, quién va los fines de semana y quién organiza la caminata del domingo.»',
+    author: 'Marta y Miguel, 48 y 52 años',
+    context: 'Dos hijos',
+    role: 'Llevan 6 meses en vibio.berlanga',
   },
   {
-    quote:
-      'Lo que me hizo entrar no fue solo el proyecto, sino el modelo. Cuando ves que la demanda es real y que el equipo tiene claro dónde están los riesgos, la decisión cambia.',
-    author: 'Inversor privado',
-    role: 'Madrid',
+    quote: '«La factura de la luz me dejó de preocupar. Pero lo que no esperaba era dejar de preocuparme por el ruido, la prisa y los vecinos que no se saludan.»',
+    author: 'Cristina, 38.',
+    context: 'Dejó su piso en Barcelona tras diez años',
+    role: 'Lleva 8 meses en vibio.higuera',
+  },
+  {
+    quote: '«Mis hijos salen solos a jugar. Eso en la ciudad era impensable. Eso solo ya lo justifica todo.»',
+    author: 'Rodrigo y Ana, 41 y 39 años',
+    context: 'Tres hijos, teletrabajan los dos',
+    role: 'Llevan 1 año en vibio.berlanga',
   },
 ]
 
@@ -111,8 +118,11 @@ export function Testimonios() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
+          <p className="mb-4 text-[12px] font-medium text-vibio-text/45">
+            La opinión de la comunidad
+          </p>
           <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
-            Lo que dicen quienes ya forman parte de vibio
+            Lo que dicen quienes ya forman parte de Vibio
           </h2>
         </ScrollReveal>
 
@@ -137,7 +147,7 @@ export function Testimonios() {
                     <blockquote className="relative z-10 pt-6">
                       <p
                         data-testimonio-quote
-                        className="font-heading text-lg font-light leading-[1.45] text-vibio-text lg:text-xl"
+                        className="font-serif italic font-normal text-lg leading-[1.5] text-vibio-text lg:text-xl"
                       >
                         {t.quote}
                       </p>
@@ -145,15 +155,16 @@ export function Testimonios() {
                     <figcaption className="mt-8 text-sm font-light text-vibio-text/70">
                       <span className="font-medium text-vibio-text">
                         {t.author}
-                      </span>{' '}
-                      — {t.role}
+                      </span>
+                      <span className="mt-2 block">{t.context}</span>
+                      <span className="mt-5 block">{t.role}</span>
                     </figcaption>
                   </figure>
                 </CarouselItem>
               ))}
             </CarouselContent>
 
-            <div className="mt-10 hidden items-center gap-3 lg:flex">
+            <div className="mt-10 flex items-center gap-3">
               <CarouselPrevious className="static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
               <CarouselNext className="static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
             </div>

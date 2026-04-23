@@ -1,9 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect, useRef, useCallback } from "react"
-
-import { VibioLogoLink } from "@/components/vibio-logo"
 
 /** Scroll casi arriba del todo: el header siempre visible */
 const TOP_EPS = 8
@@ -15,9 +14,10 @@ const NAV_BAND = 56
 type NavSurface = "light" | "dark"
 
 const navItems = [
-  { href: "/modelo", label: "Cómo funciona" },
-  { href: "/proyectos", label: "Territorios" },
-  { href: "/vivir-en-vibio", label: "Vivir en vibio" },
+  { href: "/modelo", label: "El proyecto" },
+  { href: "/proyectos", label: "Comunidades" },
+  { href: "/vivir-en-vibio", label: "Vivir en Vibio" },
+  { href: "/contacto", label: "Contacta" },
 ]
 
 function readNavSurface(): NavSurface {
@@ -92,10 +92,6 @@ export function Navigation() {
     ? "px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
     : "px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
 
-  const ctaClass = isDark
-    ? "border border-transparent bg-vibio-brand-yellow text-vibio-dark hover:bg-[#d7c56f]"
-    : "border border-transparent bg-vibio-brand-yellow text-vibio-dark hover:bg-[#d7c56f]"
-
   return (
     <header
       className="fixed top-0 right-0 left-0 z-50 bg-transparent transition-[transform,color] duration-200 ease-out motion-reduce:transition-none"
@@ -103,11 +99,19 @@ export function Navigation() {
       suppressHydrationWarning
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <VibioLogoLink
-          priority
-          className={`h-[30px] max-w-[190px] lg:h-10 lg:max-w-[250px]${isDark ? " brightness-0 invert" : ""}`}
-          linkClassName="inline-block shrink-0 leading-none transition-[filter] duration-200"
-        />
+        <Link href="/" className="inline-block shrink-0">
+          <Image
+            src="/vibioland-logo.svg"
+            alt="Vibio"
+            width={97}
+            height={32}
+            className="h-8 w-auto"
+            style={{
+              filter: isDark ? 'brightness(0) invert(1)' : 'none',
+              transition: 'filter 200ms ease',
+            }}
+          />
+        </Link>
 
         <div className="hidden items-center gap-2 lg:flex">
           {navItems.map((item) => (
@@ -120,12 +124,6 @@ export function Navigation() {
             </Link>
           ))}
 
-          <Link
-            href="/contacto"
-            className={`ml-2 inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium transition-colors duration-200 ${ctaClass}`}
-          >
-            Habla con el equipo
-          </Link>
         </div>
 
         <button
@@ -164,13 +162,6 @@ export function Navigation() {
               </Link>
             ))}
 
-            <Link
-              href="/contacto"
-              className={`mt-3 inline-flex items-center justify-center px-4 py-3 text-sm font-medium transition-colors duration-200 ${ctaClass}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Habla con el equipo
-            </Link>
           </div>
         </div>
       )}
