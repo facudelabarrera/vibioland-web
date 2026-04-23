@@ -6,7 +6,6 @@ import { Proyectos } from "@/components/proyectos"
 import { Datos } from "@/components/datos"
 import { Testimonios } from "@/components/testimonios"
 import { FinalConversionSection } from "@/components/final-conversion-section"
-import { ObraReconocida } from "@/components/obra-reconocida"
 import { Footer } from "@/components/footer"
 
 export const revalidate = 60
@@ -22,7 +21,6 @@ export default function HomePage() {
       <Proyectos />
       <Testimonios />
       <FinalConversionSection />
-      <ObraReconocida />
       <Footer />
     </main>
   )

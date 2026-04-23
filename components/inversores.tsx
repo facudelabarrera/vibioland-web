@@ -84,7 +84,7 @@ export function Inversores() {
               <ShimmerButton
                 background="var(--color-vibio-brand-yellow)"
                 shimmerColor="var(--color-vibio-brand-green)"
-                borderRadius="0"
+                borderRadius="var(--vibio-radius-action)"
                 className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
               >
                 Descarga dossier inversor

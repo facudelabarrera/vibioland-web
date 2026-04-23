@@ -48,7 +48,11 @@
   --chart-3: #847132;
   --chart-4: #DBC56C;
   --chart-5: #EB593B;
-  --radius: 0.5rem;
+  --radius: 1rem;
+  --vibio-radius-action: 999px;
+  --vibio-radius-surface: 1.25rem;
+  --vibio-radius-surface-lg: 1.5rem;
+  --vibio-radius-input: 1.125rem;
   --sidebar: #F1EDCF;
   --sidebar-foreground: #3F3926;
   --sidebar-primary: #3F3926;
@@ -224,5 +228,31 @@
   h3 { letter-spacing: -0.06em !important; }
   p:not([class*="font-heading"]) {
     letter-spacing: -0.015em;
+  }
+}
+
+@layer components {
+  .vibio-action-radius {
+    border-radius: var(--vibio-radius-action);
+  }
+
+  .vibio-badge-radius {
+    border-radius: var(--vibio-radius-action);
+  }
+
+  .vibio-input-radius {
+    border-radius: var(--vibio-radius-input);
+  }
+
+  .vibio-surface-radius {
+    border-radius: var(--vibio-radius-surface);
+  }
+
+  .vibio-surface-radius-lg {
+    border-radius: var(--vibio-radius-surface-lg);
+  }
+
+  .vibio-media-radius {
+    border-radius: var(--vibio-radius-surface-lg);
   }
 }

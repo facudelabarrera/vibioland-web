@@ -42,7 +42,7 @@ export function ObraReconocida() {
 
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:mt-14 lg:grid-cols-5 lg:gap-4">
           {recognitionSlots.map((slot) => (
-            <div key={slot.title} className="border border-vibio-border/18 bg-vibio-surface-2">
+            <div key={slot.title} className="vibio-surface-radius overflow-hidden border border-vibio-border/18 bg-vibio-surface-2">
               <div className="aspect-[1.9/1] bg-vibio-text/[0.06]" aria-hidden />
               <div className="px-3 py-3 text-center text-[11px] font-light leading-[1.45] text-vibio-text/52">
                 <p>{slot.title}</p>

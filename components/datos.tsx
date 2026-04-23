@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { ScrollReveal } from '@/components/scroll-reveal'
 
 type Dato = {
   metric: string
@@ -32,7 +33,7 @@ const datos: Dato[] = [
   {
     metric: '400',
     description: 'árboles, 96 especies',
-    text: 'El proyecto de paisajismo lo firma Marta Puig de la Bellacasa junto a la Fundación FIRE (Fundación Internacional para la Restauración de Ecosistemas). 5 hectáreas pensadas para atraer fauna, absorber agua y mejorar la biodiversidad del entorno durante décadas.',
+    text: '5 hectáreas pensadas para atraer fauna, absorber agua y mejorar la biodiversidad del entorno durante décadas.',
   },
   {
     metric: '06-15 %',
@@ -177,12 +178,16 @@ export function Datos() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <p className="mb-4 text-[12px] font-medium text-vibio-text/45">
-          Vibio en cifras
-        </p>
-        <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
-          Datos que diferencian una promesa de un compromiso.
-        </h2>
+        <ScrollReveal>
+          <div className="mb-6">
+            <span className="inline-block rounded-full border border-vibio-text/25 px-4 py-1.5 text-[11px] font-medium tracking-[0.06em] text-vibio-text/50 uppercase">
+              Vibio en cifras
+            </span>
+          </div>
+          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
+            Datos que diferencian una promesa de un compromiso.
+          </h2>
+        </ScrollReveal>
 
         {/* Scroll wrapper — relative so the fade overlay is scoped to the container */}
         <div className="relative mt-14 lg:mt-20">
@@ -222,7 +227,7 @@ export function Datos() {
                     </span>
                   </div>
 
-                  <p className="mt-8 text-[13px] font-light leading-[1.65] text-vibio-text/52">
+                  <p className="mt-20 text-[13px] font-light leading-[1.65] text-vibio-text/52">
                     {dato.text}
                   </p>
                 </div>

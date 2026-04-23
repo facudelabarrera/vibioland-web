@@ -49,7 +49,7 @@ export default function VivirEnVibioPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.8fr)] lg:items-end lg:gap-16">
             <div>
-              <span className="text-[12px] font-medium text-vibio-text/45">
+              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
                 Vivir en vibio
               </span>
               <h1 className="mt-4 font-heading max-w-4xl text-[clamp(2.35rem,5vw,4.2rem)] font-semibold leading-[1.03] text-vibio-text text-balance">
@@ -60,8 +60,8 @@ export default function VivirEnVibioPage() {
               </p>
             </div>
 
-            <div className="border border-vibio-border/20 bg-vibio-surface p-6 lg:p-8">
-              <p className="text-[12px] font-medium text-vibio-text/45">
+            <div className="vibio-surface-radius border border-vibio-border/20 bg-vibio-surface p-6 lg:p-8">
+              <p className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
                 Lo primero que miramos
               </p>
               <ul className="mt-5 space-y-4 border-t border-vibio-text/10 pt-5">
@@ -90,7 +90,7 @@ export default function VivirEnVibioPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
             {reasons.map((reason) => (
-              <article key={reason.title} className="border border-vibio-border/18 bg-vibio-white p-6 lg:p-7">
+              <article key={reason.title} className="vibio-surface-radius border border-vibio-border/18 bg-vibio-white p-6 lg:p-7">
                 <h2 className="font-heading text-[1.7rem] font-medium leading-[1.08] text-vibio-text">
                   {reason.title}
                 </h2>
@@ -106,7 +106,7 @@ export default function VivirEnVibioPage() {
       <section className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:px-8">
           <div>
-            <span className="text-[12px] font-medium text-vibio-text/45">
+            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
               Cómo avanzamos
             </span>
             <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] text-vibio-text text-balance">
@@ -124,7 +124,7 @@ export default function VivirEnVibioPage() {
             </div>
           </div>
 
-          <div className="relative isolate overflow-hidden bg-vibio-brand-green min-h-[340px]">
+          <div className="vibio-surface-radius-lg relative isolate overflow-hidden bg-vibio-brand-green min-h-[340px]">
             <Image
               src="/VIBIO 4.0 - GENERAL (1).jpg"
               alt="Espacio compartido en vibio"
@@ -136,7 +136,7 @@ export default function VivirEnVibioPage() {
             />
             <div className="absolute inset-0 bg-vibio-casi-negro/45" />
             <div className="relative z-10 flex h-full flex-col justify-end p-6 lg:p-8">
-              <p className="text-[12px] font-medium text-vibio-brand-yellow/78">
+              <p className="text-[12px] font-medium tracking-[0em] text-vibio-brand-yellow/78 uppercase">
                 Para quién suele encajar
               </p>
               <ul className="mt-5 space-y-4">
@@ -155,7 +155,7 @@ export default function VivirEnVibioPage() {
       <section className="bg-vibio-white pb-20 lg:pb-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:px-8">
           <div className="flex flex-col justify-center">
-            <span className="text-[12px] font-medium text-vibio-text/45">
+            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
               Contanos tu caso
             </span>
             <h2 className="mt-4 font-heading text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.05] text-vibio-text text-balance">

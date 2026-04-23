@@ -16,7 +16,7 @@ export interface ShimmerButtonProps extends ComponentPropsWithoutRef<"button"> {
 export const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   (
     {
-      borderRadius = "0",
+      borderRadius = "var(--vibio-radius-action)",
       background = "var(--color-vibio-marfil)",
       className,
       children,

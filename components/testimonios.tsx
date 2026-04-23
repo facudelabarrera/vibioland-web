@@ -118,7 +118,7 @@ export function Testimonios() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <ScrollReveal>
-          <p className="mb-4 text-[12px] font-medium text-vibio-text/45">
+          <p className="mb-4 text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
             La opinión de la comunidad
           </p>
           <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.08] text-vibio-text">
@@ -136,28 +136,28 @@ export function Testimonios() {
                 >
                   <figure
                     data-testimonio-card
-                    className="relative flex h-full flex-col justify-between overflow-hidden border border-vibio-text/10 bg-white/40 p-8 lg:p-10"
+                    className="vibio-surface-radius-lg relative mx-auto flex h-full min-h-[31rem] w-full max-w-[22rem] flex-col overflow-hidden border border-vibio-text/10 bg-white/40 px-8 py-9 lg:min-h-[35rem] lg:max-w-[22.75rem] lg:px-9 lg:py-10"
                   >
                     <span
                       aria-hidden
-                      className="font-heading pointer-events-none absolute left-6 top-4 text-[5rem] leading-none text-vibio-brand-yellow/50"
+                      className="font-heading pointer-events-none absolute left-7 top-5 text-[5.25rem] leading-none text-vibio-brand-yellow/42"
                     >
                       “
                     </span>
-                    <blockquote className="relative z-10 pt-6">
+                    <blockquote className="relative z-10 flex-1 pt-8">
                       <p
                         data-testimonio-quote
-                        className="font-serif italic font-normal text-lg leading-[1.5] text-vibio-text lg:text-xl"
+                        className="font-serif text-[1.14rem] leading-[1.62] text-vibio-text italic lg:text-[1.32rem] lg:leading-[1.58]"
                       >
                         {t.quote}
                       </p>
                     </blockquote>
-                    <figcaption className="mt-8 text-sm font-light text-vibio-text/70">
-                      <span className="font-medium text-vibio-text">
+                    <figcaption className="mt-10 border-t border-vibio-text/10 pt-6 text-sm font-light text-vibio-text/70">
+                      <span className="block font-medium text-vibio-text">
                         {t.author}
                       </span>
-                      <span className="mt-2 block">{t.context}</span>
-                      <span className="mt-5 block">{t.role}</span>
+                      <span className="mt-2.5 block max-w-[26ch] leading-[1.6]">{t.context}</span>
+                      <span className="mt-6 block leading-[1.6]">{t.role}</span>
                     </figcaption>
                   </figure>
                 </CarouselItem>

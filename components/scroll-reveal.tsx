@@ -17,7 +17,7 @@ export function ScrollReveal({
   children,
   className,
   direction = 'up',
-  distance = 50,
+  distance = 32,
   delay = 0,
   duration = 0.9,
   as: Tag = 'div',
@@ -48,7 +48,7 @@ export function ScrollReveal({
           scrollTrigger: {
             trigger: el,
             start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            once: true,
           },
         })
       }, el)
@@ -93,7 +93,7 @@ export function StaggerReveal({
       ctx = gsap.context(() => {
         const items = el.children
         gsap.from(items, {
-          y: 40,
+          y: 32,
           opacity: 0,
           duration: 0.7,
           stagger,
@@ -101,7 +101,7 @@ export function StaggerReveal({
           scrollTrigger: {
             trigger: el,
             start: 'top 80%',
-            toggleActions: 'play none none reverse',
+            once: true,
           },
         })
       }, el)

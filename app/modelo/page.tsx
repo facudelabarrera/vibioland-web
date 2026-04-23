@@ -97,7 +97,7 @@ export default function ModeloPage() {
 
       <section data-nav-surface="dark" className="bg-vibio-brand-green pt-32 pb-20 lg:pt-40 lg:pb-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium text-vibio-brand-yellow/70">
+          <span className="text-[12px] font-medium tracking-[0em] text-vibio-brand-yellow/70 uppercase">
             El modelo vibio
           </span>
           <div className="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
@@ -114,7 +114,7 @@ export default function ModeloPage() {
       <section data-nav-surface="light" className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-[12px] font-medium text-vibio-text/45">
+            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
               El sistema — cómo funciona
             </span>
           </div>
@@ -141,7 +141,7 @@ export default function ModeloPage() {
 
       <section className="bg-vibio-surface-2 py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium text-vibio-text/45">
+          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
             Qué incluye cada vibio
           </span>
 
@@ -175,15 +175,15 @@ export default function ModeloPage() {
       <section className="bg-vibio-white py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="text-[12px] font-medium text-vibio-text/45">
+            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
               A quién está dirigido
             </span>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {profiles.map((profile) => (
-              <article key={profile.title} className="border border-vibio-border/20 bg-vibio-surface p-6 lg:p-7">
-                <span className="text-[12px] font-medium text-vibio-text/42">
+              <article key={profile.title} className="vibio-surface-radius border border-vibio-border/20 bg-vibio-surface p-6 lg:p-7">
+                <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/42 uppercase">
                   {profile.eyebrow}
                 </span>
                 <h3 className="font-heading mt-4 text-[1.6rem] font-medium leading-[1.08] text-vibio-text">
@@ -214,7 +214,7 @@ export default function ModeloPage() {
 
           <Link
             href="/contacto"
-            className="inline-flex w-full items-center justify-center border border-transparent bg-vibio-brand-yellow px-6 py-3.5 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f] lg:w-auto"
+            className="vibio-action-radius inline-flex w-full items-center justify-center border border-transparent bg-vibio-brand-yellow px-6 py-3.5 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f] lg:w-auto"
           >
             Habla con el equipo
           </Link>

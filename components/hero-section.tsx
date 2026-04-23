@@ -9,7 +9,7 @@ export function HeroSection() {
       data-nav-surface="dark"
       className="bg-vibio-white"
     >
-      <div className="relative isolate h-[82svh] min-h-[560px] overflow-hidden sm:min-h-[620px]">
+      <div className="relative isolate h-[100svh] overflow-hidden">
         <Image
           src="/Copia de VIBIOLAND_20250216_011.JPG"
           alt="Vista aérea de Vibioland entre entorno rural y urbanización"
@@ -30,7 +30,7 @@ export function HeroSection() {
 
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col px-6 pt-28 pb-14 lg:px-8 lg:pt-36 lg:pb-16">
           <div className="mt-[12svh] max-w-5xl lg:mt-[8svh]">
-            <p className="mb-4 text-[14px] font-medium text-white lg:mb-5">
+            <p className="mb-4 text-[14px] font-medium tracking-[0em] text-white uppercase lg:mb-5">
               Diseñamos comunidades y viviendas para la biodiversidad
             </p>
             <h1 className="font-heading text-[clamp(2.25rem,5.5vw,4.5rem)] font-semibold leading-[1.04] text-white text-balance">
@@ -46,7 +46,6 @@ export function HeroSection() {
                 <ShimmerButton
                   background="var(--color-vibio-brand-yellow)"
                   shimmerColor="var(--color-vibio-brand-green)"
-                  borderRadius="0"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
                   Así funciona Vibio

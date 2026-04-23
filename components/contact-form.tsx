@@ -26,7 +26,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="border border-vibio-border/65 bg-vibio-white p-8 lg:p-10"
+      className="vibio-surface-radius-lg border border-vibio-border/65 bg-vibio-white p-8 lg:p-10"
     >
       <Field
         id="contact-name"
@@ -62,7 +62,7 @@ export function ContactForm() {
                 type="button"
                 onClick={() => setForm({ ...form, interest: option.value })}
                 className={cn(
-                  'border px-3.5 py-2 text-[12px] font-medium transition-colors',
+                  'vibio-action-radius border px-3.5 py-2 text-[12px] font-medium transition-colors',
                   selected
                     ? 'border-vibio-brand-yellow bg-vibio-brand-yellow text-vibio-dark'
                     : 'border-vibio-border/55 text-vibio-text/70 hover:border-vibio-text/35 hover:text-vibio-text',
@@ -88,7 +88,7 @@ export function ContactForm() {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder="Contanos un poco más sobre tu consulta..."
-          className="w-full resize-none border border-vibio-border/65 bg-vibio-surface px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none"
+          className="vibio-input-radius w-full resize-none border border-vibio-border/65 bg-vibio-surface px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none"
         />
       </div>
 
@@ -96,7 +96,6 @@ export function ContactForm() {
         type="submit"
         background="var(--color-vibio-brand-yellow)"
         shimmerColor="var(--color-vibio-brand-green)"
-        borderRadius="0"
         className="mt-8 w-full px-6 py-3.5 text-sm font-medium !text-vibio-dark"
       >
         Empezar la conversación
@@ -145,7 +144,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full border-b border-vibio-border/65 bg-transparent px-0 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none"
+        className="vibio-input-radius w-full border border-vibio-border/65 bg-vibio-surface px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none"
       />
     </div>
   )

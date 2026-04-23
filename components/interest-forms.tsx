@@ -79,7 +79,7 @@ export function JoinInterestForm() {
   })
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="border border-vibio-border bg-vibio-surface p-8 lg:p-10">
+    <form onSubmit={(e) => e.preventDefault()} className="vibio-surface-radius-lg border border-vibio-border bg-vibio-surface p-8 lg:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="join-name" label="Nombre y apellido" required value={form.name} onChange={(value) => setForm({ ...form, name: value })} placeholder="Tu nombre" />
         <Field id="join-email" label="Email" type="email" required value={form.email} onChange={(value) => setForm({ ...form, email: value })} placeholder="vos@email.com" />
@@ -98,7 +98,7 @@ export function JoinInterestForm() {
 
       <TextAreaField id="join-message" label="¿Qué te gustaría encontrar en vibio?" value={form.message} onChange={(value) => setForm({ ...form, message: value })} placeholder="Contanos qué buscás, qué dudas tenés y cómo imaginás tu vida en comunidad." className="mt-5" />
 
-      <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" borderRadius="0" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
+      <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
         Enviar interés para vivir en vibio
       </ShimmerButton>
 
@@ -124,7 +124,7 @@ export function InvestorInterestForm() {
   })
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="border border-vibio-border bg-vibio-surface p-8 lg:p-10">
+    <form onSubmit={(e) => e.preventDefault()} className="vibio-surface-radius-lg border border-vibio-border bg-vibio-surface p-8 lg:p-10">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id="investor-name" label="Nombre y apellido" required value={form.name} onChange={(value) => setForm({ ...form, name: value })} placeholder="Tu nombre" />
         <Field id="investor-email" label="Email" type="email" required value={form.email} onChange={(value) => setForm({ ...form, email: value })} placeholder="vos@organizacion.com" />
@@ -143,7 +143,7 @@ export function InvestorInterestForm() {
 
       <TextAreaField id="investor-message" label="¿Qué te gustaría evaluar?" value={form.message} onChange={(value) => setForm({ ...form, message: value })} placeholder="Contanos ticket, expectativas de retorno, hipótesis de impacto o qué información te haría falta para avanzar." className="mt-5" />
 
-      <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" borderRadius="0" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
+      <ShimmerButton type="submit" background="var(--color-vibio-brand-yellow)" shimmerColor="var(--color-vibio-brand-green)" className="mt-8 w-full border-transparent px-6 py-3.5 text-sm font-medium !text-vibio-dark">
         Enviar interés inversor
       </ShimmerButton>
 
@@ -222,4 +222,4 @@ function TextAreaField({ id, label, value, onChange, placeholder, className }: T
 }
 
 const baseInputClassName =
-  'w-full border border-vibio-border bg-vibio-white px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none'
+  'vibio-input-radius w-full border border-vibio-border bg-vibio-white px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/45 focus:border-vibio-accent-sky focus:outline-none'

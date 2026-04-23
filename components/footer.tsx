@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const footerColumns = [
   {
-    title: "El proyecto",
+    title: "COMO FUNCIONA",
     links: [
       { href: "/modelo", label: "Qué es vibio" },
       { href: "/modelo", label: "Cómo funciona" },
@@ -13,7 +13,7 @@ const footerColumns = [
     ],
   },
   {
-    title: "Las comunidades",
+    title: "LAS COMUNIDADES",
     links: [
       { href: "/proyectos#vibio-higuera", label: "vibio.higuera" },
       { href: "/proyectos#vibio-berlanga", label: "vibio.berlanga" },
@@ -21,7 +21,7 @@ const footerColumns = [
     ],
   },
   {
-    title: "Conócenos",
+    title: "CONÓCENOS",
     links: [
       { href: "/modelo", label: "Equipo & Red" },
       { href: "mailto:hola@vibio.land?subject=Prensa%20Vibio", label: "Prensa" },
@@ -29,7 +29,7 @@ const footerColumns = [
     ],
   },
   {
-    title: "Contacto",
+    title: "CONTACTO",
     links: [
       { href: "mailto:hola@vibio.land", label: "hola@vibio.land" },
       { href: "tel:+34655920839", label: "+34 655 920 839" },
@@ -61,7 +61,7 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
                 style={{ filter: 'brightness(0) invert(1)' }}
               />
             </Link>
-            <p className="mt-6 text-sm font-light tracking-[0.18em] text-white/48">
+            <p className="mt-6 text-sm font-light tracking-[0em] text-white/48 uppercase">
               Reencuentra · Rediseña · Regenera
             </p>
           </div>
@@ -82,7 +82,7 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
 
                 {/* Description */}
                 <div>
-                  <p className="text-[11px] font-medium tracking-[0.18em] text-white/40">
+                  <p className="text-[11px] font-medium tracking-[0em] text-white/40 uppercase">
                     Newsletter
                   </p>
                   <p className="mt-4 text-[14px] font-light leading-[1.7] text-white/68">
@@ -96,11 +96,11 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
                     <input
                       type="email"
                       placeholder="tunombre@tucorreo.com"
-                      className="min-w-0 flex-1 border border-white/15 bg-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-white/38 focus:border-white/35 focus:outline-none"
+                      className="vibio-input-radius min-w-0 flex-1 border border-white/15 bg-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-white/38 focus:border-white/35 focus:outline-none"
                     />
                     <button
                       type="button"
-                      className="inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d7c56f]"
+                      className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d7c56f]"
                     >
                       Suscribirme
                     </button>
@@ -130,7 +130,7 @@ function FooterColumn({
 }) {
   return (
     <div>
-      <p className="text-[11px] font-medium tracking-[0.18em] text-white/40">{title}</p>
+      <p className="text-[11px] font-medium tracking-[0em] text-white/40 uppercase">{title}</p>
       <nav className="mt-5 flex flex-col gap-3.5">
         {links.map((link) => (
           <LinkOrAnchor

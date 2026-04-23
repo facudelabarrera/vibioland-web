@@ -21,7 +21,7 @@ export default function InvertirEnVibioPage() {
       <section data-nav-surface="light" className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:px-8">
           <div className="flex flex-col justify-center">
-            <span className="text-[12px] font-medium text-vibio-text/45">
+            <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
               Invertir en vibio
             </span>
             <h1 className="mt-4 font-heading text-[clamp(2.25rem,5vw,3.6rem)] font-semibold leading-[1.08] text-vibio-text text-balance">

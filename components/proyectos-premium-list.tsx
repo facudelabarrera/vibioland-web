@@ -249,7 +249,7 @@ function StatusBadge({
   tone: HomeProjectEditorialMeta['statusTone']
 }) {
   return (
-    <span className="inline-flex w-fit items-center justify-center gap-2 border border-vibio-text/50 bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] text-vibio-text sm:justify-self-end">
+    <span className="vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border border-vibio-text/50 bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] text-vibio-text sm:justify-self-end">
       <span
         className={cn(
           'h-2.5 w-2.5',
@@ -275,11 +275,11 @@ function ProjectButton({
     <Link
       href={href}
       className={cn(
-        'group inline-flex min-h-14 items-center justify-center gap-4 border px-4 py-3 text-center text-[11px] font-medium tracking-[0.025em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 xl:text-[12px]',
+        'group vibio-action-radius inline-flex min-h-14 items-center justify-center gap-4 border px-4 py-3 text-center text-[11px] font-medium tracking-[0.025em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 xl:text-[12px]',
         'whitespace-nowrap',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vibio-text/35 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white',
         variant === 'primary'
-          ? 'border-vibio-text/70 text-vibio-text hover:bg-vibio-text hover:text-vibio-white'
+          ? 'bg-vibio-cafe-oscuro border-vibio-cafe-oscuro text-white hover:bg-vibio-cafe-oscuro/85'
           : 'border-vibio-text/70 text-vibio-text hover:bg-vibio-surface',
       )}
     >
@@ -308,16 +308,19 @@ function renderProjectName(name: string) {
 function ProjectFacts({ items }: { items: Array<{ label: string; value: string }> }) {
   return (
     <div className="mt-auto pt-10">
-      <div className="grid grid-cols-3 overflow-hidden border border-vibio-text/18 bg-vibio-surface/35 text-vibio-text">
-        {items.map((item) => (
+      <div className="grid grid-cols-3 border-y border-vibio-text/15 text-vibio-text">
+        {items.map((item, i) => (
           <div
             key={item.label}
-            className="min-w-0 border-r border-vibio-text/14 px-3 py-4 last:border-r-0 sm:px-4"
+            className={cn(
+              'min-w-0 px-4 py-3.5',
+              i > 0 && 'border-l border-vibio-text/15',
+            )}
           >
-            <p className="truncate text-[10px] font-medium tracking-[0.13em] text-vibio-text/48">
+            <p className="text-[9px] font-medium uppercase tracking-[0.14em] text-vibio-text/42">
               {item.label}
             </p>
-            <p className="mt-2 font-heading text-[clamp(1.05rem,1.55vw,1.45rem)] font-light leading-tight tracking-[-0.015em] text-vibio-text">
+            <p className="mt-1.5 font-serif text-[clamp(1.1rem,1.7vw,1.6rem)] font-normal leading-tight text-vibio-text">
               {item.value}
             </p>
           </div>

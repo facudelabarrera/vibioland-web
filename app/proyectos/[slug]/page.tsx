@@ -73,7 +73,7 @@ export default async function ProyectoPage({
 
           <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 lg:px-8 lg:pb-16">
             {project.status && (
-              <span className="inline-block w-fit bg-vibio-accent-yellow/45 px-3 py-1 text-xs font-medium text-vibio-text">
+              <span className="vibio-badge-radius inline-block w-fit bg-vibio-accent-yellow/45 px-3 py-1 text-xs font-medium text-vibio-text">
                 {STATUS_LABELS[project.status]}
               </span>
             )}
@@ -96,7 +96,7 @@ export default async function ProyectoPage({
         >
           <div className="lg:col-span-2">
             {project.tagline && (
-              <p className="text-[clamp(1.25rem,2vw,1.75rem)] font-light leading-[1.4] text-vibio-text text-balance">
+              <p className="text-[clamp(1.25rem,2vw,1.75rem)] font-light leading-[1.4] tracking-[0em] text-vibio-text text-balance uppercase">
                 {project.tagline}
               </p>
             )}
@@ -108,7 +108,7 @@ export default async function ProyectoPage({
           </div>
 
           {project.stats && (
-            <aside className="flex flex-col gap-6 border border-vibio-border bg-vibio-surface p-8 text-vibio-text">
+            <aside className="vibio-surface-radius flex flex-col gap-6 border border-vibio-border bg-vibio-surface p-8 text-vibio-text">
               {project.stats.viviendas != null && (
                 <Stat label="Viviendas" value={project.stats.viviendas} />
               )}
@@ -131,7 +131,7 @@ export default async function ProyectoPage({
               {project.pillars.map((pilar) => (
                 <li
                   key={pilar._id}
-                  className="border border-vibio-text/10 bg-vibio-surface p-6"
+                  className="vibio-surface-radius border border-vibio-text/10 bg-vibio-surface p-6"
                 >
                   <span className="text-xs font-medium tracking-[0.02em] text-vibio-text/40">
                     {String(pilar.number).padStart(2, '0')}
@@ -160,7 +160,7 @@ export default async function ProyectoPage({
                 image.asset ? (
                   <div
                     key={idx}
-                    className="relative aspect-[4/5] overflow-hidden"
+                    className="vibio-surface-radius relative aspect-[4/5] overflow-hidden"
                   >
                     <Image
                       src={urlFor(image).width(800).height(1000).fit('crop').auto('format').quality(76).url()}

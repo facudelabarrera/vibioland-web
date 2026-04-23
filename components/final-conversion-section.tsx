@@ -35,7 +35,6 @@ export function FinalConversionSection() {
                 <ShimmerButton
                   background="var(--color-vibio-brand-yellow)"
                   shimmerColor="var(--color-vibio-brand-green)"
-                  borderRadius="0"
                   className="border-transparent px-6 py-3 text-sm font-medium !text-vibio-dark"
                 >
                   Hablemos

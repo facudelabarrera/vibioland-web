@@ -63,7 +63,7 @@ export default function ProyectosPage() {
 
       <section data-nav-surface="light" className="pt-32 pb-16 lg:pt-40 lg:pb-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium text-vibio-text/45">
+          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
             Proyectos
           </span>
           <h1 className="mt-4 font-heading max-w-4xl text-[clamp(2.4rem,5vw,4.3rem)] font-semibold leading-[1.03] text-vibio-text text-balance">
@@ -75,12 +75,12 @@ export default function ProyectosPage() {
         </div>
       </section>
 
-      <section className="space-y-0.5 pb-20 lg:pb-24">
+      <section className="space-y-4 pb-20 lg:space-y-5 lg:pb-24">
         {projects.map((project) => (
           <article
             key={project.name}
             id={project.name.replace('.', '-')}
-            className="grid min-h-[540px] bg-vibio-surface lg:grid-cols-2"
+            className="vibio-surface-radius-lg grid min-h-[540px] overflow-hidden bg-vibio-surface lg:grid-cols-2"
           >
             <div className={project.reverse ? 'order-2 lg:order-1' : ''}>
               <div className="relative h-[320px] sm:h-[420px] lg:h-full">
@@ -98,7 +98,7 @@ export default function ProyectosPage() {
 
             <div className={project.reverse ? 'order-1 lg:order-2' : ''}>
               <div className="flex h-full flex-col justify-center px-6 py-10 lg:px-12 lg:py-14">
-                <span className={`inline-flex w-fit px-3 py-1 text-[12px] font-medium ${project.status === 'En construcción' ? 'bg-vibio-brand-yellow text-vibio-dark' : 'border border-vibio-border/40 text-vibio-text/68'}`}>
+                <span className={`vibio-badge-radius inline-flex w-fit px-3 py-1 text-[12px] font-medium ${project.status === 'En construcción' ? 'bg-vibio-brand-yellow text-vibio-dark' : 'border border-vibio-border/40 text-vibio-text/68'}`}>
                   {project.status}
                 </span>
                 <h2 className="mt-5 font-heading text-[clamp(2rem,4vw,3.4rem)] font-semibold leading-[1.02] text-vibio-text">
@@ -115,7 +115,7 @@ export default function ProyectosPage() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="border border-vibio-border/25 px-3 py-1 text-[12px] font-medium text-vibio-text/60"
+                      className="vibio-badge-radius border border-vibio-border/25 px-3 py-1 text-[12px] font-medium text-vibio-text/60"
                     >
                       {tag}
                     </span>
@@ -135,13 +135,13 @@ export default function ProyectosPage() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link
                     href="/contacto"
-                    className="inline-flex items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
+                    className="vibio-action-radius inline-flex items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
                   >
                     {project.name === 'vibio.berlanga' ? 'Ver viviendas disponibles' : 'Apuntarme'}
                   </Link>
                   <Link
                     href="/vivir-en-vibio"
-                    className="inline-flex items-center justify-center border border-vibio-border/35 px-5 py-3 text-sm font-medium text-vibio-text transition-colors hover:border-vibio-text/55 hover:bg-vibio-text/[0.04]"
+                    className="vibio-action-radius inline-flex items-center justify-center border border-vibio-border/35 px-5 py-3 text-sm font-medium text-vibio-text transition-colors hover:border-vibio-text/55 hover:bg-vibio-text/[0.04]"
                   >
                     {project.name === 'vibio.berlanga' ? 'Descargar dossier' : 'Saber más'}
                   </Link>
@@ -154,7 +154,7 @@ export default function ProyectosPage() {
 
       <section id="proximos-territorios" className="bg-vibio-surface-2 py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <span className="text-[12px] font-medium text-vibio-text/45">
+          <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
             En estudio — próximos territorios
           </span>
 
@@ -162,9 +162,9 @@ export default function ProyectosPage() {
             {upcomingTerritories.map((territory) => (
               <article
                 key={territory.name}
-                className="border border-vibio-border/18 bg-vibio-white p-6 opacity-80 lg:p-7"
+                className="vibio-surface-radius border border-vibio-border/18 bg-vibio-white p-6 opacity-80 lg:p-7"
               >
-                <span className="inline-flex border border-vibio-border/30 px-3 py-1 text-[12px] font-medium text-vibio-text/58">
+                <span className="vibio-badge-radius inline-flex border border-vibio-border/30 px-3 py-1 text-[12px] font-medium text-vibio-text/58">
                   En estudio
                 </span>
                 <h3 className="font-heading mt-5 text-[1.8rem] font-medium leading-[1.05] text-vibio-text">
@@ -178,7 +178,7 @@ export default function ProyectosPage() {
 
             <Link
               href="/contacto"
-              className="group flex min-h-[240px] flex-col items-center justify-center border border-dashed border-vibio-border/35 px-8 py-10 text-center transition-colors hover:bg-vibio-white/70"
+              className="vibio-surface-radius group flex min-h-[240px] flex-col items-center justify-center border border-dashed border-vibio-border/35 px-8 py-10 text-center transition-colors hover:bg-vibio-white/70"
             >
               <span className="font-heading text-5xl leading-none text-vibio-brand-yellow transition-transform group-hover:scale-105">
                 +

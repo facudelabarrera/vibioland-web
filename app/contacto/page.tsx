@@ -15,9 +15,9 @@ export default function ContactoPage() {
       <Navigation />
       <section data-nav-surface="light" className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="overflow-hidden border border-vibio-border/18 lg:grid lg:grid-cols-2">
+          <div className="vibio-surface-radius-lg overflow-hidden border border-vibio-border/18 lg:grid lg:grid-cols-2">
             <div className="bg-vibio-white px-6 py-10 lg:px-10 lg:py-12">
-              <span className="text-[12px] font-medium text-vibio-text/45">
+              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
                 Contacto
               </span>
               <h1 className="mt-4 font-heading text-[clamp(2.2rem,4.5vw,3.4rem)] font-semibold leading-[1.04] text-vibio-text text-balance">
@@ -33,7 +33,7 @@ export default function ContactoPage() {
             </div>
 
             <aside className="bg-vibio-surface-2 px-6 py-10 lg:px-10 lg:py-12">
-              <span className="text-[12px] font-medium text-vibio-text/45">
+              <span className="text-[12px] font-medium tracking-[0em] text-vibio-text/45 uppercase">
                 O encontranos aquí
               </span>
 
@@ -61,11 +61,11 @@ export default function ContactoPage() {
                     <input
                       type="email"
                       placeholder="tu@email.com"
-                      className="w-full border border-vibio-border/55 bg-vibio-white px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/42 focus:border-vibio-accent-sky focus:outline-none"
+                      className="vibio-input-radius w-full border border-vibio-border/55 bg-vibio-white px-4 py-3 text-[15px] text-vibio-text placeholder:text-vibio-text/42 focus:border-vibio-accent-sky focus:outline-none"
                     />
                     <button
                       type="button"
-                      className="inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
+                      className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-vibio-brand-yellow px-5 py-3 text-sm font-medium text-vibio-dark transition-colors hover:bg-[#d1ba5f]"
                     >
                       Suscribir
                     </button>
@@ -83,7 +83,7 @@ export default function ContactoPage() {
                       <button
                         key={network}
                         type="button"
-                        className="border border-vibio-border/35 px-4 py-2 text-xs font-medium text-vibio-text/72 transition-colors hover:border-vibio-text/55 hover:text-vibio-text"
+                        className="vibio-action-radius border border-vibio-border/35 px-4 py-2 text-xs font-medium text-vibio-text/72 transition-colors hover:border-vibio-text/55 hover:text-vibio-text"
                       >
                         {network}
                       </button>

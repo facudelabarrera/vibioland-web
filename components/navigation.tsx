@@ -14,10 +14,10 @@ const NAV_BAND = 56
 type NavSurface = "light" | "dark"
 
 const navItems = [
-  { href: "/modelo", label: "El proyecto" },
-  { href: "/proyectos", label: "Comunidades" },
-  { href: "/vivir-en-vibio", label: "Vivir en Vibio" },
-  { href: "/contacto", label: "Contacta" },
+  { href: "/modelo", label: "COMO FUNCIONA" },
+  { href: "/proyectos", label: "COMUNIDADES" },
+  { href: "/vivir-en-vibio", label: "VIVIR EN VIBIO" },
+  { href: "/contacto", label: "CONTACTA" },
 ]
 
 function readNavSurface(): NavSurface {
@@ -85,12 +85,12 @@ export function Navigation() {
   const hoverText = isDark ? "hover:text-white" : "hover:text-vibio-text"
 
   const mobilePanelClass = isDark
-    ? "border-white/20 bg-vibio-brand-green/92 text-white/90"
-    : "border-vibio-border bg-vibio-white/92 text-vibio-text/90"
+    ? "vibio-surface-radius-lg border-white/20 bg-vibio-brand-green/92 text-white/90"
+    : "vibio-surface-radius-lg border-vibio-border bg-vibio-white/92 text-vibio-text/90"
 
   const mobileLinkClass = isDark
-    ? "px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-    : "px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
+    ? "vibio-action-radius px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+    : "vibio-action-radius px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
 
   return (
     <header
@@ -118,7 +118,7 @@ export function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`px-4 py-2 text-sm transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`}
+              className={`vibio-action-radius px-4 py-2 text-sm transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`}
             >
               {item.label}
             </Link>
@@ -128,7 +128,7 @@ export function Navigation() {
 
         <button
           type="button"
-          className="transition-colors duration-200 lg:hidden"
+          className="vibio-action-radius p-2 transition-colors duration-200 lg:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Abrir o cerrar menú"
         >

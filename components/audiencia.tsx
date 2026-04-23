@@ -199,7 +199,7 @@ export function Audiencia() {
           </div>
 
           {/* ── Right column — card stack ── */}
-          <div className="relative overflow-hidden lg:h-[calc(100vh-240px)]">
+          <div className="vibio-surface-radius-lg relative overflow-hidden lg:h-[calc(100vh-240px)]">
             {cards.map((card, i) => {
               const CardIcon = audienciaIconBySlug[card.icon]
               return (
@@ -208,7 +208,7 @@ export function Audiencia() {
                 ref={(el) => {
                   cardsRef.current[i] = el
                 }}
-                className="mb-8 grid grid-cols-1 overflow-hidden bg-vibio-brand-yellow lg:absolute lg:inset-0 lg:mb-0 lg:grid-cols-2"
+                className="vibio-surface-radius-lg mb-8 grid grid-cols-1 overflow-hidden border border-vibio-border/15 bg-vibio-brand-yellow lg:absolute lg:inset-0 lg:mb-0 lg:grid-cols-2"
                 style={{
                   zIndex: i + 1,
                   willChange: 'transform, opacity',

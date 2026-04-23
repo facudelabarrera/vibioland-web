@@ -72,7 +72,7 @@ export function Unete() {
               <ShimmerButton
                 background="rgba(255,255,255,0.95)"
                 shimmerColor="var(--color-vibio-brand-green)"
-                borderRadius="0"
+                borderRadius="var(--vibio-radius-action)"
                 className="border-transparent px-8 py-3.5 text-sm font-medium !text-vibio-dark"
               >
                 Empezar la conversación
