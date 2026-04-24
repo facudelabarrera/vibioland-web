@@ -122,8 +122,8 @@ export function Testimonios() {
           <p className="t-home-badge-dark mb-4 inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-vibio-text/65">
             La opinión de la comunidad
           </p>
-          <h2 className="t-home-display-section max-w-3xl text-balance text-vibio-text">
-            Lo que dicen quienes ya forman parte de Vibio
+          <h2 className="t-home-display-section max-w-3xl text-vibio-text">
+            Lo que dicen quienes<br />ya forman parte de Vibio
           </h2>
         </ScrollReveal>
 

@@ -26,8 +26,8 @@ export function FinalConversionSection() {
       <div className="vibio-layout-shell relative z-10 flex min-h-screen items-center justify-center py-20 text-center lg:py-28">
         <ScrollReveal delay={0.1}>
           <div className="mx-auto flex max-w-3xl flex-col items-center">
-            <h2 className="t-home-display-final text-balance text-white">
-              ¿Estás pensando en cambiar de vida?
+            <h2 className="t-home-display-final text-white">
+              ¿Estás pensando<br />en cambiar de vida?
             </h2>
 
             <div className="mt-10 flex w-full max-w-xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">

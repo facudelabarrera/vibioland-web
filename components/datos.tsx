@@ -218,8 +218,8 @@ export function Datos() {
               Vibio en cifras
             </span>
           </div>
-          <h2 className="t-home-display-section max-w-3xl text-balance text-[#5F5134]">
-            Datos que diferencian una promesa de un compromiso.
+          <h2 className="t-home-display-section max-w-3xl text-[#5F5134]">
+            Datos que diferencian<br />una promesa de un compromiso.
           </h2>
         </ScrollReveal>
 

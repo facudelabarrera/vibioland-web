@@ -68,7 +68,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} data-nav-surface="light" className="bg-vibio-white pb-16 sm:pb-20 lg:pb-24">
+    <section ref={sectionRef} data-nav-surface="light" className="bg-vibio-white pb-10 sm:pb-12 lg:pb-[3.8rem]">
       <div className="w-full">
         <div className="group relative min-h-[460px] overflow-hidden rounded-[28px] bg-[#d8d0bf] sm:min-h-[540px] sm:rounded-[36px] lg:min-h-[680px] lg:rounded-[44px]">
           <Image
