@@ -381,16 +381,16 @@
 
   .t-home-serif-quote {
     font-family: var(--font-serif);
-    font-size: 1.4rem;
+    font-size: 1.75rem;
     font-style: italic;
     font-weight: 400;
-    line-height: 1.58;
+    line-height: 1.5;
   }
 
   @media (min-width: 1024px) {
     .t-home-serif-quote {
-      font-size: 1.6rem;
-      line-height: 1.54;
+      font-size: 2rem;
+      line-height: 1.46;
     }
   }
 
@@ -496,15 +496,17 @@
   }
 
   .t-home-testimonial-caption {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     font-weight: 300;
     line-height: 1.6;
+    letter-spacing: 0.005em;
   }
 
   .t-home-testimonial-author {
     font-size: 0.875rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
   }
 
   .vibio-layout-shell {

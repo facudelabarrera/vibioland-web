@@ -54,6 +54,7 @@ const testimonios: Testimonio[] = [
 export function Testimonios() {
   const carouselWrapRef = useRef<HTMLDivElement>(null)
 
+  // GSAP scroll animations
   useEffect(() => {
     const wrap = carouselWrapRef.current
     if (!wrap) return
@@ -90,9 +91,9 @@ export function Testimonios() {
           if (!q) return
           gsap.fromTo(
             q,
-            { yPercent: 6 },
+            { yPercent: 5 },
             {
-              yPercent: -6,
+              yPercent: -5,
               ease: 'none',
               scrollTrigger: {
                 trigger: q,
@@ -114,7 +115,7 @@ export function Testimonios() {
     <section
       id="testimonios"
       data-nav-surface="light"
-      className="bg-vibio-marfil py-24 lg:py-32"
+      className="overflow-x-hidden bg-vibio-marfil py-24 lg:py-32"
     >
       <div className="vibio-layout-shell">
         <ScrollReveal>
@@ -126,27 +127,28 @@ export function Testimonios() {
           </h2>
         </ScrollReveal>
 
-        <div ref={carouselWrapRef} className="mt-14 lg:mt-20">
-          <Carousel opts={{ align: 'start', loop: true }}>
-            <CarouselContent className="-ml-3">
+        <div ref={carouselWrapRef} className="mt-14 -mr-6 md:-mr-10 xl:-mr-[120px] lg:mt-20">
+          <Carousel opts={{ align: 'start', loop: false }}>
+            <CarouselContent className="-ml-4 lg:-ml-5">
               {testimonios.map((t) => (
                 <CarouselItem
                   key={t.author}
-                  className="pl-3 md:basis-1/2 lg:basis-1/3"
+                  className="pl-4 lg:pl-5 basis-[82%] sm:basis-[48%] lg:basis-[29%]"
                 >
                   <figure
                     data-testimonio-card
-                    className="vibio-testimonial-card vibio-surface-radius-lg relative flex h-full min-h-[31rem] w-full flex-col overflow-hidden bg-[#C7D8E6] px-7 py-8 lg:min-h-[35rem] lg:px-8 lg:py-9"
+                    className="vibio-testimonial-card vibio-surface-radius-lg relative flex h-full min-h-[33rem] w-full flex-col overflow-hidden bg-[#C7D8E6] px-6 py-7 lg:min-h-[37rem] lg:px-7 lg:py-8"
                   >
-                    <figcaption className="t-home-testimonial-caption relative z-10 min-h-[5.5rem] text-vibio-text/70 lg:min-h-[6rem]">
+                    <figcaption className="relative z-10 min-h-[5.5rem] lg:min-h-[6.5rem]">
                       <span className="t-home-testimonial-author block text-vibio-text">
                         {t.author}
                       </span>
-                      <span className="mt-2.5 block min-h-[3rem] max-w-[26ch] leading-[1.6] lg:min-h-[3.2rem]">
+                      <span className="t-home-testimonial-caption mt-2 block text-vibio-text/65">
                         {t.context}
                       </span>
                     </figcaption>
-                    <blockquote className="relative z-10 mt-8 flex-1 lg:mt-10">
+
+                    <blockquote className="relative z-10 mt-5 flex-1 lg:mt-6">
                       <p
                         data-testimonio-quote
                         className="t-home-serif-quote relative z-10 text-vibio-text"
@@ -154,7 +156,8 @@ export function Testimonios() {
                         {t.quote}
                       </p>
                     </blockquote>
-                    <div className="t-home-testimonial-caption mt-10 border-t border-vibio-text/18 pt-6 text-vibio-text/70">
+
+                    <div className="t-home-testimonial-caption mt-8 border-t border-vibio-text/15 pt-5 text-vibio-text/60 lg:mt-10">
                       {t.role}
                     </div>
                   </figure>

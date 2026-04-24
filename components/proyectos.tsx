@@ -58,7 +58,7 @@ export async function Proyectos() {
           <ScrollReveal>
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-8">
-                <h3 className="t-home-display-subsection text-vibio-text text-balance">
+                <h3 className="t-home-display-subsection font-serif italic text-vibio-text text-balance">
                   Próximos Vibio
                 </h3>
                 <span
@@ -75,14 +75,14 @@ export async function Proyectos() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/proyectos"
-                  className="t-home-button vibio-button-motion group vibio-action-radius inline-flex items-center justify-between gap-4 border border-[#D9D9D9] bg-[#D9D9D9] px-6 py-3 text-vibio-text transition-all hover:bg-[#cfcfcf]"
+                  className="t-home-button vibio-button-motion group vibio-action-radius inline-flex min-h-12 items-center justify-between gap-4 border border-[#D9D9D9] bg-[#D9D9D9] px-6 py-3 text-vibio-text transition-all hover:bg-[#cfcfcf]"
                 >
                   <span>CONOCER TODAS LAS COMUNIDADES</span>
                   <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
                 </Link>
                 <Link
                   href="/contacto"
-                  className="t-home-button vibio-button-motion vibio-action-radius inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
+                  className="t-home-button vibio-button-motion vibio-action-radius inline-flex min-h-12 items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
                 >
                   PROPONER TERRITORIO
                 </Link>
