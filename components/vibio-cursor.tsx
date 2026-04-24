@@ -7,12 +7,12 @@ import {
 } from '@/components/animate-ui/components/animate/cursor'
 
 export function VibioCursor() {
-  const [isOnFooter, setIsOnFooter] = useState(false)
+  const [isOnDarkCursorSurface, setIsOnDarkCursorSurface] = useState(false)
 
   useEffect(() => {
     const handlePointerMove = (event: PointerEvent) => {
       const target = event.target as HTMLElement | null
-      setIsOnFooter(Boolean(target?.closest('#contacto')))
+      setIsOnDarkCursorSurface(Boolean(target?.closest('[data-cursor-surface="dark"]')))
     }
 
     document.addEventListener('pointermove', handlePointerMove)
@@ -22,7 +22,7 @@ export function VibioCursor() {
   return (
     <CursorProvider global>
       <Cursor
-        className={`size-6 opacity-100 ${isOnFooter ? 'text-[#242018]' : 'text-vibio-brand-yellow'}`}
+        className={`size-6 opacity-100 ${isOnDarkCursorSurface ? 'text-[#242018]' : 'text-vibio-brand-yellow'}`}
       />
     </CursorProvider>
   )

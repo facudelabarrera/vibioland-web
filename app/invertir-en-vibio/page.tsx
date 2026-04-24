@@ -19,7 +19,7 @@ export default function InvertirEnVibioPage() {
     <main className="min-h-screen bg-vibio-white">
       <Navigation />
       <section data-nav-surface="light" className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20 lg:px-8">
+        <div className="vibio-layout-shell grid gap-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-20">
           <div className="flex flex-col justify-center">
             <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               Invertir en vibio

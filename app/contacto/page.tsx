@@ -14,7 +14,7 @@ export default function ContactoPage() {
     <main className="min-h-screen">
       <Navigation />
       <section data-nav-surface="light" className="bg-vibio-white pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <div className="vibio-surface-radius-lg overflow-hidden border border-vibio-border/18 lg:grid lg:grid-cols-2">
             <div className="bg-vibio-white px-6 py-10 lg:px-10 lg:py-12">
               <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">

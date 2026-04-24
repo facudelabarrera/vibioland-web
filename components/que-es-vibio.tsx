@@ -130,7 +130,7 @@ export function QueEsVibio() {
       data-nav-surface="light"
       className="flex min-h-[80vh] items-center bg-vibio-white py-16"
     >
-      <div className="mx-auto w-full max-w-[1060px] px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1300px] px-6 md:px-10 xl:px-[120px]">
         <p className="font-heading text-center text-[clamp(1.35rem,2.8vw,2rem)] font-medium leading-[1.3]">
           {words.map((word, i) => {
             const isKeyword = KEYWORDS.has(normalizeWord(word))

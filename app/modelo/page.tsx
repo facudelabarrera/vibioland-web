@@ -96,7 +96,7 @@ export default function ModeloPage() {
       <Navigation />
 
       <section data-nav-surface="dark" className="bg-vibio-brand-green pt-32 pb-20 lg:pt-40 lg:pb-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             El modelo vibio
           </span>
@@ -112,7 +112,7 @@ export default function ModeloPage() {
       </section>
 
       <section data-nav-surface="light" className="bg-vibio-white py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <div className="max-w-3xl">
             <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               El sistema — cómo funciona
@@ -140,7 +140,7 @@ export default function ModeloPage() {
       </section>
 
       <section className="bg-vibio-surface-2 py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             Qué incluye cada vibio
           </span>
@@ -173,7 +173,7 @@ export default function ModeloPage() {
       </section>
 
       <section className="bg-vibio-white py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <div className="max-w-3xl">
             <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
               A quién está dirigido
@@ -202,7 +202,7 @@ export default function ModeloPage() {
       </section>
 
       <section className="bg-vibio-brand-green py-20 lg:py-20">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+        <div className="vibio-layout-shell flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-3xl">
             <h2 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-normal leading-[1.06] text-vibio-marfil text-balance">
               Si esto te resuena, el siguiente paso es conversar.

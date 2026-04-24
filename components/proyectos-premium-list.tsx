@@ -47,7 +47,7 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
       { label: 'Superficie', value: '60-115 m²' },
       { label: 'Hectáreas', value: '5' },
     ],
-    primaryCta: 'CONOCER VIBIO.HIGUERA',
+    primaryCta: 'CONOCER',
     secondaryCta: 'VIVIENDAS DISPONIBLES',
     iconSrc: '/vibio.higuera_Simbolo_OcreOscuro.svg',
     iconAlt: 'Símbolo de flor de vibio.higuera',
@@ -74,7 +74,7 @@ const HOME_PROJECT_EDITORIAL: Record<HomeProjectEditorialMeta['key'], HomeProjec
       { label: 'Información', value: 'Sept 2026' },
       { label: 'Pre-registro', value: 'Abierto' },
     ],
-    primaryCta: 'CONOCER VIBIO.BERLANGA',
+    primaryCta: 'CONOCER',
     secondaryCta: 'PRE-REGISTRARME',
     iconSrc: '/vibio.berlanga_Simbolo_OcreOscuro.svg',
     iconAlt: 'Símbolo de árbol de vibio.berlanga',
@@ -164,7 +164,7 @@ export function ProyectosPremiumList({
 
   if (projects.length === 0) {
     return (
-      <p className="text-sm font-light text-vibio-text/60">
+      <p className="t-home-body-empty text-vibio-text/60">
         Todavía no hay proyectos publicados. Volvé pronto.
       </p>
     )
@@ -203,11 +203,12 @@ function ProjectCard({
   return (
     <article
       id={`vibio-${meta.key}`}
-      className="flex h-full w-full min-w-0 flex-col"
+      className="vibio-project-card flex h-full w-full min-w-0 flex-col"
       style={{ color: meta.themeColor }}
     >
       <div className="flex justify-center lg:justify-start">
         <div
+          data-project-icon
           role="img"
           aria-label={meta.iconAlt}
           className="h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
@@ -227,6 +228,7 @@ function ProjectCard({
 
       <div className="mt-9 grid min-h-[5.75rem] gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <div
+          data-project-logo
           role="img"
           aria-label={meta.logoAlt}
           className="h-11 w-[16.25rem] sm:h-12 sm:w-[17.5rem] lg:h-[3.4rem] lg:w-[19.5rem]"
@@ -245,26 +247,26 @@ function ProjectCard({
         <StatusBadge status={meta.status} dotColor={meta.statusDotColor} textColor={meta.themeColor} />
       </div>
 
-      <div className="mt-4 min-h-[3.35rem] space-y-1 text-[15px] font-light leading-[1.45] tracking-[0.01em] sm:text-base">
+      <div data-project-meta className="t-home-serif-meta mt-4 min-h-[3.35rem] space-y-1">
         <p>{meta.location}</p>
         <p>{meta.distance}</p>
       </div>
 
       <Link
         href={meta.dossierHref}
-        className="mt-6 inline-flex w-fit border-b border-current pb-0.5 text-[13px] font-medium tracking-[0.035em] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white"
+        className="t-home-link-dossier vibio-hover-link mt-6 inline-flex w-fit border-b border-current pb-0.5 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white"
         style={{ borderColor: `${meta.themeColor}80`, color: meta.themeColor, outlineColor: meta.themeColor }}
       >
         {meta.dossierCta}
       </Link>
 
-      <p className="mt-9 max-w-[38rem] text-[15px] font-light leading-[1.78] tracking-[0.025em] lg:min-h-[8rem]">
+      <p className="t-home-body-community mt-9 max-w-[38rem] lg:min-h-[8rem]">
         {meta.description}
       </p>
 
       <ProjectFacts items={meta.facts} color={meta.themeColor} />
 
-      <div className="mt-9 grid gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(12rem,0.95fr)]">
+      <div data-project-cta-row className="mt-9 grid gap-4 sm:grid-cols-[minmax(0,1.35fr)_minmax(12rem,0.95fr)]">
         <ProjectButton href={`/proyectos/${project.slug}`} variant="primary" color={meta.themeColor}>
           <span>{meta.primaryCta}</span>
           <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
@@ -288,7 +290,7 @@ function StatusBadge({
 }) {
   return (
     <span
-      className="vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border bg-vibio-white px-3 py-1.5 text-[10px] font-medium tracking-[0.08em] sm:justify-self-end"
+      className="t-home-badge-status vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border bg-vibio-white px-3 py-1.5 sm:justify-self-end"
       style={{ borderColor: `${textColor}66`, color: textColor }}
     >
       <span
@@ -316,10 +318,10 @@ function ProjectButton({
     <Link
       href={href}
       className={cn(
-        'group vibio-action-radius inline-flex min-h-14 items-center justify-center gap-4 border px-4 py-3 text-center text-[11px] font-medium tracking-[0.025em] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5 xl:text-[12px]',
+        't-home-button vibio-button-motion group vibio-action-radius inline-flex min-h-14 w-full items-center border px-4 py-3 text-center transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-5',
         'whitespace-nowrap',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 focus-visible:ring-offset-vibio-white',
-        variant === 'primary' ? 'text-white' : 'bg-transparent',
+        variant === 'primary' ? 'justify-between text-white' : 'justify-center bg-transparent',
       )}
       style={
         variant === 'primary'
@@ -355,17 +357,17 @@ function ProjectFacts({
 }) {
   return (
     <div className="mt-auto pt-10">
-      <div className="grid grid-cols-3 border-y" style={{ borderColor: `${color}26`, color }}>
+      <div data-project-facts className="grid grid-cols-3 border-y" style={{ borderColor: `${color}26`, color }}>
         {items.map((item, i) => (
           <div
             key={item.label}
             className="min-w-0 px-4 py-3.5"
             style={i > 0 ? { borderLeft: `1px solid ${color}26` } : undefined}
           >
-            <p className="text-[9px] font-medium uppercase tracking-[0.14em]" style={{ color: `${color}B3` }}>
+            <p className="t-home-fact-label" style={{ color: `${color}B3` }}>
               {item.label}
             </p>
-            <p className="mt-1.5 font-serif text-[clamp(1.1rem,1.7vw,1.6rem)] font-normal leading-tight">
+            <p className="t-home-serif-stat mt-1.5">
               {item.value}
             </p>
           </div>

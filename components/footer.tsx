@@ -41,10 +41,11 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
     <footer
       id="contacto"
       data-nav-surface="dark"
+      data-cursor-surface="dark"
       className="overflow-hidden"
       style={{ backgroundColor: '#DBC56C', color: '#242018' }}
     >
-      <div className="mx-auto max-w-7xl px-6 pb-12 pt-16 lg:px-8 lg:pb-16 lg:pt-20">
+      <div className="vibio-layout-shell pb-12 pt-16 lg:pb-16 lg:pt-20">
         {/* Main layout: left column (logo+tagline) | right column (nav + newsletter) */}
         <div className="grid gap-14 lg:grid-cols-[200px_1fr] lg:gap-20 xl:gap-28">
 
@@ -77,10 +78,10 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
 
                 {/* Description */}
                 <div>
-                  <p className="text-[11px] font-medium tracking-[0em] text-[#242018]/62 uppercase">
+                  <p className="t-home-badge-soft text-[#242018]/62">
                     Newsletter
                   </p>
-                  <p className="mt-4 text-[14px] font-light leading-[1.7] text-[#242018]/78">
+                  <p className="t-home-body-sm mt-4 text-[#242018]/78">
                     Actualizaciones de los proyectos, una vez al mes, escritas por el equipo.
                   </p>
                 </div>
@@ -91,16 +92,16 @@ export function Footer({ showInvestorCta = true }: { showInvestorCta?: boolean }
                     <input
                       type="email"
                       placeholder="tunombre@tucorreo.com"
-                      className="vibio-input-radius min-w-0 flex-1 border border-[#242018]/18 bg-[#0000000D] px-4 py-3 text-sm text-[#242018] caret-[#242018] placeholder:text-[#242018]/38 focus:border-[#242018]/35 focus:outline-none"
+                      className="t-home-form-field vibio-input-radius min-w-0 flex-1 border border-[#242018]/18 bg-[#0000000D] px-4 py-3 text-[#242018] caret-[#242018] placeholder:text-[#242018]/38 focus:border-[#242018]/35 focus:outline-none"
                     />
                     <button
                       type="button"
-                      className="vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-[#0000002B] px-5 py-3 text-sm font-medium text-[#242018] transition-colors hover:bg-[#00000033]"
+                      className="t-home-button vibio-button-motion vibio-action-radius inline-flex shrink-0 items-center justify-center border border-transparent bg-[#0000002B] px-5 py-3 text-[#242018] transition-colors hover:bg-[#00000033]"
                     >
                       SUSCRIBIRME
                     </button>
                   </div>
-                  <label className="flex cursor-pointer items-start gap-3 text-[10px] font-light tracking-[0.08em] text-[#242018]/58">
+                  <label className="t-home-caption flex cursor-pointer items-start gap-3 text-[#242018]/58">
                     <input
                       type="checkbox"
                       className="mt-0.5 h-4 w-4 shrink-0 appearance-none rounded-full border border-[#242018]/18 bg-[#0000000D] checked:border-[#242018] checked:bg-[#242018] focus:outline-none focus:ring-2 focus:ring-[#242018]/20"
@@ -126,21 +127,23 @@ function FooterColumn({
   title: string
   links: Array<{ href: string; label: string; imageSrc?: string; imageAlt?: string }>
 }) {
+  const hasLogoLinks = links.some((link) => Boolean(link.imageSrc))
+
   return (
     <div>
-      <p className="text-[11px] font-medium tracking-[0em] text-[#242018]/62 uppercase">{title}</p>
-      <nav className="mt-5 flex flex-col gap-3.5">
+      <p className="t-home-footer-title text-[#242018]/48">{title}</p>
+      <nav className={hasLogoLinks ? "mt-4 flex flex-col gap-3" : "mt-5 flex flex-col gap-3.5"}>
         {links.map((link) => (
           <LinkOrAnchor
             key={`${title}-${link.label}`}
             href={link.href}
-            className="w-fit text-[15px] font-light leading-[1.5] text-[#242018]/78 transition-opacity duration-200 hover:opacity-75"
+            className="t-home-footer-link vibio-hover-link w-fit text-[#242018]/82 transition-opacity duration-200 hover:opacity-75"
           >
             {link.imageSrc ? (
               <div
                 role="img"
                 aria-label={link.imageAlt ?? link.label}
-                className="h-[1.9rem] w-[9.1rem]"
+                className="h-[1.7rem] w-[8.4rem]"
                 style={{
                   backgroundColor: '#242018',
                   WebkitMaskImage: `url(${link.imageSrc})`,

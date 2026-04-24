@@ -207,17 +207,18 @@ export function Datos() {
       ref={sectionRef}
       id="datos"
       data-nav-surface="light"
+      data-cursor-surface="dark"
       className="overflow-hidden bg-[#DBC56C] py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="vibio-layout-shell">
         {/* Header */}
         <ScrollReveal>
           <div className="mb-6">
-            <span className="inline-flex w-fit rounded-full bg-[#5F5134] px-4 py-1.5 text-[11px] font-medium tracking-[0.06em] text-white uppercase">
+            <span className="t-home-badge-soft inline-flex w-fit rounded-full bg-[#5F5134] px-4 py-1.5 text-white">
               Vibio en cifras
             </span>
           </div>
-          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-[#5F5134]">
+          <h2 className="t-home-display-section max-w-3xl text-balance text-[#5F5134]">
             Datos que diferencian una promesa de un compromiso.
           </h2>
         </ScrollReveal>
@@ -228,7 +229,7 @@ export function Datos() {
             <div className="mb-5 flex items-center justify-between gap-4 text-[#5F5134]/72">
               <div className="min-h-[14px]">
                 {!hasScrolledHorizontally && (
-                  <div className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.08em] uppercase">
+                  <div className="t-home-helper-inline inline-flex items-center gap-2">
                     <ChevronLeft className="h-3.5 w-3.5 opacity-45" />
                     <span>Deslizá para ver más</span>
                     <ChevronRight
@@ -272,26 +273,26 @@ export function Datos() {
                 <div
                   key={dato.description}
                   data-dato-card
-                  className="relative flex w-[260px] flex-shrink-0 flex-col pb-8 pl-6 pt-1"
+                  className="vibio-stat-card relative flex w-[260px] flex-shrink-0 flex-col pb-8 pl-6 pt-1"
                 >
                   <span
                     data-dato-divider
                     aria-hidden
-                    className="absolute inset-y-0 left-0 w-px bg-[#5F5134]/22"
+                    className="absolute inset-y-0 left-0 w-[2px] bg-[#5F5134]/28"
                   />
 
                   {/* Fixed-height top block — pins all descriptions to the same Y */}
                   <div className="h-[128px]">
-                    <span className="font-serif block whitespace-nowrap text-[clamp(2.2rem,3vw,3rem)] font-semibold leading-none text-[#5F5134]">
+                    <span className="t-home-serif-metric block whitespace-nowrap text-[#5F5134]">
                       {dato.metric}
                     </span>
 
-                    <span className="mt-2.5 block font-serif italic font-normal text-[15px] leading-[1.5] text-[#5F5134]/72">
+                    <span className="t-home-serif-metric-label mt-2 block text-[#5F5134]/72">
                       {dato.description}
                     </span>
                   </div>
 
-                  <p className="mt-20 text-[14px] font-light leading-[1.7] text-[#5F5134]/82">
+                  <p className="t-home-body-sm mt-20 text-[#5F5134]/82">
                     {dato.text}
                   </p>
                 </div>

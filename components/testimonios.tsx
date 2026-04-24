@@ -116,12 +116,12 @@ export function Testimonios() {
       data-nav-surface="light"
       className="bg-vibio-marfil py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="vibio-layout-shell">
         <ScrollReveal>
-          <p className="mb-4 inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
+          <p className="t-home-badge-dark mb-4 inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-vibio-text/65">
             La opinión de la comunidad
           </p>
-          <h2 className="font-heading max-w-3xl text-balance text-[clamp(2rem,4.5vw,3.25rem)] font-normal leading-[1.08] text-vibio-text">
+          <h2 className="t-home-display-section max-w-3xl text-balance text-vibio-text">
             Lo que dicen quienes ya forman parte de Vibio
           </h2>
         </ScrollReveal>
@@ -136,10 +136,10 @@ export function Testimonios() {
                 >
                   <figure
                     data-testimonio-card
-                    className="vibio-surface-radius-lg relative flex h-full min-h-[31rem] w-full flex-col overflow-hidden bg-[#C7D8E6] px-7 py-8 lg:min-h-[35rem] lg:px-8 lg:py-9"
+                    className="vibio-testimonial-card vibio-surface-radius-lg relative flex h-full min-h-[31rem] w-full flex-col overflow-hidden bg-[#C7D8E6] px-7 py-8 lg:min-h-[35rem] lg:px-8 lg:py-9"
                   >
-                    <figcaption className="relative z-10 min-h-[5.5rem] text-sm font-light text-vibio-text/70 lg:min-h-[6rem]">
-                      <span className="block font-semibold text-vibio-text">
+                    <figcaption className="t-home-testimonial-caption relative z-10 min-h-[5.5rem] text-vibio-text/70 lg:min-h-[6rem]">
+                      <span className="t-home-testimonial-author block text-vibio-text">
                         {t.author}
                       </span>
                       <span className="mt-2.5 block min-h-[3rem] max-w-[26ch] leading-[1.6] lg:min-h-[3.2rem]">
@@ -149,12 +149,12 @@ export function Testimonios() {
                     <blockquote className="relative z-10 mt-8 flex-1 lg:mt-10">
                       <p
                         data-testimonio-quote
-                        className="font-serif relative z-10 text-[1.4rem] leading-[1.58] text-vibio-text italic lg:text-[1.6rem] lg:leading-[1.54]"
+                        className="t-home-serif-quote relative z-10 text-vibio-text"
                       >
                         {t.quote}
                       </p>
                     </blockquote>
-                    <div className="mt-10 border-t border-vibio-text/18 pt-6 text-sm font-light leading-[1.6] text-vibio-text/70">
+                    <div className="t-home-testimonial-caption mt-10 border-t border-vibio-text/18 pt-6 text-vibio-text/70">
                       {t.role}
                     </div>
                   </figure>
@@ -163,8 +163,8 @@ export function Testimonios() {
             </CarouselContent>
 
             <div className="mt-10 flex items-center gap-3">
-              <CarouselPrevious className="static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
-              <CarouselNext className="static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
+              <CarouselPrevious className="vibio-button-motion static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
+              <CarouselNext className="vibio-button-motion static translate-x-0 translate-y-0 border-vibio-text/20 bg-transparent text-vibio-text hover:bg-vibio-text/5" />
             </div>
           </Carousel>
         </div>

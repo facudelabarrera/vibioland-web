@@ -9,27 +9,44 @@ import {
 import { TextAnimate } from '@/components/ui/text-animate'
 import { ScrollReveal } from '@/components/scroll-reveal'
 
+function RowArrow({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 42 33"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path
+        d="M26.379 32.109L23.193 29.218L33.518 18.244H0.36V14.114H33.518L23.193 3.14L26.379 0.248997L41.129 16.179L26.379 32.109Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
 export async function Proyectos() {
   const projects = await client.fetch<ProjectListItem[]>(projectsListQuery)
   const activeProjects = getHomeProjects(projects)
 
   return (
     <section id="proyectos" data-nav-surface="light" className="bg-vibio-white py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="vibio-layout-shell">
         <ScrollReveal>
           <div className="flex flex-wrap items-end justify-between gap-8">
             <div>
-              <p className="mb-4 inline-flex w-fit rounded-full bg-[#3F3926] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-white uppercase">
+              <p className="t-home-badge-dark mb-4 inline-flex w-fit rounded-full bg-[#3F3926] px-4 py-1.5 text-white">
                 Comunidades
               </p>
               <TextAnimate
                 as="h2"
                 animation="slideUp"
-                by="word"
+                by="line"
                 once
-                className="font-heading text-[clamp(2rem,4.5vw,3.5rem)] font-normal leading-[1.05] text-vibio-text"
+                className="t-home-display-section-wide text-vibio-text"
               >
-                Dos proyectos en ejecución y cuatro en evaluación.
+                {"Dos proyectos en ejecución\ny cuatro en evaluación."}
               </TextAnimate>
             </div>
           </div>
@@ -40,30 +57,34 @@ export async function Proyectos() {
         <div id="proximos-territorios" className="mt-20 lg:mt-28">
           <ScrollReveal>
             <div className="max-w-2xl">
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="font-heading text-[clamp(1.8rem,3.4vw,2.65rem)] font-normal leading-[1.06] text-vibio-text text-balance">
+              <div className="flex flex-wrap items-center gap-8">
+                <h3 className="t-home-display-subsection text-vibio-text text-balance">
                   Próximos Vibio
                 </h3>
+                <span
+                  className="t-home-badge-status vibio-badge-radius inline-flex w-fit items-center justify-center gap-2 border bg-vibio-white px-3 py-1.5"
+                  style={{ borderColor: '#5F513466', color: '#5F5134' }}
+                >
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#F38163]" aria-hidden />
+                  EN ESTUDIO
+                </span>
               </div>
-              <p className="mt-5 inline-flex items-center gap-2 text-[12px] font-medium tracking-[0em] text-vibio-text/62 uppercase">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#F38163]" aria-hidden />
-                <span>En estudio · Próximos territorios</span>
-              </p>
-              <p className="mt-4 text-[15px] font-light leading-[1.8] text-vibio-text/68 lg:text-base">
+              <p className="t-home-body-md-relaxed mt-4 text-vibio-text/68">
                 Actualmente estamos evaluando cuatro nuevos territorios. Si estás interesado en formar parte del proceso de diseño o conoces un territorio que encaja con el modelo Vibio, podemos hablar.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/proyectos"
-                  className="vibio-action-radius inline-flex items-center justify-center border border-[#D9D9D9] bg-[#D9D9D9] px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:bg-[#cfcfcf]"
+                  className="t-home-button vibio-button-motion group vibio-action-radius inline-flex items-center justify-between gap-4 border border-[#D9D9D9] bg-[#D9D9D9] px-6 py-3 text-vibio-text transition-all hover:bg-[#cfcfcf]"
                 >
-                  Conocer todas las comunidades
+                  <span>CONOCER TODAS LAS COMUNIDADES</span>
+                  <RowArrow className="h-[10px] w-[13px] transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 sm:h-3 sm:w-[15px]" />
                 </Link>
                 <Link
                   href="/contacto"
-                  className="vibio-action-radius inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-sm font-medium text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
+                  className="t-home-button vibio-button-motion vibio-action-radius inline-flex items-center justify-center border border-vibio-text/20 bg-transparent px-6 py-3 text-vibio-text transition-all hover:border-vibio-text/35 hover:bg-vibio-text/[0.04]"
                 >
-                  Proponer territorio
+                  PROPONER TERRITORIO
                 </Link>
               </div>
             </div>

@@ -62,7 +62,7 @@ export default function ProyectosPage() {
       <Navigation />
 
       <section data-nav-surface="light" className="pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             Proyectos
           </span>
@@ -153,7 +153,7 @@ export default function ProyectosPage() {
       </section>
 
       <section id="proximos-territorios" className="bg-vibio-surface-2 py-20 lg:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="vibio-layout-shell">
           <span className="inline-flex w-fit rounded-full bg-[#C7D8E6] px-4 py-1.5 text-[12px] font-medium tracking-[0em] text-vibio-text/65 uppercase">
             En estudio — próximos territorios
           </span>

@@ -149,7 +149,7 @@ export function Audiencia() {
 
   return (
     <section ref={sectionRef} id="audiencia" data-nav-surface="light" className="bg-vibio-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 lg:py-0">
+      <div className="vibio-layout-shell py-20 lg:py-0">
         <div className="grid gap-10 lg:min-h-screen lg:grid-cols-[340px_1fr] lg:items-start lg:gap-16 lg:py-20">
           {/* ── Left column ── */}
           <div className="lg:pt-12">

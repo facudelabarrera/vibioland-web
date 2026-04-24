@@ -71,7 +71,7 @@ export default async function ProyectoPage({
           )}
           <div className="absolute inset-x-0 bottom-0 h-[50%] bg-vibio-surface-2/92" />
 
-          <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-12 lg:px-8 lg:pb-16">
+          <div className="vibio-layout-shell relative z-10 flex h-full flex-col justify-end pb-12 lg:pb-16">
             {project.status && (
               <span className="vibio-badge-radius inline-block w-fit bg-vibio-accent-yellow/45 px-3 py-1 text-xs font-medium text-vibio-text">
                 {STATUS_LABELS[project.status]}
@@ -92,7 +92,7 @@ export default async function ProyectoPage({
 
         <div
           data-nav-surface="light"
-          className="mx-auto mt-16 grid max-w-7xl gap-16 px-6 lg:mt-24 lg:grid-cols-3 lg:px-8"
+          className="vibio-layout-shell mt-16 grid gap-16 lg:mt-24 lg:grid-cols-3"
         >
           <div className="lg:col-span-2">
             {project.tagline && (
@@ -123,7 +123,7 @@ export default async function ProyectoPage({
         </div>
 
         {project.pillars && project.pillars.length > 0 && (
-          <section className="mx-auto mt-24 max-w-7xl px-6 lg:px-8">
+          <section className="vibio-layout-shell mt-24">
             <h2 className="font-heading text-2xl font-semibold text-vibio-text">
               Pilares del decálogo en este proyecto
             </h2>
@@ -151,7 +151,7 @@ export default async function ProyectoPage({
         )}
 
         {project.gallery && project.gallery.length > 0 && (
-          <section className="mx-auto mt-24 max-w-7xl px-6 lg:px-8">
+          <section className="vibio-layout-shell mt-24">
             <h2 className="font-heading text-2xl font-semibold text-vibio-text">
               Galería
             </h2>

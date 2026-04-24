@@ -99,18 +99,18 @@ export function ModeloBloquesSection() {
           >
             <div className="relative z-10 flex h-full flex-col justify-between">
               <div className="flex flex-col">
-                <p className="text-[11px] font-medium tracking-[0em] text-vibio-text/48 uppercase">
+                <p className="t-home-eyebrow-card text-vibio-text/48">
                   {eyebrow}
                 </p>
                 <h3
                   aria-label={title}
-                  className="mt-5 max-w-none whitespace-pre-line font-heading text-[clamp(1.55rem,2.2vw,2.15rem)] font-normal leading-[1.04] text-vibio-text"
+                  className="t-home-display-card mt-5 max-w-none whitespace-pre-line text-vibio-text"
                 >
                   {titleLines[0]}
                   {'\n'}
                   {titleLines[1]}
                 </h3>
-                <p className="mt-5 max-w-sm text-[15px] font-light leading-[1.75] text-vibio-text/68">
+                <p className="t-home-body-md mt-5 max-w-sm text-vibio-text/68">
                   {description}
                 </p>
 
@@ -120,7 +120,7 @@ export function ModeloBloquesSection() {
                   className={`grid transition-[grid-template-rows,opacity,margin] duration-300 ease-in-out ${isOpen ? 'mt-5 grid-rows-[1fr] opacity-100' : 'mt-0 grid-rows-[0fr] opacity-0'}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="max-w-sm text-[15px] font-light leading-[1.75] text-vibio-text/68">
+                    <p className="t-home-body-md max-w-sm text-vibio-text/68">
                       {longDescription}
                     </p>
                   </div>
@@ -134,7 +134,7 @@ export function ModeloBloquesSection() {
                   aria-controls={panelId}
                   aria-label={`${isOpen ? 'Colapsar' : 'Expandir'} ${title}`}
                   onClick={() => setActiveCard(isOpen ? null : number)}
-                  className="inline-flex items-center text-[2rem] leading-none text-[#EB593B] transition-opacity duration-300 ease-in-out hover:opacity-60"
+                  className="t-home-toggle-icon inline-flex items-center text-[#EB593B] transition-opacity duration-300 ease-in-out hover:opacity-60"
                 >
                   {isOpen ? '−' : '+'}
                 </button>

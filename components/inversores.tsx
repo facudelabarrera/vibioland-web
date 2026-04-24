@@ -55,7 +55,7 @@ export function Inversores() {
       data-nav-surface="light"
       className="bg-vibio-marfil py-24 lg:py-32"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="vibio-layout-shell">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <h2
             data-inv-heading

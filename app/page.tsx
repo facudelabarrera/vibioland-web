@@ -12,8 +12,8 @@ export const revalidate = 60
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <Navigation />
+    <main className="min-h-screen bg-vibio-white">
+      <Navigation variant="solid" />
       <HeroSection />
       <VibioIntroSection />
       <ElModelo />

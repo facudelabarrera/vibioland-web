@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { Inter } from "next/font/google"
 import { useState, useEffect, useRef, useCallback } from "react"
 
 /** Scroll casi arriba del todo: el header siempre visible */
@@ -12,11 +13,31 @@ const DELTA = 6
 const NAV_BAND = 56
 
 type NavSurface = "light" | "dark"
+type NavigationVariant = "overlay" | "solid"
+type NavLinkItem = {
+  href: string
+  label: string
+  isEmphasized?: boolean
+}
 
-const regularNavItems = [
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+})
+
+const regularNavItems: NavLinkItem[] = [
+  { href: "/modelo", label: "COMO FUNCIONA" },
+]
+
+const secondaryNavItems: NavLinkItem[] = [
+  { href: "/vivir-en-vibio", label: "VIVIR EN VIBIO" },
+  { href: "/contacto", label: "CONTACTO", isEmphasized: true },
+]
+
+const mobilePrimaryItems: NavLinkItem[] = [
   { href: "/modelo", label: "COMO FUNCIONA" },
   { href: "/vivir-en-vibio", label: "VIVIR EN VIBIO" },
-  { href: "/contacto", label: "CONTACTA" },
+  { href: "/contacto", label: "CONTACTO", isEmphasized: true },
 ]
 
 const comunidadesItems = [
@@ -55,7 +76,11 @@ function readNavSurface(): NavSurface {
   return best?.theme ?? "light"
 }
 
-export function Navigation() {
+type NavigationProps = {
+  variant?: NavigationVariant
+}
+
+export function Navigation({ variant = "overlay" }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [comunidadesOpen, setComunidadesOpen] = useState(false)
   const [mobileComunidadesOpen, setMobileComunidadesOpen] = useState(false)
@@ -63,13 +88,24 @@ export function Navigation() {
   const [surface, setSurface] = useState<NavSurface>("light")
   const lastScrollY = useRef(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const isSolid = variant === "solid"
 
   const syncSurface = useCallback(() => {
+    if (isSolid) {
+      setSurface("light")
+      return
+    }
     setSurface(readNavSurface())
-  }, [])
+  }, [isSolid])
 
   useEffect(() => {
     const tick = () => {
+      if (isSolid) {
+        setHeaderVisible(true)
+        setSurface("light")
+        return
+      }
+
       const y = window.scrollY
       const delta = y - lastScrollY.current
 
@@ -106,12 +142,16 @@ export function Navigation() {
       window.removeEventListener("resize", syncSurface)
       document.removeEventListener("mousedown", onClickOutside)
     }
-  }, [syncSurface])
+  }, [isSolid, syncSurface])
 
   const isDark = surface === "dark"
   const textClass = isDark ? "text-white" : "text-vibio-text"
-  const textMuted = isDark ? "text-white/75" : "text-vibio-text/75"
-  const hoverBg = isDark ? "hover:bg-white/10" : "hover:bg-vibio-text/[0.06]"
+  const textMuted = isSolid
+    ? "text-vibio-text/72"
+    : isDark
+      ? "text-white/75"
+      : "text-vibio-text/75"
+  const hoverBg = isSolid ? "hover:bg-vibio-text/[0.05]" : isDark ? "hover:bg-white/10" : "hover:bg-vibio-text/[0.06]"
   const hoverText = isDark ? "hover:text-white" : "hover:text-vibio-text"
 
   const mobilePanelClass = isDark
@@ -119,25 +159,41 @@ export function Navigation() {
     : "vibio-surface-radius-lg border-vibio-border bg-vibio-white/92 text-vibio-text/90"
 
   const mobileLinkClass = isDark
-    ? "vibio-action-radius px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-    : "vibio-action-radius px-4 py-3 text-sm text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
+    ? "t-home-nav-link-mobile vibio-action-radius px-4 py-3 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+    : "t-home-nav-link-mobile vibio-action-radius px-4 py-3 text-vibio-text/80 transition-colors hover:bg-vibio-text/[0.05] hover:text-vibio-text"
 
   const logoColor = isDark ? "rgba(255,255,255,0.85)" : "#3F3926"
+  const headerClass = isSolid
+    ? "sticky top-0 right-0 left-0 z-50 bg-vibio-white/96 backdrop-blur-md"
+    : "fixed top-0 right-0 left-0 z-50 bg-transparent transition-[transform,color] duration-200 ease-out motion-reduce:transition-none"
+  const navClass = isSolid
+    ? "vibio-layout-shell flex items-center justify-between py-2 lg:py-2.5"
+    : "vibio-layout-shell flex items-center justify-between py-1.5"
+  const desktopLinkClass = isSolid
+    ? `${inter.className} t-home-nav-link-solid vibio-action-radius vibio-hover-link px-4 py-1.5 transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`
+    : `${inter.className} t-home-nav-link-overlay vibio-action-radius vibio-hover-link px-4 py-1.5 transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`
+  const dropdownClass = isSolid
+    ? "vibio-surface-radius-lg absolute top-full left-0 z-50 mt-2 min-w-[156px] border border-vibio-border/20 bg-vibio-white/98 py-2 shadow-[0_18px_50px_rgba(63,57,38,0.10)] backdrop-blur-sm"
+    : `vibio-surface-radius-lg absolute top-full left-0 z-50 mt-1.5 min-w-[136px] border py-2 backdrop-blur-sm ${
+        isDark
+          ? "border-white/20 bg-vibio-brand-green/95"
+          : "border-vibio-border bg-vibio-white/96"
+      }`
 
   return (
     <header
-      className="fixed top-0 right-0 left-0 z-50 bg-transparent transition-[transform,color] duration-200 ease-out motion-reduce:transition-none"
-      style={{ transform: headerVisible ? "translateY(0)" : "translateY(-100%)" }}
+      className={headerClass}
+      style={isSolid ? undefined : { transform: headerVisible ? "translateY(0)" : "translateY(-100%)" }}
       suppressHydrationWarning
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <nav className={navClass}>
         <Link href="/" className="inline-block shrink-0">
           <Image
             src="/vibioland-logo.svg"
             alt="Vibio"
             width={97}
             height={32}
-            className="h-8 w-auto"
+            className={isSolid ? "h-[2.7rem] w-auto sm:h-[3rem]" : "h-[2.7rem] w-auto sm:h-[3rem]"}
             style={{
               filter: isDark ? "brightness(0) invert(1)" : "none",
               transition: "filter 200ms ease",
@@ -150,7 +206,7 @@ export function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={`vibio-action-radius px-4 py-2 text-sm transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`}
+              className={`${desktopLinkClass} ${item.isEmphasized ? "t-home-nav-link-emphasis text-vibio-text" : ""}`}
             >
               {item.label}
             </Link>
@@ -161,7 +217,7 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => setComunidadesOpen((v) => !v)}
-              className={`vibio-action-radius inline-flex items-center gap-1.5 px-4 py-2 text-sm transition-colors duration-200 ${textMuted} ${hoverBg} ${hoverText}`}
+              className={`${desktopLinkClass} inline-flex items-center gap-1.5`}
             >
               COMUNIDADES
               <svg
@@ -178,20 +234,16 @@ export function Navigation() {
             </button>
 
             {comunidadesOpen && (
-              <div
-                className={`vibio-surface-radius-lg absolute top-full left-0 z-50 mt-1.5 min-w-[136px] border py-2 backdrop-blur-sm ${
-                  isDark
-                    ? "border-white/20 bg-vibio-brand-green/95"
-                    : "border-vibio-border bg-vibio-white/96"
-                }`}
-              >
+              <div className={dropdownClass}>
                 {comunidadesItems.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setComunidadesOpen(false)}
                     className={`flex items-center px-4 py-2.5 transition-colors duration-150 ${
-                      isDark
+                      isSolid
+                        ? "hover:bg-vibio-text/[0.04]"
+                        : isDark
                         ? "hover:bg-white/10"
                         : "hover:bg-vibio-text/[0.05]"
                     }`}
@@ -219,11 +271,21 @@ export function Navigation() {
               </div>
             )}
           </div>
+
+          {secondaryNavItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${desktopLinkClass} ${item.isEmphasized ? "t-home-nav-link-emphasis text-vibio-text" : ""}`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         <button
           type="button"
-          className="vibio-action-radius p-2 transition-colors duration-200 lg:hidden"
+          className={`vibio-action-radius p-2 transition-colors duration-200 lg:hidden ${isSolid ? "text-vibio-text" : ""}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Abrir o cerrar menú"
         >
@@ -246,11 +308,11 @@ export function Navigation() {
       {mobileMenuOpen && (
         <div className={`mx-4 border px-4 py-4 backdrop-blur-sm lg:hidden ${mobilePanelClass}`}>
           <div className="flex flex-col gap-1">
-            {regularNavItems.map((item) => (
+            {mobilePrimaryItems.slice(0, 1).map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={mobileLinkClass}
+                className={`${inter.className} ${mobileLinkClass} ${item.isEmphasized ? "t-home-nav-link-emphasis text-vibio-text" : ""}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -310,6 +372,17 @@ export function Navigation() {
                 ))}
               </div>
             )}
+
+            {mobilePrimaryItems.slice(1).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${inter.className} ${mobileLinkClass} ${item.isEmphasized ? "t-home-nav-link-emphasis text-vibio-text" : ""}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       )}
